@@ -24,10 +24,11 @@
 
     <div class="main-container">
 
-        <!-- MENU LATERALE - LINK NORMALI (funzionano sempre) -->
+        <!-- MENU LATERALE -->
         <nav>
             <ul>
-                <li><a href="storia.html" class="active">📖 Storia</a></li>
+                <li><a href="index.html" class="active">🏠 Home</a></li>
+                <li><a href="storia.html">📖 Storia</a></li>
                 <li><a href="chi-siamo.html">👥 Chi Siamo</a></li>
                 <li><a href="attivita.html">📅 Attività</a></li>
                 <li><a href="contatti.html">📧 Contatti</a></li>
@@ -35,21 +36,19 @@
         </nav>
 
         <main>
-            <div class="container">
-				<h2>La nostra missione</h2>
-				<p>L'Associazione "Gente del Titano" è nata nel 1979 con l'obiettivo di mantenere vivi i legami tra i sammarinesi residenti fuori dalla Repubblica e la loro terra d'origine.</p>
-
-				<p>Da oltre 40 anni, ci impegniamo a:</p>
-				<ul>
-					<li>Promuovere la cultura e le tradizioni sammarinesi</li>
-					<li>Favorire l'incontro tra i sammarinesi residenti nel riminese</li>
-					<li>Rafforzare i legami con la Repubblica di San Marino</li>
-				</ul>
-
-				<h2>La nostra comunità</h2>
-				<p>La comunità sammarinese nel circondario di Rimini è una delle più numerose al mondo, con oltre 866 soci iscritti.</p>
-
-				<div class="separator">✦ ✦ ✦</div>
+            <div class="container" id="content-container">
+                <!-- CONTENUTO HOME (caricato da home-content.html) -->
+                <h2>La nostra missione</h2>
+                <p>L'Associazione "Gente del Titano" è nata nel 1979 con l'obiettivo di mantenere vivi i legami tra i sammarinesi residenti fuori dalla Repubblica e la loro terra d'origine.</p>
+                <p>Da oltre 40 anni, ci impegniamo a:</p>
+                <ul>
+                    <li>Promuovere la cultura e le tradizioni sammarinesi</li>
+                    <li>Favorire l'incontro tra i sammarinesi residenti nel riminese</li>
+                    <li>Rafforzare i legami con la Repubblica di San Marino</li>
+                </ul>
+                <h2>La nostra comunità</h2>
+                <p>La comunità sammarinese nel circondario di Rimini è una delle più numerose al mondo, con oltre 866 soci iscritti.</p>
+                <div class="separator">✦ ✦ ✦</div>
                 <p style="text-align: center; font-size: 0.85rem; color: #aaa; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
                     &copy; 2026 - Associazione Gente del Titano di Rimini
                 </p>
@@ -65,5 +64,72 @@
         </p>
     </footer>
 
+    <!-- JavaScript per caricare i contenuti -->
+    <script>
+        // Funzione per caricare il contenuto di una pagina
+        function loadPage(page) {
+            const container = document.getElementById('content-container');
+            if (!container) return;
+            
+            // Mostra caricamento
+            container.innerHTML = '<p style="text-align:center; padding: 50px;">⏳ Caricamento...</p>';
+            
+            // Carica il contenuto dal file HTML
+            fetch(page + '.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('Pagina non trovata');
+                    return response.text();
+                })
+                .then(html => {
+                    container.innerHTML = html;
+                    // Aggiorna il titolo
+                    document.title = 'Gente del Titano - ' + page.charAt(0).toUpperCase() + page.slice(1);
+                })
+                .catch(() => {
+                    container.innerHTML = `
+                        <h1>😕 Pagina non trovata</h1>
+                        <p>Impossibile caricare "${page}.html".</p>
+                    `;
+                });
+        }
+
+        // Quando la pagina è caricata, controlla se c'è una pagina da caricare
+        document.addEventListener('DOMContentLoaded', function() {
+            // Se l'URL ha un parametro ?page=storia, carica quella pagina
+            const urlParams = new URLSearchParams(window.location.search);
+            const page = urlParams.get('page');
+            if (page) {
+                loadPage(page);
+            }
+        });
+
+        // Gestisce i click sui link del menu
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('nav ul li a');
+            if (link && link.getAttribute('href') && link.getAttribute('href').endsWith('.html')) {
+                const href = link.getAttribute('href');
+                if (href === 'index.html') return; // Non fare nulla per la home
+                
+                e.preventDefault();
+                const page = href.replace('.html', '');
+                loadPage(page);
+                
+                // Aggiorna l'URL senza ricaricare la pagina
+                const newUrl = window.location.pathname + '?page=' + page;
+                window.history.pushState({ page: page }, '', newUrl);
+                
+                // Rimuovi active da tutti i link
+                document.querySelectorAll('nav ul li a').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            }
+        });
+
+        // Gestisce il pulsante "Indietro" del browser
+        window.addEventListener('popstate', function(e) {
+            if (e.state && e.state.page) {
+                loadPage(e.state.page);
+            }
+        });
+    </script>
 </body>
 </html>
