@@ -1,6 +1,5 @@
 // Funzione per caricare il contenuto di una pagina
 function loadPage(page) {
-    // Mostra un indicatore di caricamento (opzionale)
     const container = document.getElementById('content-container');
     container.innerHTML = '<p style="text-align:center; padding: 50px;">⏳ Caricamento in corso...</p>';
     
@@ -25,7 +24,6 @@ function loadPage(page) {
         })
         .then(html => {
             container.innerHTML = html;
-            // Aggiorna il titolo della pagina
             document.title = 'Gente del Titano - ' + page.charAt(0).toUpperCase() + page.slice(1);
         })
         .catch(error => {
@@ -39,7 +37,6 @@ function loadPage(page) {
 
 // Carica la pagina iniziale quando il documento è pronto
 document.addEventListener('DOMContentLoaded', function() {
-    // Controlla se c'è una pagina nella URL (es. ?page=storia)
     const urlParams = new URLSearchParams(window.location.search);
     const page = urlParams.get('page') || 'storia';
     loadPage(page);
