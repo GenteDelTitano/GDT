@@ -27,9 +27,9 @@
         <!-- MENU LATERALE -->
         <nav>
             <ul>
-                <li><a href="index.html" class="active">🏠 Home</a></li>
-                <li><a href="storia.html">📖 Storia</a></li>
-                <li><a href="quanti-siamo.html">👥 Quanti Siamo</a></li>
+                <li><a href="#" data-page="home" class="active">🏠 Home</a></li>
+                <li><a href="#" data-page="storia">📖 Storia</a></li>
+                <li><a href="#" data-page="quanti-siamo">👥 Quanti Siamo</a></li>
                 
                 <!-- MENU A TENDINA EVENTI -->
                 <li>
@@ -46,7 +46,7 @@
                     </select>
                 </li>
                 
-                <li><a href="contatti.html">📧 Contatti</a></li>
+                <li><a href="#" data-page="contatti">📧 Contatti</a></li>
             </ul>
         </nav>
 
@@ -74,11 +74,12 @@
             }
         }
 
-        // Funzione per caricare il contenuto delle pagine (home, storia, etc.)
+        // Funzione per caricare il contenuto delle pagine da content/
         function loadPage(page) {
             const container = document.getElementById('content-container');
             if (!container) return;
 
+            // Se è home, carica home.html
             container.innerHTML = '<p style="text-align:center; padding: 50px;">⏳ Caricamento...</p>';
 
             fetch('content/' + page + '.html')
@@ -90,11 +91,21 @@
                     container.innerHTML = html;
                     const nomePagina = page.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
                     document.title = 'Gente del Titano - ' + nomePagina;
+                    
+                    // Aggiorna la classe active nel menu
+                    document.querySelectorAll('nav ul li a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    const activeLink = document.querySelector(`nav ul li a[data-page="${page}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
                 })
                 .catch(() => {
                     container.innerHTML = `
                         <h1>😕 Pagina non trovata</h1>
                         <p>Impossibile caricare "${page}".</p>
+                        <p style="color: #888; font-size: 0.9rem;">Verifica che content/${page}.html esista.</p>
                     `;
                 });
         }
@@ -103,26 +114,20 @@
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const page = urlParams.get('page') || 'home';
-            if (page === 'home') {
-                loadPage('home');
-            }
+            loadPage(page);
         });
 
-        // Gestisce i click sui link del menu
+        // Gestisce i click sui link del menu (con data-page)
         document.addEventListener('click', function(e) {
             const link = e.target.closest('nav ul li a');
-            if (link && link.getAttribute('href')) {
-                const href = link.getAttribute('href');
-                if (href === 'index.html') return;
-                if (href.endsWith('.html') && !href.includes('/')) {
-                    e.preventDefault();
-                    const page = href.replace('.html', '');
-                    if (page === 'storia' || page === 'quanti-siamo' || page === 'contatti') {
-                        loadPage(page);
-                        const newUrl = window.location.pathname + '?page=' + page;
-                        window.history.pushState({ page: page }, '', newUrl);
-                    }
-                }
+            if (link && link.dataset.page) {
+                e.preventDefault();
+                const page = link.dataset.page;
+                loadPage(page);
+                
+                // Aggiorna l'URL senza ricaricare
+                const newUrl = window.location.pathname + '?page=' + page;
+                window.history.pushState({ page: page }, '', newUrl);
             }
         });
 
