@@ -30,22 +30,29 @@
                 <li><a href="index.html" class="active">🏠 Home</a></li>
                 <li><a href="storia.html">📖 Storia</a></li>
                 <li><a href="quanti-siamo.html">👥 Quanti Siamo</a></li>
-				<li>
-					<!-- <label for="destinazione">Scegli una cartella da visualizzare:</label>  -->
-					<select tabindex="1" name="Eventi" id="destinazione" onchange="vaiAllaCartella(this.value)">
-					<option value="">Eventi: --- Selezionare un anno ---</option>
-					<option value="anno-2026">Eventi anno 2026</option>
-					<option value="anno-2025">Eventi anno 2025</option>
-					<option value="anno-2023">Eventi anno 2024</option>
-					</select>
-				</li>
-				<li><a href="attivita.html">📅 Attività</a></li>
-				<li><a href="contatti.html">📧 Contatti</a></li>
-				</ul>
-			</nav>
+                
+                <!-- MENU A TENDINA EVENTI -->
+                <li>
+                    <label for="eventi-select" style="display: block; font-weight: bold; color: #1a3a5c; margin: 10px 0 5px 0; font-size: 0.95rem;">
+                        📅 Eventi
+                    </label>
+                    <select id="eventi-select" onchange="vaiAllaCartella(this.value)" 
+                            style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95rem; background-color: white; cursor: pointer;">
+                        <option value="">--- Seleziona un anno ---</option>
+                        <option value="anno-2026">📅 Eventi 2026</option>
+                        <option value="anno-2025">📅 Eventi 2025</option>
+                        <option value="anno-2024">📅 Eventi 2024</option>
+                        <option value="anno-2023">📅 Eventi 2023</option>
+                    </select>
+                </li>
+                
+                <li><a href="contatti.html">📧 Contatti</a></li>
+            </ul>
+        </nav>
+
         <main>
-            <div lass="container" id="content-container">
-                <!-- CONTENUTO HOME (caricato da home-content.html) -->
+            <div class="container" id="content-container">
+                <!-- CONTENUTO HOME -->
                 <h2>La nostra missione</h2>
                 <p>L'Associazione "Gente del Titano" è nata nel 1979 con l'obiettivo di mantenere vivi i legami tra i sammarinesi residenti fuori dalla Repubblica e la loro terra d'origine.</p>
                 <p>Da oltre 40 anni, ci impegniamo a:</p>
@@ -72,27 +79,22 @@
         </p>
     </footer>
 
-    <!-- JavaScript per caricare i contenuti -->
     <script>
-	
-		// Gestione eventi, esecuzione index da cartelle selezionata
-		function vaiAllaCartella(nomeCartella) {
-			// Controlla che l'utente non abbia selezionato l'opzione vuota iniziale
-			if (nomeCartella !== "") {
-				// Modifica l'URL del browser per puntare alla cartella + /index.html
-				alert(nomeCartella + "/index.html");
-				/* window.location.href = nomeCartella + "/index.html"; */
-			}
-	
-        // Funzione per caricare il contenuto di una pagina
+        // Funzione per navigare alla cartella selezionata
+        function vaiAllaCartella(nomeCartella) {
+            if (nomeCartella !== "") {
+                // Naviga alla cartella selezionata
+                window.location.href = nomeCartella + "/index.html";
+            }
+        }
+
+        // Funzione per caricare il contenuto di una pagina (per i link normali)
         function loadPage(page) {
             const container = document.getElementById('content-container');
             if (!container) return;
             
-            // Mostra caricamento
             container.innerHTML = '<p style="text-align:center; padding: 50px;">⏳ Caricamento...</p>';
             
-            // Carica il contenuto dal file HTML
             fetch(page + '.html')
                 .then(response => {
                     if (!response.ok) throw new Error('Pagina non trovata');
@@ -100,7 +102,6 @@
                 })
                 .then(html => {
                     container.innerHTML = html;
-                    // Aggiorna il titolo
                     document.title = 'Gente del Titano - ' + page.charAt(0).toUpperCase() + page.slice(1);
                 })
                 .catch(() => {
@@ -111,38 +112,25 @@
                 });
         }
 
-        // Quando la pagina è caricata, controlla se c'è una pagina da caricare
-        document.addEventListener('DOMContentLoaded', function() {
-            // Se l'URL ha un parametro ?page=storia, carica quella pagina
-            const urlParams = new URLSearchParams(window.location.search);
-            const page = urlParams.get('page');
-            if (page) {
-                loadPage(page);
-            }
-        });
-
-        // Gestisce i click sui link del menu
+        // Gestisce i click sui link del menu (per caricamento dinamico)
         document.addEventListener('click', function(e) {
             const link = e.target.closest('nav ul li a');
             if (link && link.getAttribute('href') && link.getAttribute('href').endsWith('.html')) {
                 const href = link.getAttribute('href');
-                if (href === 'index.html') return; // Non fare nulla per la home
+                if (href === 'index.html') return;
                 
                 e.preventDefault();
                 const page = href.replace('.html', '');
                 loadPage(page);
                 
-                // Aggiorna l'URL senza ricaricare la pagina
                 const newUrl = window.location.pathname + '?page=' + page;
                 window.history.pushState({ page: page }, '', newUrl);
                 
-                // Rimuovi active da tutti i link
                 document.querySelectorAll('nav ul li a').forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
             }
         });
 
-        // Gestisce il pulsante "Indietro" del browser
         window.addEventListener('popstate', function(e) {
             if (e.state && e.state.page) {
                 loadPage(e.state.page);
