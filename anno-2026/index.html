@@ -1,1 +1,117 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventi 2026 - Gente del Titano</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/x-icon" href="../immagini/Logo_GDT.jpg">
+</head>
+<body>
 
+    <header>
+        <div class="header-left">
+            <img src="../immagini/Logo_GDT.png" alt="Logo Gente del Titano">
+        </div>
+        <div class="header-center">
+            <h1 style="font-size: 20px;">Associazione <i>"Gente del Titano"</i></h1>
+            <div class="sub-title">Rimini - Repubblica di San Marino</div>
+        </div>
+        <div class="header-right">
+            <img src="../immagini/img_sede.jpg" alt="Sede dell'Associazione">
+        </div>
+    </header>
+
+    <div class="main-container">
+
+        <nav>
+            <ul>
+                <li><a href="../index.html">🏠 Home</a></li>
+                <li><a href="../storia.html">📖 Storia</a></li>
+                <li><a href="../quanti-siamo.html">👥 Quanti Siamo</a></li>
+                <li>
+                    <label for="eventi-select" style="display: block; font-weight: bold; color: #1a3a5c; margin: 10px 0 5px 0; font-size: 0.95rem;">
+                        📅 Eventi
+                    </label>
+                    <select id="eventi-select" onchange="vaiAllaCartella(this.value)" 
+                            style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95rem; background-color: white; cursor: pointer;">
+                        <option value="">--- Seleziona un anno ---</option>
+                        <option value="../anno-2026" selected>📅 Eventi 2026</option>
+                        <option value="../anno-2025">📅 Eventi 2025</option>
+                        <option value="../anno-2024">📅 Eventi 2024</option>
+                        <option value="../anno-2023">📅 Eventi 2023</option>
+                    </select>
+                </li>
+                <li><a href="../contatti.html">📧 Contatti</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <div class="container">
+                <h1>📅 Eventi 2026</h1>
+                <p class="subtitle">Tutte le iniziative dell'anno</p>
+
+                <div class="separator">✦ ✦ ✦</div>
+
+                <!-- EVENTO 1 -->
+                <div style="background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #0886f5fb;">
+                    <h3 style="margin: 0; color: #0886f5fb;">🍽️ Pranzo Sociale 2026</h3>
+                    <p><strong>Data:</strong> 15 maggio 2026</p>
+                    <p><strong>Luogo:</strong> Hotel Riviera, Rimini</p>
+                    <p>Il tradizionale pranzo annuale con le autorità sammarinesi. Partecipazione record con oltre 160 soci.</p>
+                    <img src="../immagini/pranzo_2026.jpg" alt="Pranzo Sociale 2026" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">
+                </div>
+
+                <!-- EVENTO 2 -->
+                <div style="background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #0886f5fb;">
+                    <h3 style="margin: 0; color: #0886f5fb;">🎓 Consegna Borse di Studio 2026</h3>
+                    <p><strong>Data:</strong> 30 giugno 2026</p>
+                    <p><strong>Luogo:</strong> Sala del Consolato, Rimini</p>
+                    <p>Cerimonia di consegna delle borse di studio ai giovani sammarinesi meritevoli.</p>
+                    <img src="../immagini/borse_2026.jpg" alt="Borse di Studio 2026" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">
+                </div>
+
+                <!-- EVENTO 3 -->
+                <div style="background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #0886f5fb;">
+                    <h3 style="margin: 0; color: #0886f5fb;">🏖️ Giornata al Mare 2026</h3>
+                    <p><strong>Data:</strong> 15 luglio 2026</p>
+                    <p><strong>Luogo:</strong> Bagni 86, Rimini</p>
+                    <p>Giornata dedicata ai ragazzi partecipanti ai soggiorni culturali.</p>
+                    <img src="../immagini/mare_2026.jpg" alt="Giornata al Mare 2026" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">
+                </div>
+
+                <!-- EVENTO 4 -->
+                <div style="background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #0886f5fb;">
+                    <h3 style="margin: 0; color: #0886f5fb;">🤝 Incontro con il Segretario di Stato</h3>
+                    <p><strong>Data:</strong> 20 marzo 2026</p>
+                    <p><strong>Luogo:</strong> Consolato di San Marino, Rimini</p>
+                    <p>Incontro istituzionale per discutere delle relazioni bilaterali.</p>
+                    <img src="../immagini/incontro_2026.jpg" alt="Incontro 2026" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">
+                </div>
+
+                <div class="separator">✦ ✦ ✦</div>
+
+                <p style="text-align: center; font-size: 0.85rem; color: #aaa; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+                    &copy; 2026 - Associazione Gente del Titano di Rimini
+                </p>
+            </div>
+        </main>
+
+    </div>
+
+    <footer>
+        <p>
+            Associazione <i>"Gente Del Titano"</i> - Sede presso Consolato della Repubblica di San Marino - <b>Rimini</b><br>
+            <i>Corso d'Augusto n° 14</i> - 47921 RIMINI (RN) - 0541 392085 - <a href="mailto:GenteDelTitano@libero.it">GenteDelTitano@libero.it</a>
+        </p>
+    </footer>
+
+    <script>
+        function vaiAllaCartella(nomeCartella) {
+            if (nomeCartella !== "") {
+                window.location.href = nomeCartella + "/index.html";
+            }
+        }
+    </script>
+</body>
+</html>
