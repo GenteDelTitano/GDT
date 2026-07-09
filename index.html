@@ -30,13 +30,21 @@
                 <li><a href="index.html" class="active">🏠 Home</a></li>
                 <li><a href="storia.html">📖 Storia</a></li>
                 <li><a href="quanti-siamo.html">👥 Quanti Siamo</a></li>
-                <li><a href="attivita.html">📅 Attività</a></li>
-                <li><a href="contatti.html">📧 Contatti</a></li>
-            </ul>
-        </nav>
-
+				<li>
+					<!-- <label for="destinazione">Scegli una cartella da visualizzare:</label>  -->
+					<select tabindex="1" name="Eventi" id="destinazione" onchange="vaiAllaCartella(this.value)">
+					<option value="">Eventi: --- Selezionare un anno ---</option>
+					<option value="anno-2026">Eventi anno 2026</option>
+					<option value="anno-2025">Eventi anno 2025</option>
+					<option value="anno-2023">Eventi anno 2024</option>
+					</select>
+				</li>
+				<li><a href="attivita.html">📅 Attività</a></li>
+				<li><a href="contatti.html">📧 Contatti</a></li>
+				</ul>
+			</nav>
         <main>
-            <div class="container" id="content-container">
+            <div lass="container" id="content-container">
                 <!-- CONTENUTO HOME (caricato da home-content.html) -->
                 <h2>La nostra missione</h2>
                 <p>L'Associazione "Gente del Titano" è nata nel 1979 con l'obiettivo di mantenere vivi i legami tra i sammarinesi residenti fuori dalla Repubblica e la loro terra d'origine.</p>
@@ -66,6 +74,16 @@
 
     <!-- JavaScript per caricare i contenuti -->
     <script>
+	
+		// Gestione eventi, esecuzione index da cartelle selezionata
+		function vaiAllaCartella(nomeCartella) {
+			// Controlla che l'utente non abbia selezionato l'opzione vuota iniziale
+			if (nomeCartella !== "") {
+				// Modifica l'URL del browser per puntare alla cartella + /index.html
+				alert(nomeCartella + "/index.html");
+				/* window.location.href = nomeCartella + "/index.html"; */
+			}
+	
         // Funzione per caricare il contenuto di una pagina
         function loadPage(page) {
             const container = document.getElementById('content-container');
