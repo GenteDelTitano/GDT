@@ -45,7 +45,7 @@ header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-	white-space: nowrap;
+    white-space: nowrap;
 }
 
 .header-left img {
@@ -62,7 +62,7 @@ header {
 /* CELLA CENTRALE - TITOLO */
 .header-center {
     text-align: center;
-	white-space: nowrap;
+    white-space: nowrap;
 }
 
 .header-center h1 {
@@ -87,7 +87,7 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-	white-space: nowrap;
+    white-space: nowrap;
 }
 
 .header-right img {
@@ -287,6 +287,63 @@ main {
     margin-top: 5px;
 }
 
+/* STILE TABELLE ELEGANTI */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+table thead th {
+    background: linear-gradient(135deg, #1a5a1a, #2d8a2d);
+    color: white;
+    font-weight: bold;
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #1a5a1a;
+}
+
+table tbody td {
+    padding: 10px 15px;
+    border: 1px solid #e0e0e0;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background-color: #eef4fb;
+    transition: background-color 0.2s ease;
+}
+
+table tbody tr:last-child {
+    background: linear-gradient(135deg, #1a5a1a, #2d8a2d);
+    color: white;
+    font-weight: bold;
+}
+
+table tbody tr:last-child td {
+    border-color: #1a5a1a;
+}
+
+table tbody tr:last-child td:last-child {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Responsive per tabelle */
+@media (max-width: 768px) {
+    table {
+        font-size: 0.85rem;
+    }
+    table thead th,
+    table tbody td {
+        padding: 8px 10px;
+    }
+}
+
 /* FOOTER */
 footer {
     background: linear-gradient(135deg, var(--footer-bg), #1a2634);
@@ -309,6 +366,34 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+/* CLASSI UTILITY */
+.titoloblu {
+    text-align: center;
+    color: blue;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 3px;
+}
+
+.sottotitoloblu {
+    text-align: center;
+    color: #8fc5ff;
+    font-size: 18px;
+    font-style: italic;
+    margin: 3px;
+}
+
+.linea-blu {
+    height: 3px;
+    background-color: blue;
+    border: none;
+    margin: 6px 0;
+}
+
+.tabella-no-capo td {
+    white-space: nowrap;
 }
 
 /* RESPONSIVE: menu sopra i contenuti su mobile */
@@ -404,90 +489,4 @@ footer a:hover {
     .header-right img {
         max-height: 40px;
     }
-
-	/* STILE TABELLE ELEGANTI */
-	table {
-		width: 100%;
-		border-collapse: collapse;
-		border-radius: 10px;
-		overflow: hidden;
-		box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-	}
-
-	table thead th {
-		background: linear-gradient(135deg, #1a5a1a, #2d8a2d);
-		color: white;
-		font-weight: bold;
-		padding: 12px 15px;
-		text-align: left;
-		border: 1px solid #1a5a1a;
-	}
-
-	table tbody td {
-		padding: 10px 15px;
-		border: 1px solid #e0e0e0;
-	}
-
-	table tbody tr:nth-child(even) {
-		background-color: #f9f9f9;
-	}
-
-	table tbody tr:hover {
-		background-color: #eef4fb;
-		transition: background-color 0.2s ease;
-	}
-
-	table tbody tr:last-child {
-		background: linear-gradient(135deg, #1a5a1a, #2d8a2d);
-		color: white;
-		font-weight: bold;
-	}
-
-	table tbody tr:last-child td {
-		border-color: #1a5a1a;
-	}
-
-	table tbody tr:last-child td:last-child {
-		background: rgba(255, 255, 255, 0.15);
-	}
-
-	/* Responsive per tabelle */
-	@media (max-width: 768px) {
-		table {
-			font-size: 0.85rem;
-		}
-		table thead th,
-		table tbody td {
-			padding: 8px 10px;
-		}
-	}
-
-}
-
-.titoloblu {
-    text-align: center;
-    color: blue;
-	font-size: 22px;
-	font-weight: bold;
-	margin: 3px;
-}
-
-.sottotitoloblu {
-    text-align: center;
-    color: #8fc5ff;
-	font-size: 18px;
-	/* font-weight: bold; */
-    font-style: italic;
-	margin: 3px;
-}
-
-.linea-blu {
-  height: 3px;
-  background-color: blue;
-  border: none;
-  margin: 6px 0; /* Regola lo spazio sopra e sotto la linea */
-}
-
-.tabella-no-capo td {
-  white-space: nowrap;
 }
