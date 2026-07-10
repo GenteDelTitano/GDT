@@ -45,6 +45,7 @@ header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+	white-space: nowrap;
 }
 
 .header-left img {
@@ -61,6 +62,7 @@ header {
 /* CELLA CENTRALE - TITOLO */
 .header-center {
     text-align: center;
+	white-space: nowrap;
 }
 
 .header-center h1 {
@@ -85,6 +87,7 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+	white-space: nowrap;
 }
 
 .header-right img {
