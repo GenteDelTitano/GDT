@@ -36,25 +36,26 @@
                     <label for="eventi-select" style="display: block; font-weight: bold; color: #1a3a5c; margin: 15px 0 5px 0; font-size: 0.95rem;">
                         📅 Eventi
                     </label>
-                    <select id="eventi-select" onchange="vaiAllaCartella(this.value)" 
+                    <select id="eventi-select" onchange="caricaEvento(this.value)" 
                             style="width: 100%; padding: 8px 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95rem; background-color: white; cursor: pointer;">
                         <option value="">--- Seleziona un anno ---</option>
                         <option value="eventi-2026">📅 Eventi 2026</option>
                         <option value="eventi-2025">📅 Eventi 2025</option>
                         <option value="eventi-2024">📅 Eventi 2024</option>
                         <option value="eventi-2023">📅 Eventi 2023</option>
-						<option value="eventi-2022">📅 Eventi 2022</option>
-						<option value="eventi-2021">📅 Eventi 2021</option>
-						<option value="eventi-2020">📅 Eventi 2020</option>
-						<option value="eventi-2019">📅 Eventi 2019</option>
-						<option value="eventi-2018">📅 Eventi 2018</option>
-						<option value="eventi-2017">📅 Eventi 2017</option>
-						<option value="eventi-2016">📅 Eventi 2016</option>
+                        <option value="eventi-2022">📅 Eventi 2022</option>
+                        <option value="eventi-2021">📅 Eventi 2021</option>
+                        <option value="eventi-2020">📅 Eventi 2020</option>
+                        <option value="eventi-2019">📅 Eventi 2019</option>
+                        <option value="eventi-2018">📅 Eventi 2018</option>
+                        <option value="eventi-2017">📅 Eventi 2017</option>
+                        <option value="eventi-2016">📅 Eventi 2016</option>
                     </select>
                 </li>
+                
                 <li><a href="#" data-page="documenti">📄 Documenti</a></li>
-				<li><a href="#" data-page="link">🔗 Link</a></li>
-				<li><a href="#" data-page="bacheca">📣 Bacheca</a></li>
+                <li><a href="#" data-page="link">🔗 Link</a></li>
+                <li><a href="#" data-page="bacheca">📣 Bacheca</a></li>
                 <li><a href="#" data-page="contatti">📧 Contatti</a></li>
             </ul>
         </nav>
@@ -76,53 +77,152 @@
     </footer>
 
     <script>
-        // Funzione per navigare alla cartella eventi selezionata
-        function vaiAllaCartella(nomeCartella) {
-            if (nomeCartella !== "") {
-                window.location.href = nomeCartella + "/index.html";
-            }
-        }
+        // ===================== FUNZIONI PRINCIPALI =====================
 
-        // Funzione per caricare il contenuto delle pagine da content/
+        /**
+         * Carica una pagina nel container principale
+         * @param {string} page - Nome della pagina da caricare (es. 'home', 'storia', 'eventi-2026')
+         */
         function loadPage(page) {
             const container = document.getElementById('content-container');
             if (!container) return;
 
-            // Se è home, carica home.html
+            // Mostra loading
             container.innerHTML = '<p style="text-align:center; padding: 50px;">⏳ Caricamento...</p>';
 
-            fetch('content/' + page + '.html')
+            // Determina l'URL da caricare
+            let url = 'content/' + page + '.html';
+            
+            // Se è una pagina di eventi (in sottocartella)
+            if (page.startsWith('eventi-')) {
+                url = 'content/' + page + '/index.html';
+            }
+
+            // Carica il contenuto
+            fetch(url)
                 .then(response => {
                     if (!response.ok) throw new Error('Pagina non trovata');
                     return response.text();
                 })
                 .then(html => {
                     container.innerHTML = html;
+                    
+                    // Corregge i percorsi delle immagini per le pagine eventi
+                    if (page.startsWith('eventi-')) {
+                        correggiPercorsiImmagini(container, page);
+                    }
+                    
+                    // Aggiorna il titolo della pagina
                     const nomePagina = page.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
                     document.title = 'Gente del Titano - ' + nomePagina;
                     
-                    // Aggiorna la classe active nel menu
-                    document.querySelectorAll('nav ul li a').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    const activeLink = document.querySelector(`nav ul li a[data-page="${page}"]`);
-                    if (activeLink) {
-                        activeLink.classList.add('active');
+                    // Aggiorna il menu attivo
+                    aggiornaMenuAttivo(page);
+                    
+                    // Aggiorna il select degli eventi se necessario
+                    if (page.startsWith('eventi-')) {
+                        const select = document.getElementById('eventi-select');
+                        if (select) {
+                            select.value = page;
+                        }
                     }
                 })
                 .catch(() => {
                     container.innerHTML = `
-                        <h1>😕 Pagina non trovata</h1>
-                        <p>Impossibile caricare "${page}".</p>
-                        <p style="color: #888; font-size: 0.9rem;">Verifica che content/${page}.html esista.</p>
+                        <div style="text-align: center; padding: 50px;">
+                            <h1>😕 Pagina non trovata</h1>
+                            <p>Impossibile caricare "${page}".</p>
+                            <p style="color: #888; font-size: 0.9rem;">Verifica che <code>${url}</code> esista.</p>
+                            <br>
+                            <a href="#" data-page="home" style="display: inline-block; padding: 10px 20px; background: #0886f5fb; color: white; text-decoration: none; border-radius: 5px;">Torna alla Home</a>
+                        </div>
                     `;
+                    
+                    // Ricollega gli eventi per il link "Torna alla Home"
+                    container.querySelector('a[data-page="home"]')?.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        caricaPagina('home');
+                    });
                 });
         }
 
-        // Carica la home all'avvio
+        /**
+         * Corregge i percorsi delle immagini per le sottocartelle eventi
+         * @param {HTMLElement} container - Container con le immagini da correggere
+         * @param {string} page - Nome della pagina (es. 'eventi-2026')
+         */
+        function correggiPercorsiImmagini(container, page) {
+            const imgElements = container.querySelectorAll('img');
+            imgElements.forEach(img => {
+                let src = img.getAttribute('src');
+                if (src) {
+                    // Se l'immagine punta a 'immagini/' nella root
+                    if (src.startsWith('immagini/')) {
+                        // Reindirizza a 'content/eventi-XXXX/immagini/'
+                        img.src = 'content/' + page + '/' + src;
+                    }
+                    // Se l'immagine ha un percorso relativo (es. 'foto.jpg')
+                    else if (!src.startsWith('http://') && !src.startsWith('https://') && !src.startsWith('/')) {
+                        // Mantiene il percorso relativo alla sottocartella
+                        img.src = 'content/' + page + '/' + src;
+                    }
+                }
+            });
+        }
+
+        /**
+         * Aggiorna la classe 'active' nel menu
+         * @param {string} page - Pagina attiva
+         */
+        function aggiornaMenuAttivo(page) {
+            document.querySelectorAll('nav ul li a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const activeLink = document.querySelector(`nav ul li a[data-page="${page}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        /**
+         * Carica una pagina e aggiorna l'URL
+         * @param {string} page - Nome della pagina
+         */
+        function caricaPagina(page) {
+            loadPage(page);
+            
+            // Aggiorna l'URL senza ricaricare la pagina
+            const newUrl = window.location.pathname + '?page=' + page;
+            window.history.pushState({ page: page }, '', newUrl);
+        }
+
+        /**
+         * Gestisce la selezione dal menu a tendina degli eventi
+         * @param {string} anno - Anno selezionato (es. 'eventi-2026')
+         */
+        function caricaEvento(anno) {
+            if (anno !== "") {
+                caricaPagina(anno);
+            }
+        }
+
+        // ===================== GESTIONE EVENTI =====================
+
+        // Carica la pagina iniziale
         document.addEventListener('DOMContentLoaded', function() {
+            // Controlla se c'è un parametro 'page' nell'URL
             const urlParams = new URLSearchParams(window.location.search);
             const page = urlParams.get('page') || 'home';
+            
+            // Se la pagina è un evento, seleziona l'opzione nel menu a tendina
+            if (page.startsWith('eventi-')) {
+                const select = document.getElementById('eventi-select');
+                if (select) {
+                    select.value = page;
+                }
+            }
+            
             loadPage(page);
         });
 
@@ -132,20 +232,89 @@
             if (link && link.dataset.page) {
                 e.preventDefault();
                 const page = link.dataset.page;
-                loadPage(page);
+                caricaPagina(page);
                 
-                // Aggiorna l'URL senza ricaricare
-                const newUrl = window.location.pathname + '?page=' + page;
-                window.history.pushState({ page: page }, '', newUrl);
+                // Se la pagina è un evento, seleziona l'opzione nel menu a tendina
+                if (page.startsWith('eventi-')) {
+                    const select = document.getElementById('eventi-select');
+                    if (select) {
+                        select.value = page;
+                    }
+                }
             }
         });
 
-        // Gestisce il pulsante "Indietro" del browser
+        // Gestisce il pulsante "Indietro" e "Avanti" del browser
         window.addEventListener('popstate', function(e) {
             if (e.state && e.state.page) {
                 loadPage(e.state.page);
+                
+                // Aggiorna il select degli eventi se necessario
+                if (e.state.page.startsWith('eventi-')) {
+                    const select = document.getElementById('eventi-select');
+                    if (select) {
+                        select.value = e.state.page;
+                    }
+                }
+            } else {
+                // Se non c'è stato, carica la home
+                loadPage('home');
+                const select = document.getElementById('eventi-select');
+                if (select) {
+                    select.value = '';
+                }
             }
         });
+
+        // Gestisce il caricamento di link esterni (es. da altri file HTML)
+        // Se qualcuno apre direttamente una pagina come content/eventi-2026/index.html
+        // viene reindirizzato all'index principale
+        if (window.location.pathname.includes('/content/')) {
+            const pageMatch = window.location.pathname.match(/content\/(eventi-\d+)\/index\.html/);
+            if (pageMatch) {
+                const page = pageMatch[1];
+                window.location.href = '/index.html?page=' + page;
+            }
+        }
+
+        // ===================== FUNZIONI DI UTILITY =====================
+
+        /**
+         * Ricarica la pagina corrente (utile per debugging)
+         */
+        function ricaricaPaginaCorrente() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const page = urlParams.get('page') || 'home';
+            loadPage(page);
+        }
+
+        /**
+         * Verifica se una pagina esiste
+         * @param {string} page - Nome della pagina
+         * @returns {Promise<boolean>} - True se la pagina esiste
+         */
+        async function paginaEsiste(page) {
+            let url = 'content/' + page + '.html';
+            if (page.startsWith('eventi-')) {
+                url = 'content/' + page + '/index.html';
+            }
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                return response.ok;
+            } catch {
+                return false;
+            }
+        }
+
+        // Esponi le funzioni globalmente per l'uso nell'HTML
+        window.loadPage = loadPage;
+        window.caricaPagina = caricaPagina;
+        window.caricaEvento = caricaEvento;
+        window.ricaricaPaginaCorrente = ricaricaPaginaCorrente;
+        window.paginaEsiste = paginaEsiste;
+
+        console.log('✅ Sito Gente del Titano caricato correttamente!');
+        console.log('📄 Pagina corrente:', new URLSearchParams(window.location.search).get('page') || 'home');
     </script>
 </body>
 </html>
