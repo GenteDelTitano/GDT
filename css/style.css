@@ -25,7 +25,10 @@ body {
     color: var(--text-color);
 }
 
-/* HEADER FISSO CON 3 CELLE - Versione Flexbox */
+/* ========================================== */
+/* HEADER - Versione Flexbox */
+/* ========================================== */
+
 header {
     background: linear-gradient(135deg, var(--header-bg), #55d4d9);
     padding: 0.5rem 1rem;
@@ -114,13 +117,19 @@ header {
     transform: scale(1.05);
 }
 
-/* CONTENITORE PRINCIPALE (layout a colonne) */
+/* ========================================== */
+/* CONTENITORE PRINCIPALE */
+/* ========================================== */
+
 .main-container {
     display: flex;
     flex: 1;
 }
 
+/* ========================================== */
 /* MENU LATERALE */
+/* ========================================== */
+
 nav {
     background: linear-gradient(180deg, var(--nav-bg), #7fe0d0);
     width: 250px;
@@ -187,7 +196,10 @@ nav ul li select:focus {
     box-shadow: 0 0 0 3px rgba(8, 134, 245, 0.2);
 }
 
+/* ========================================== */
 /* CONTENUTO PRINCIPALE */
+/* ========================================== */
+
 main {
     flex: 1;
     padding: 40px;
@@ -282,7 +294,10 @@ main {
     text-decoration: underline;
 }
 
+/* ========================================== */
 /* STATISTICHE IN CARD */
+/* ========================================== */
+
 .stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
@@ -322,7 +337,10 @@ main {
     margin-top: 5px;
 }
 
+/* ========================================== */
 /* STILE TABELLE ELEGANTI */
+/* ========================================== */
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -368,18 +386,10 @@ table tbody tr:last-child td:last-child {
     background: rgba(255, 255, 255, 0.15);
 }
 
-/* Responsive per tabelle */
-@media (max-width: 768px) {
-    table {
-        font-size: 0.85rem;
-    }
-    table thead th,
-    table tbody td {
-        padding: 8px 10px;
-    }
-}
-
+/* ========================================== */
 /* FOOTER */
+/* ========================================== */
+
 footer {
     background: linear-gradient(135deg, var(--footer-bg), #1a2634);
     color: white;
@@ -435,6 +445,25 @@ footer a:hover {
 }
 
 /* ========================================== */
+/* PAGINA DOCUMENTI */
+/* ========================================== */
+
+.testo-costruzione {
+    text-align: center;
+    color: #e74c3c;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 40px 0 10px 0;
+}
+
+.sottotesto-costruzione {
+    text-align: center;
+    color: #999;
+    font-size: 16px;
+    margin: 0 0 30px 0;
+}
+
+/* ========================================== */
 /* PAGINA SCRIVICI - FORM */
 /* ========================================== */
 
@@ -479,6 +508,20 @@ textarea.form-input {
     min-height: 100px;
 }
 
+/* Campo con errore */
+.form-input.error {
+    border-color: #dc3545 !important;
+    background-color: #fff5f5 !important;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1) !important;
+}
+
+/* Campo con successo */
+.form-input.success {
+    border-color: #28a745 !important;
+    background-color: #f5fff5 !important;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1) !important;
+}
+
 /* PULSANTE INVIO */
 .btn-invia {
     background: linear-gradient(135deg, var(--primary-color), #0568c0);
@@ -506,14 +549,56 @@ textarea.form-input {
     transform: none;
 }
 
+.btn-invia:disabled:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(8, 134, 245, 0.3);
+}
+
 .btn-invia:active:not(:disabled) {
     transform: translateY(0px);
 }
 
+/* Messaggi di stato migliorati */
+#form-status {
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    min-height: 20px;
+}
+
+#form-status:empty {
+    display: none;
+}
+
+/* Animazione del pulsante durante il caricamento */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#btn-loading {
+    display: inline-block;
+}
+
+#btn-loading::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid white;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
 /* ========================================== */
-/* RESPONSIVE: MENU VERTICALE SU MOBILE */
+/* RESPONSIVE */
 /* ========================================== */
 
+/* Tablet e mobile - fino a 768px */
 @media (max-width: 768px) {
     /* HEADER - rimane su 3 colonne ma più compatto */
     header {
@@ -605,13 +690,24 @@ textarea.form-input {
         grid-template-columns: 1fr 1fr;
     }
 
+    /* Tabelle */
+    table {
+        font-size: 0.85rem;
+    }
+    table thead th,
+    table tbody td {
+        padding: 8px 10px;
+    }
+
     /* Form */
     .btn-invia {
         width: 100%;
         padding: 14px 20px;
+        min-width: unset;
     }
 }
 
+/* Mobile piccolo - fino a 480px */
 @media (max-width: 480px) {
     /* HEADER - ancora più compatto */
     header {
@@ -676,5 +772,11 @@ textarea.form-input {
     .btn-invia {
         font-size: 1rem;
         padding: 12px 20px;
+        min-width: unset;
+    }
+
+    #form-status {
+        font-size: 0.9rem;
+        padding: 10px 15px;
     }
 }
