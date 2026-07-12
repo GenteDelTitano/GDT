@@ -25,7 +25,7 @@ body {
     color: var(--text-color);
 }
 
-/* HEADER FISSO CON 3 CELLE - Versione Flexbox (migliore per mobile) */
+/* HEADER FISSO CON 3 CELLE - Versione Flexbox */
 header {
     background: linear-gradient(135deg, var(--header-bg), #55d4d9);
     padding: 0.5rem 1rem;
@@ -162,6 +162,29 @@ nav ul li a.active {
     background: white;
     color: var(--primary-color);
     font-weight: bold;
+}
+
+/* Menu a tendina Eventi */
+nav ul li select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+nav ul li select:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(8, 134, 245, 0.1);
+}
+
+nav ul li select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(8, 134, 245, 0.2);
 }
 
 /* CONTENUTO PRINCIPALE */
@@ -380,7 +403,10 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* ========================================== */
 /* CLASSI UTILITY */
+/* ========================================== */
+
 .titoloblu {
     text-align: center;
     color: blue;
@@ -406,137 +432,6 @@ footer a:hover {
 
 .tabella-no-capo td {
     white-space: nowrap;
-}
-
-/* ========================================== */
-/* RESPONSIVE: menu sopra i contenuti su mobile */
-/* ========================================== */
-
-@media (max-width: 768px) {
-    /* HEADER - rimane su 3 colonne ma più compatto */
-    header {
-        padding: 0.3rem 0.5rem;
-        gap: 4px;
-        min-height: 50px;
-    }
-
-    .header-left img,
-    .header-right img {
-        max-height: 32px;
-    }
-
-    .header-center h1 {
-        font-size: 0.7rem;
-    }
-
-    .header-center .sub-title {
-        font-size: 0.45rem;
-        margin-top: 1px;
-    }
-
-    /* MAIN CONTAINER - diventa colonna */
-    .main-container {
-        flex-direction: column;
-    }
-
-    /* NAV - orizzontale */
-    nav {
-        width: 100%;
-        border-right: none;
-        border-bottom: 2px solid rgba(5, 152, 250, 0.2);
-        padding: 12px;
-    }
-
-    nav ul {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        justify-content: center;
-    }
-
-    nav ul li {
-        margin-bottom: 0;
-    }
-
-    nav ul li a {
-        padding: 8px 16px;
-        font-size: 0.95rem;
-        background: rgba(255,255,255,0.3);
-    }
-
-    /* MAIN */
-    main {
-        padding: 20px 15px;
-    }
-
-    .container {
-        padding: 20px;
-    }
-
-    .container h1 {
-        font-size: 22px;
-    }
-
-    .stats {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    /* HEADER - ancora più compatto */
-    header {
-        padding: 0.2rem 0.3rem;
-        gap: 3px;
-        min-height: 40px;
-    }
-
-    .header-left img,
-    .header-right img {
-        max-height: 25px;
-    }
-
-    .header-center h1 {
-        font-size: 0.55rem;
-    }
-
-    .header-center .sub-title {
-        font-size: 0.35rem;
-        margin-top: 0;
-    }
-
-    /* STATS - una colonna */
-    .stats {
-        grid-template-columns: 1fr;
-    }
-
-    .container h2 {
-        font-size: 18px;
-    }
-
-    .container ul li {
-        padding-left: 25px;
-        font-size: 0.95rem;
-    }
-}
-
-/* Animazione per il pulsante */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.02); }
-    100% { transform: scale(1); }
-}
-
-.btn-invia:not(:disabled):hover {
-    animation: pulse 0.5s ease;
-}
-
-/* Messaggio di successo/errore */
-#form-status {
-    transition: all 0.3s ease;
-}
-
-#form-status:empty {
-    display: none;
 }
 
 /* ========================================== */
@@ -615,8 +510,102 @@ textarea.form-input {
     transform: translateY(0px);
 }
 
-/* Responsive per il form */
+/* ========================================== */
+/* RESPONSIVE: MENU VERTICALE SU MOBILE */
+/* ========================================== */
+
 @media (max-width: 768px) {
+    /* HEADER - rimane su 3 colonne ma più compatto */
+    header {
+        padding: 0.3rem 0.5rem;
+        gap: 4px;
+        min-height: 50px;
+    }
+
+    .header-left img,
+    .header-right img {
+        max-height: 32px;
+    }
+
+    .header-center h1 {
+        font-size: 0.7rem;
+    }
+
+    .header-center .sub-title {
+        font-size: 0.45rem;
+        margin-top: 1px;
+    }
+
+    /* MAIN CONTAINER - diventa colonna */
+    .main-container {
+        flex-direction: column;
+    }
+
+    /* NAV - rimane VERTICALE */
+    nav {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid rgba(5, 152, 250, 0.2);
+        padding: 12px 15px;
+    }
+
+    nav ul {
+        display: block;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav ul li {
+        display: block;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 10px 15px;
+        font-size: 1rem;
+        background: rgba(255,255,255,0.3);
+        border-radius: 8px;
+        width: 100%;
+        text-align: left;
+    }
+
+    nav ul li a:hover {
+        background: rgba(255,255,255,0.6);
+        transform: translateX(5px);
+    }
+
+    /* Menu a tendina Eventi */
+    nav ul li select {
+        width: 100% !important;
+        padding: 10px 12px !important;
+        font-size: 1rem !important;
+        border-radius: 8px !important;
+        border: 1px solid #ccc !important;
+        background-color: white !important;
+        cursor: pointer !important;
+        margin-top: 4px;
+    }
+
+    /* MAIN */
+    main {
+        padding: 20px 15px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .container h1 {
+        font-size: 22px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Form */
     .btn-invia {
         width: 100%;
         padding: 14px 20px;
@@ -624,6 +613,57 @@ textarea.form-input {
 }
 
 @media (max-width: 480px) {
+    /* HEADER - ancora più compatto */
+    header {
+        padding: 0.2rem 0.3rem;
+        gap: 3px;
+        min-height: 40px;
+    }
+
+    .header-left img,
+    .header-right img {
+        max-height: 25px;
+    }
+
+    .header-center h1 {
+        font-size: 0.55rem;
+    }
+
+    .header-center .sub-title {
+        font-size: 0.35rem;
+        margin-top: 0;
+    }
+
+    /* NAV - più compatto */
+    nav {
+        padding: 10px 12px;
+    }
+
+    nav ul li a {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    nav ul li select {
+        padding: 8px 10px !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* STATS - una colonna */
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .container h2 {
+        font-size: 18px;
+    }
+
+    .container ul li {
+        padding-left: 25px;
+        font-size: 0.95rem;
+    }
+
+    /* Form */
     .form-input {
         padding: 10px 12px;
         font-size: 0.95rem;
