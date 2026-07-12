@@ -1,5 +1,5 @@
 <h1>📧 Scrivici</h1>
-<p class="subtitle">👉 Compila il modulo per inviarci un messaggio. Ti risponderemo al più presto.</p>
+<p class="subtitle">Compila il modulo per inviarci un messaggio.<br>Ti risponderemo al più presto.</p>
 
 <div class="separator">✦ ✦ ✦</div>
 
@@ -9,12 +9,12 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
             <div class="form-group">
                 <label for="user_name" class="form-label">👤 Nome Completo *</label>
-                <input type="text" id="user_name" name="nome" class="form-input" required placeholder="Mario Rossi">
+                <input type="text" id="user_name" name="name" class="form-input" required placeholder="Mario Rossi">
             </div>
 
             <div class="form-group">
                 <label for="user_email" class="form-label">✉️ La tua Email *</label>
-                <input type="email" id="user_email" name="email_cliente" class="form-input" required placeholder="mario@email.it">
+                <input type="email" id="user_email" name="email" class="form-input" required placeholder="mario@email.it">
             </div>
         </div>
 
@@ -25,7 +25,7 @@
 
         <div class="form-group">
             <label for="message" class="form-label">💬 Il tuo Messaggio *</label>
-            <textarea id="message" name="messaggio" class="form-input" rows="8" required placeholder="Scrivi qui il tuo messaggio..."></textarea>
+            <textarea id="message" name="message" class="form-input" rows="8" required placeholder="Scrivi qui il tuo messaggio..."></textarea>
         </div>
 
         <div style="text-align: center; margin-top: 10px;">
@@ -39,114 +39,98 @@
     </form>
 </div>
 
-<!-- Script EmailJS -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
 </script>
 
 <script>
-    // Attendi che il DOM sia completamente caricato
     document.addEventListener('DOMContentLoaded', function() {
-        
-        // Inizializza EmailJS
-        emailjs.init({
-            publicKey: "dlcgcFKY-gzS7RQKJ",
-        });
-
-        // Riferimenti agli elementi
         const form = document.getElementById('contact-form');
         const btn = document.getElementById('submit-btn');
         const btnText = document.getElementById('btn-text');
         const btnLoading = document.getElementById('btn-loading');
         const statusDiv = document.getElementById('form-status');
 
-        // Gestione click sul pulsante
+        emailjs.init({ publicKey: "dlcgcFKY-gzS7RQKJ" });
+
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            
-            // Pulisci messaggi precedenti
+
             statusDiv.innerHTML = '';
-            statusDiv.style.color = '#0886f5fb';
-
-            // Validazione campi
-            const nome = document.getElementById('user_name').value.trim();
+            
+            const name = document.getElementById('user_name').value.trim();
             const email = document.getElementById('user_email').value.trim();
-            const messaggio = document.getElementById('message').value.trim();
+            const telefono = document.getElementById('user_phone').value.trim() || 'Non indicato';
+            const message = document.getElementById('message').value.trim();
 
-            if (!nome) {
+            // Validazione
+            if (!name) {
                 statusDiv.innerHTML = '❌ Inserisci il tuo Nome.';
                 statusDiv.style.color = '#dc3545';
                 document.getElementById('user_name').focus();
                 return;
             }
-
-            if (!email) {
-                statusDiv.innerHTML = '❌ Inserisci la tua Email.';
-                statusDiv.style.color = '#dc3545';
-                document.getElementById('user_email').focus();
-                return;
-            }
-
-            if (!email.includes('@') || !email.includes('.')) {
+            if (!email || !email.includes('@')) {
                 statusDiv.innerHTML = '❌ Inserisci un indirizzo Email valido.';
                 statusDiv.style.color = '#dc3545';
                 document.getElementById('user_email').focus();
                 return;
             }
-
-            if (!messaggio) {
+            if (!message) {
                 statusDiv.innerHTML = '❌ Scrivi il tuo messaggio.';
                 statusDiv.style.color = '#dc3545';
                 document.getElementById('message').focus();
                 return;
             }
 
-            // Disabilita il pulsante
+            // Disabilita pulsante
             btn.disabled = true;
             btnText.style.display = 'none';
             btnLoading.style.display = 'inline';
             statusDiv.innerHTML = '⏳ Invio in corso...';
             statusDiv.style.color = '#0886f5fb';
 
-            // Prepara i dati per EmailJS
+            // Prepara i dati
             const templateParams = {
-                nome: nome,
-                email_cliente: email,
-                telefono: document.getElementById('user_phone').value.trim() || 'Non indicato',
-                messaggio: messaggio
+                name: name,
+                email: email,
+                telefono: telefono,
+                message: message,
+                time: new Date().toLocaleString('it-IT', { 
+                    day: '2-digit', 
+                    month: '2-digit', 
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                }),
+                year: new Date().getFullYear()
             };
 
-            // Invia il form
-            emailjs.send('service_f726zbu', 'template_ormmoai', templateParams)
+            console.log('📤 Invio:', templateParams);
+
+            // Invia usando il template "Contact Us"
+            emailjs.send('service_f726zbu', 'template_contact_us', templateParams)
                 .then(function(response) {
-                    console.log('Successo!', response);
-                    
+                    console.log('✅ Successo!', response);
                     statusDiv.innerHTML = '✅ Messaggio inviato con successo! Ti risponderemo presto.';
                     statusDiv.style.color = '#28a745';
                     form.reset();
-
                     btn.disabled = false;
                     btnText.style.display = 'inline';
                     btnLoading.style.display = 'none';
 
-                    // Auto-scompare dopo 10 secondi
-                    setTimeout(function() {
-                        statusDiv.innerHTML = '';
-                    }, 10000);
+                    setTimeout(() => { statusDiv.innerHTML = ''; }, 10000);
                 })
                 .catch(function(error) {
-                    console.error('Errore EmailJS:', error);
-                    
+                    console.error('❌ Errore:', error);
                     statusDiv.innerHTML = '❌ Errore durante l\'invio. Riprova più tardi.';
                     statusDiv.style.color = '#dc3545';
-
                     btn.disabled = false;
                     btnText.style.display = 'inline';
                     btnLoading.style.display = 'none';
                 });
         });
 
-        // Previeni il submit del form (sicurezza)
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             e.stopPropagation();
