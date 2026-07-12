@@ -4,7 +4,7 @@
 <div class="separator">✦ ✦ ✦</div>
 
 <div style="background: #f8faff; padding: 30px; border-radius: 12px; border: 1px solid #e8edf5; max-width: 700px; margin: 0 auto;">
-    <form id="contact-form">
+    <form id="contact-form" onsubmit="return false;">
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
             <div class="form-group">
@@ -29,7 +29,7 @@
         </div>
 
         <div style="text-align: center; margin-top: 10px;">
-            <button type="submit" id="submit-btn" class="btn-invia">
+            <button type="button" id="submit-btn" class="btn-invia">
                 <span id="btn-text">📨 Invia Messaggio</span>
                 <span id="btn-loading" style="display: none;">⏳ Invio in corso...</span>
             </button>
@@ -44,49 +44,113 @@
 </script>
 
 <script>
-    (function() {
+    // Attendi che il DOM sia completamente caricato
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // Inizializza EmailJS
         emailjs.init({
             publicKey: "dlcgcFKY-gzS7RQKJ",
         });
-    })();
 
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-
+        // Riferimenti agli elementi
+        const form = document.getElementById('contact-form');
         const btn = document.getElementById('submit-btn');
         const btnText = document.getElementById('btn-text');
         const btnLoading = document.getElementById('btn-loading');
         const statusDiv = document.getElementById('form-status');
 
-        btn.disabled = true;
-        btnText.style.display = 'none';
-        btnLoading.style.display = 'inline';
-        statusDiv.innerHTML = '';
-        statusDiv.style.color = '#0886f5fb';
+        // Gestione click sul pulsante
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Pulisci messaggi precedenti
+            statusDiv.innerHTML = '';
+            statusDiv.style.color = '#0886f5fb';
 
-        emailjs.sendForm('service_f726zbu', 'template_ormmoai', this)
-            .then(() => {
-                statusDiv.innerHTML = '✅ Messaggio inviato con successo! Ti risponderemo presto.';
-                statusDiv.style.color = '#28a745';
-                document.getElementById('contact-form').reset();
+            // Validazione campi
+            const nome = document.getElementById('user_name').value.trim();
+            const email = document.getElementById('user_email').value.trim();
+            const messaggio = document.getElementById('message').value.trim();
 
-                btn.disabled = false;
-                btnText.style.display = 'inline';
-                btnLoading.style.display = 'none';
-
-                // Auto-scompare dopo 10 secondi
-                setTimeout(() => {
-                    statusDiv.innerHTML = '';
-                }, 10000);
-            })
-            .catch((error) => {
-                console.error('Errore EmailJS:', error);
-                statusDiv.innerHTML = '❌ Errore durante l\'invio. Riprova più tardi.';
+            if (!nome) {
+                statusDiv.innerHTML = '❌ Inserisci il tuo Nome.';
                 statusDiv.style.color = '#dc3545';
+                document.getElementById('user_name').focus();
+                return;
+            }
 
-                btn.disabled = false;
-                btnText.style.display = 'inline';
-                btnLoading.style.display = 'none';
-            });
+            if (!email) {
+                statusDiv.innerHTML = '❌ Inserisci la tua Email.';
+                statusDiv.style.color = '#dc3545';
+                document.getElementById('user_email').focus();
+                return;
+            }
+
+            if (!email.includes('@') || !email.includes('.')) {
+                statusDiv.innerHTML = '❌ Inserisci un indirizzo Email valido.';
+                statusDiv.style.color = '#dc3545';
+                document.getElementById('user_email').focus();
+                return;
+            }
+
+            if (!messaggio) {
+                statusDiv.innerHTML = '❌ Scrivi il tuo messaggio.';
+                statusDiv.style.color = '#dc3545';
+                document.getElementById('message').focus();
+                return;
+            }
+
+            // Disabilita il pulsante
+            btn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline';
+            statusDiv.innerHTML = '⏳ Invio in corso...';
+            statusDiv.style.color = '#0886f5fb';
+
+            // Prepara i dati per EmailJS
+            const templateParams = {
+                nome: nome,
+                email_cliente: email,
+                telefono: document.getElementById('user_phone').value.trim() || 'Non indicato',
+                messaggio: messaggio
+            };
+
+            // Invia il form
+            emailjs.send('service_f726zbu', 'template_ormmoai', templateParams)
+                .then(function(response) {
+                    console.log('Successo!', response);
+                    
+                    statusDiv.innerHTML = '✅ Messaggio inviato con successo! Ti risponderemo presto.';
+                    statusDiv.style.color = '#28a745';
+                    form.reset();
+
+                    btn.disabled = false;
+                    btnText.style.display = 'inline';
+                    btnLoading.style.display = 'none';
+
+                    // Auto-scompare dopo 10 secondi
+                    setTimeout(function() {
+                        statusDiv.innerHTML = '';
+                    }, 10000);
+                })
+                .catch(function(error) {
+                    console.error('Errore EmailJS:', error);
+                    
+                    statusDiv.innerHTML = '❌ Errore durante l\'invio. Riprova più tardi.';
+                    statusDiv.style.color = '#dc3545';
+
+                    btn.disabled = false;
+                    btnText.style.display = 'inline';
+                    btnLoading.style.display = 'none';
+                });
+        });
+
+        // Previeni il submit del form (sicurezza)
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        });
     });
 </script>
