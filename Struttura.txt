@@ -1,5 +1,5 @@
 root/
-├── index.html (QUESTO FILE)
+├── index.html              ← Il tuo file principale con tutto il menu
 ├── css/
 │   └── style.css
 ├── immagini/
@@ -15,7 +15,7 @@ root/
     ├── bacheca.html
     ├── contatti.html
     └── eventi-2026/
-        ├── index.html (SOLO IL CONTENUTO DEL MAIN)
+        ├── index.html      ← SOLO il contenuto (senza header/footer/nav)
         └── immagini/
             ├── pranzo.jpg
             ├── borse.jpg
