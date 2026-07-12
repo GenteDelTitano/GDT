@@ -75,69 +75,90 @@
          * Carica una pagina nel container principale
          * @param {string} page - Nome della pagina da caricare (es. 'home', 'storia', 'eventi-2026')
          */
-        function loadPage(page) {
-            const container = document.getElementById('content-container');
-            if (!container) return;
+		function loadPage(page) {
+			const container = document.getElementById('content-container');
+			if (!container) return;
 
-            // Mostra loading
-            container.innerHTML = '<p style="text-align:center; padding: 50px;">⏳ Caricamento...</p>';
+			// Mostra loading
+			container.innerHTML = '<p style="text-align:center; padding: 50px;">⏳ Caricamento...</p>';
 
-            // Determina l'URL da caricare
-            let url = 'content/' + page + '.html';
-            
-            // Se è una pagina di eventi (in sottocartella)
-            if (page.startsWith('eventi-')) {
-                url = 'content/' + page + '/index.html';
-            }
+			// Determina l'URL da caricare
+			let url = 'content/' + page + '.html';
+			
+			// Se è una pagina di eventi (in sottocartella)
+			if (page.startsWith('eventi-')) {
+				url = 'content/' + page + '/index.html';
+			}
 
-            // Carica il contenuto
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) throw new Error('Pagina non trovata');
-                    return response.text();
-                })
-                .then(html => {
-                    container.innerHTML = html;
-                    
-                    // Corregge i percorsi delle immagini per le pagine eventi
-                    if (page.startsWith('eventi-')) {
-                        correggiPercorsiImmagini(container, page);
-                    }
-                    
-                    // Aggiorna il titolo della pagina
-                    const nomePagina = page.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                    document.title = 'Gente del Titano - ' + nomePagina;
-                    
-                    // Aggiorna il menu attivo
-                    aggiornaMenuAttivo(page);
-                    
-                    // Aggiorna il select degli eventi se necessario
-                    if (page.startsWith('eventi-')) {
-                        const select = document.getElementById('eventi-select');
-                        if (select) {
-                            select.value = page;
-                        }
-                    }
-                })
-                .catch(() => {
-                    container.innerHTML = `
-                        <div style="text-align: center; padding: 50px;">
-                            <h1>😕 Pagina non trovata</h1>
-                            <p>Impossibile caricare "${page}".</p>
-                            <p style="color: #888; font-size: 0.9rem;">Verifica che <code>${url}</code> esista.</p>
-                            <br>
-                            <a href="#" data-page="home" style="display: inline-block; padding: 10px 20px; background: #0886f5fb; color: white; text-decoration: none; border-radius: 5px;">Torna alla Home</a>
-                        </div>
-                    `;
-                    
-                    // Ricollega gli eventi per il link "Torna alla Home"
-                    container.querySelector('a[data-page="home"]')?.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        caricaPagina('home');
-                    });
-                });
-        }
+			// Carica il contenuto
+			fetch(url)
+				.then(response => {
+					if (!response.ok) throw new Error('Pagina non trovata');
+					return response.text();
+				})
+				.then(html => {
+					container.innerHTML = html;
+					
+					// 🔥 NUOVO: Esegui gli script nel contenuto caricato
+					executeScripts(container);
+					
+					// Corregge i percorsi delle immagini per le pagine eventi
+					if (page.startsWith('eventi-')) {
+						correggiPercorsiImmagini(container, page);
+					}
+					
+					// Aggiorna il titolo della pagina
+					const nomePagina = page.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+					document.title = 'Gente del Titano - ' + nomePagina;
+					
+					// Aggiorna il menu attivo
+					aggiornaMenuAttivo(page);
+					
+					// Aggiorna il select degli eventi se necessario
+					if (page.startsWith('eventi-')) {
+						const select = document.getElementById('eventi-select');
+						if (select) {
+							select.value = page;
+						}
+					}
+				})
+				.catch(() => {
+					container.innerHTML = `
+						<div style="text-align: center; padding: 50px;">
+							<h1>😕 Pagina non trovata</h1>
+							<p>Impossibile caricare "${page}".</p>
+							<p style="color: #888; font-size: 0.9rem;">Verifica che <code>${url}</code> esista.</p>
+							<br>
+							<a href="#" data-page="home" style="display: inline-block; padding: 10px 20px; background: #0886f5fb; color: white; text-decoration: none; border-radius: 5px;">Torna alla Home</a>
+						</div>
+					`;
+					
+					// Ricollega gli eventi per il link "Torna alla Home"
+					container.querySelector('a[data-page="home"]')?.addEventListener('click', function(e) {
+						e.preventDefault();
+						caricaPagina('home');
+					});
+				});
+		}
 
+		// 🔥 NUOVA FUNZIONE: Esegue gli script nel container
+		function executeScripts(container) {
+			const scripts = container.querySelectorAll('script');
+			scripts.forEach(function(oldScript) {
+				const newScript = document.createElement('script');
+				
+				// Copia tutti gli attributi
+				Array.from(oldScript.attributes).forEach(function(attr) {
+					newScript.setAttribute(attr.name, attr.value);
+				});
+				
+				// Copia il contenuto
+				newScript.textContent = oldScript.textContent;
+				
+				// Sostituisci il vecchio script con il nuovo
+				oldScript.parentNode.replaceChild(newScript, oldScript);
+			});
+		}
         /**
          * Corregge i percorsi delle immagini per le sottocartelle eventi
          * @param {HTMLElement} container - Container con le immagini da correggere
