@@ -1,0 +1,79 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richiesta Informazioni</title>
+    <!-- SDK di EmailJS -->
+    <script type="text/javascript" src="https://jsdelivr.net"></script>
+    
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 50px auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { background-color: #28a745; color: white; border: none; padding: 10px 15px; cursor: pointer; width: 100%; font-size: 16px; }
+        button:hover { background-color: #218838; }
+        button:disabled { background-color: #cccccc; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+
+    <h1>📧 Scrivici</h1>
+	<p class="subtitle">Compila il modulo per inviarci un messaggio.<br>
+	Ti risponderemo al più presto.</strong></p>
+    
+    <form id="contact-form">
+        <div class="form-group">
+            <label for="user_name">Nome Completo *</label>
+            <input type="text" id="user_name" name="nome" required>
+        </div>
+
+        <div class="form-group">
+            <label for="user_email">La tua Email *</label>
+            <input type="email" id="user_email" name="email_cliente" required>
+        </div>
+
+        <div class="form-group">
+            <label for="user_phone">Numero di Telefono (Opzionale)</label>
+            <input type="tel" id="user_phone" name="telefono">
+        </div>
+
+        <div class="form-group">
+            <label for="message">Il tuo Messaggio *</label>
+            <textarea id="message" name="messaggio" rows="10" required></textarea>
+        </div>
+
+        <button type="submit" id="submit-btn">Invia Messaggio</button>
+    </form>
+
+    <!-- Script EmailJS -->
+    <script>
+        // 1. Inizializza EmailJS (Inserisci la tua chiave reale dal pannello EmailJS)
+        (function() {
+            emailjs.init({
+                publicKey: "dlcgcFKY-gzS7RQKJ", 
+            });
+        })();
+
+        // 2. Gestisci l'invio del Form
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = 'Invio in corso...';
+            btn.disabled = true;
+
+            // Inserisci qui il tuo Service ID e il nuovo Template ID per le informazioni
+            emailjs.sendForm('service_f726zbu', 'template_ormmoai', this)
+                .then(() => {
+                    btn.innerText = 'Invia Messaggio';
+                    btn.disabled = false;
+                    alert('Messaggio inviato con successo! Ti risponderemo presto.');
+                    document.getElementById('contact-form').reset(); 
+                }, (error) => {
+                    btn.innerText = 'Invia Messaggio';
+                    btn.disabled = false;
+                    alert('Errore durante l\'invio: ' + JSON.stringify(error));
+                });
+        });
+    </script>
+</body>
