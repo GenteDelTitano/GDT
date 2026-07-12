@@ -518,3 +518,123 @@ footer a:hover {
         font-size: 0.95rem;
     }
 }
+
+/* Animazione per il pulsante */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.btn-invia:not(:disabled):hover {
+    animation: pulse 0.5s ease;
+}
+
+/* Messaggio di successo/errore */
+#form-status {
+    transition: all 0.3s ease;
+}
+
+#form-status:empty {
+    display: none;
+}
+
+/* ========================================== */
+/* PAGINA SCRIVICI - FORM */
+/* ========================================== */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: #1a3a5c;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(8, 134, 245, 0.1);
+}
+
+.form-input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+textarea.form-input {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* PULSANTE INVIO */
+.btn-invia {
+    background: linear-gradient(135deg, var(--primary-color), #0568c0);
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+    box-shadow: 0 4px 15px rgba(8, 134, 245, 0.3);
+}
+
+.btn-invia:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(8, 134, 245, 0.4);
+    background: linear-gradient(135deg, #0775d4, #0458a8);
+}
+
+.btn-invia:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-invia:active:not(:disabled) {
+    transform: translateY(0px);
+}
+
+/* Responsive per il form */
+@media (max-width: 768px) {
+    .btn-invia {
+        width: 100%;
+        padding: 14px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-input {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+
+    .form-label {
+        font-size: 0.85rem;
+    }
+
+    .btn-invia {
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+}
