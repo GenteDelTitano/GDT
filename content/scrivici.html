@@ -52,7 +52,6 @@
 (function() {
     console.log('🚀 Script scrivici caricato!');
 
-    // Funzione per inizializzare il form quando EmailJS è pronto
     function initForm() {
         console.log('📄 Inizializzazione form...');
 
@@ -67,7 +66,6 @@
             return;
         }
 
-        // Inizializza EmailJS
         try {
             emailjs.init({
                 publicKey: "dlcgcFKY-gzS7RQKJ",
@@ -80,7 +78,6 @@
             return;
         }
 
-        // Gestione click
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
@@ -119,12 +116,28 @@
             statusDiv.innerHTML = '⏳ Invio in corso...';
             statusDiv.style.color = '#0886f5fb';
 
-            // Invia
+            // 🔥 FORMATTA LA DATA IN ITALIANO
+            const now = new Date();
+            const time = now.toLocaleString('it-IT', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+
+            console.log('📅 Data formattata:', time);
+
+            // Invia con tutti i campi
             emailjs.send("service_f726zbu", "template_sdsez1q", {
                 title: "Messaggio dal sito Gente del Titano",
                 name: name,
                 email: email,
-                message: message
+                telefono: telefono || 'Non indicato',  // ← AGGIUNTO
+                time: time,                             // ← AGGIUNTO (DATA)
+                message: message,
+                year: now.getFullYear()                 // ← AGGIUNTO
             })
             .then(function(response) {
                 console.log('✅ Inviato!', response);
@@ -146,7 +159,6 @@
             });
         });
 
-        // Previeni submit
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             return false;
@@ -158,7 +170,6 @@
         setTimeout(function() { statusDiv.innerHTML = ''; }, 3000);
     }
 
-    // Attendi che EmailJS sia caricato
     function waitForEmailJS(retries) {
         retries = retries || 0;
         if (typeof emailjs !== 'undefined') {
@@ -176,7 +187,6 @@
         setTimeout(function() { waitForEmailJS(retries + 1); }, 200);
     }
 
-    // Avvia
     waitForEmailJS();
 })();
 </script>
