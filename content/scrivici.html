@@ -43,73 +43,92 @@
     </form>
 </div>
 
-<!-- Script EmailJS -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
+<!-- Script EmailJS - VERSIONE CONVERGENTE -->
+<script type="text/javascript">
+    // Carica EmailJS dinamicamente se non è già caricato
+    (function loadEmailJS() {
+        if (typeof emailjs !== 'undefined') {
+            console.log('✅ EmailJS già caricato!');
+            initEmailJS();
+            return;
+        }
 
-<script>
-    console.log('🚀 Script EmailJS caricato!');
+        console.log('📥 Caricamento EmailJS...');
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+        script.onload = function() {
+            console.log('✅ EmailJS caricato con successo!');
+            initEmailJS();
+        };
+        script.onerror = function() {
+            console.error('❌ Errore nel caricamento di EmailJS!');
+            document.getElementById('form-status').innerHTML = '❌ Errore di connessione. Riprova più tardi.';
+            document.getElementById('form-status').style.color = '#dc3545';
+        };
+        document.head.appendChild(script);
+    })();
 
-    // Aspetta che il DOM sia pronto
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('📄 DOM caricato!');
+    // Inizializza EmailJS e configura il form
+    function initEmailJS() {
+        console.log('🚀 Inizializzazione EmailJS...');
 
-        // Riferimenti agli elementi
+        try {
+            emailjs.init({
+                publicKey: "dlcgcFKY-gzS7RQKJ",
+            });
+            console.log('✅ EmailJS inizializzato con successo!');
+            setupForm();
+        } catch (error) {
+            console.error('❌ Errore inizializzazione EmailJS:', error);
+            document.getElementById('form-status').innerHTML = '❌ Errore di configurazione. Contatta il webmaster.';
+            document.getElementById('form-status').style.color = '#dc3545';
+        }
+    }
+
+    // Configura il form dopo che EmailJS è pronto
+    function setupForm() {
+        console.log('🔧 Configurazione form...');
+
         const form = document.getElementById('contact-form');
         const btn = document.getElementById('submit-btn');
         const btnText = document.getElementById('btn-text');
         const btnLoading = document.getElementById('btn-loading');
         const statusDiv = document.getElementById('form-status');
 
-        // Inizializza EmailJS con la tua Public Key
-        try {
-            emailjs.init({
-                publicKey: "dlcgcFKY-gzS7RQKJ",
-            });
-            console.log('✅ EmailJS inizializzato con successo!');
-        } catch (error) {
-            console.error('❌ Errore inizializzazione EmailJS:', error);
-            statusDiv.innerHTML = '❌ Errore di configurazione. Contatta il webmaster.';
-            statusDiv.style.color = '#dc3545';
+        if (!form || !btn) {
+            console.error('❌ Elementi del form non trovati!');
+            return;
         }
 
-        // Funzione per mostrare messaggi di validazione
-        function showError(message, fieldId) {
-            statusDiv.innerHTML = '❌ ' + message;
-            statusDiv.style.color = '#dc3545';
-            if (fieldId) {
-                document.getElementById(fieldId).focus();
-                document.getElementById(fieldId).style.borderColor = '#dc3545';
-                setTimeout(() => {
-                    document.getElementById(fieldId).style.borderColor = '';
-                }, 3000);
-            }
-        }
+        // Rimuovi eventuali listener precedenti (clona il pulsante)
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
 
-        function showSuccess(message) {
-            statusDiv.innerHTML = '✅ ' + message;
-            statusDiv.style.color = '#28a745';
-        }
+        // Riferimento al nuovo pulsante
+        const newBtnText = newBtn.querySelector('#btn-text');
+        const newBtnLoading = newBtn.querySelector('#btn-loading');
 
-        function showLoading(message) {
-            statusDiv.innerHTML = '⏳ ' + message;
-            statusDiv.style.color = '#0886f5fb';
+        // Funzione per mostrare messaggi
+        function showMessage(message, type) {
+            statusDiv.innerHTML = message;
+            statusDiv.style.color = type === 'error' ? '#dc3545' : 
+                                   type === 'success' ? '#28a745' : '#0886f5fb';
         }
 
         function clearStatus() {
             statusDiv.innerHTML = '';
         }
 
-        // Gestione click sul pulsante Invia
-        btn.addEventListener('click', function(e) {
+        // Gestione click sul pulsante
+        newBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            
-            console.log('🔘 Pulsante Invia cliccato!');
 
+            console.log('🔘 Pulsante Invia cliccato!');
             clearStatus();
 
-            // Leggi i valori dai campi
+            // Leggi i valori
             const name = document.getElementById('user_name').value.trim();
             const email = document.getElementById('user_email').value.trim();
             const telefono = document.getElementById('user_phone').value.trim();
@@ -117,35 +136,38 @@
 
             console.log('📝 Dati raccolti:', { name, email, telefono, message });
 
-            // ---- VALIDAZIONE ----
+            // Validazione
             if (!name) {
-                showError('Inserisci il tuo Nome.', 'user_name');
+                showMessage('❌ Inserisci il tuo Nome.', 'error');
+                document.getElementById('user_name').focus();
                 return;
             }
 
             if (!email) {
-                showError('Inserisci la tua Email.', 'user_email');
+                showMessage('❌ Inserisci la tua Email.', 'error');
+                document.getElementById('user_email').focus();
                 return;
             }
 
             if (!email.includes('@') || !email.includes('.')) {
-                showError('Inserisci un indirizzo Email valido.', 'user_email');
+                showMessage('❌ Inserisci un indirizzo Email valido.', 'error');
+                document.getElementById('user_email').focus();
                 return;
             }
 
             if (!message) {
-                showError('Scrivi il tuo messaggio.', 'message');
+                showMessage('❌ Scrivi il tuo messaggio.', 'error');
+                document.getElementById('message').focus();
                 return;
             }
 
-            // ---- PREPARA L'INVIO ----
-            // Disabilita il pulsante
-            btn.disabled = true;
-            btnText.style.display = 'none';
-            btnLoading.style.display = 'inline';
-            showLoading('Invio in corso...');
+            // Disabilita pulsante
+            newBtn.disabled = true;
+            newBtnText.style.display = 'none';
+            newBtnLoading.style.display = 'inline';
+            showMessage('⏳ Invio in corso...', 'loading');
 
-            // Prepara i parametri per EmailJS
+            // Prepara i dati
             const templateParams = {
                 title: "Messaggio dal sito Gente del Titano",
                 name: name,
@@ -155,54 +177,55 @@
 
             console.log('📤 Invio a EmailJS:', templateParams);
 
-            // ---- INVIA CON EMAILJS ----
+            // Invia
             emailjs.send("service_f726zbu", "template_sdsez1q", templateParams)
                 .then(function(response) {
                     console.log('✅ Invio riuscito!', response);
-                    
-                    showSuccess('Messaggio inviato con successo! Ti risponderemo presto.');
-                    
-                    // Reset del form
+                    showMessage('✅ Messaggio inviato con successo! Ti risponderemo presto.', 'success');
                     form.reset();
-                    
-                    // Ripristina il pulsante
-                    btn.disabled = false;
-                    btnText.style.display = 'inline';
-                    btnLoading.style.display = 'none';
 
-                    // Nascondi il messaggio dopo 10 secondi
-                    setTimeout(function() {
-                        clearStatus();
-                    }, 10000);
+                    newBtn.disabled = false;
+                    newBtnText.style.display = 'inline';
+                    newBtnLoading.style.display = 'none';
+
+                    setTimeout(clearStatus, 10000);
                 })
                 .catch(function(error) {
-                    console.error('❌ Errore durante l\'invio:', error);
-                    
-                    showError('Errore durante l\'invio. Riprova più tardi.');
-                    
-                    // Ripristina il pulsante
-                    btn.disabled = false;
-                    btnText.style.display = 'inline';
-                    btnLoading.style.display = 'none';
+                    console.error('❌ Errore:', error);
+                    showMessage('❌ Errore durante l\'invio. Riprova più tardi.', 'error');
+
+                    newBtn.disabled = false;
+                    newBtnText.style.display = 'inline';
+                    newBtnLoading.style.display = 'none';
                 });
         });
 
-        // Previeni il submit del form (sicurezza extra)
+        // Previeni submit
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            console.log('🚫 Submit del form prevenuto');
             return false;
         });
 
-        // Pulisci lo stato quando l'utente inizia a digitare
+        // Pulisci stato quando l'utente digita
         document.querySelectorAll('.form-input').forEach(input => {
-            input.addEventListener('input', function() {
-                clearStatus();
-                this.style.borderColor = '';
-            });
+            input.addEventListener('input', clearStatus);
         });
 
         console.log('✅ Script pronto! In attesa del click su Invia...');
-    });
+        document.getElementById('form-status').innerHTML = '✅ Pronto per l\'invio!';
+        document.getElementById('form-status').style.color = '#28a745';
+        setTimeout(clearStatus, 3000);
+    }
+
+    // Fallback: se DOM non è ancora pronto, aspetta
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📄 DOM caricato (evento)');
+        });
+    } else {
+        console.log('📄 DOM già caricato');
+    }
+
+    console.log('🚀 Script principale caricato!');
 </script>
