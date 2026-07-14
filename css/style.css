@@ -780,3 +780,16 @@ textarea.form-input {
         padding: 10px 15px;
     }
 }
+
+.link-doc {
+    cursor: pointer;
+    color: #0886f5fb;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    transition: color 0.3s, padding-left 0.3s;
+}
+
+.link-doc:hover {
+    color: #0568c0;
+    padding-left: 10px;
+}
