@@ -4,25 +4,83 @@
 <hr class="linea-blu">
 
 <style>
-    .ricordi-img {
-        --path: content/ricordi/immagini/;
-        max-width: 100%;
+    .ricordi-container {
+        background: #f9f9f9;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        border-left: 4px solid #0886f5fb;
+    }
+
+    .ricordi-item {
+        text-align: center;
+        background: white;
+        padding: 15px;
         border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        margin-bottom: 15px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .ricordi-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .ricordi-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .ricordi-item img {
+        max-width: 100%;
+        max-height: 500px;
+        object-fit: contain;
+        border-radius: 8px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .ricordi-item .didascalia {
+        font-size: 0.8rem;
+        color: #888;
         margin-top: 10px;
+        line-height: 1.4;
     }
 </style>
 
-<!-- Immagini -->
-<div style="background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #0886f5fb;">
-    <div style="margin-top: 15px;">
-        <img class="ricordi-img" src="content/ricordi/immagini/ricordi1.jpg">
-        <img class="ricordi-img" src="content/ricordi/immagini/ricordi2.jpg">
-        <img class="ricordi-img" src="content/ricordi/immagini/ricordi3.jpg">
-        <img class="ricordi-img" src="content/ricordi/immagini/ricordi4.jpg">
-        <img class="ricordi-img" src="content/ricordi/immagini/ricordi5.jpg">
-        <img class="ricordi-img" src="content/ricordi/immagini/ricordi6.jpg">
-        <img class="ricordi-img" src="content/ricordi/immagini/ricordi7.jpg">
+<!-- Galleria Immagini -->
+<div class="ricordi-container">
+    
+    <div class="ricordi-item">
+        <img src="content/ricordi/immagini/ricordi1.jpg" alt="XXII Consulta 1991">
+        <p class="didascalia">"GENTE del TITANO" - Foto ricordo della partecipazione alla XXII Consulta 1991</p>
     </div>
+    
+    <div class="ricordi-item">
+        <img src="content/ricordi/immagini/ricordi2.jpg" alt="Evento sociale">
+        <p class="didascalia">Evento sociale dell'Associazione</p>
+    </div>
+    
+    <div class="ricordi-item">
+        <img src="content/ricordi/immagini/ricordi4.jpg" alt="XII Consulta 1997/1998">
+        <p class="didascalia">SOCIETÀ DI STATO PER GLI AFFARI ESTERI - XII CONSULTA 2-3 OTTOBRE 1997/1998</p>
+    </div>
+    
+    <div class="ricordi-item">
+        <img src="content/ricordi/immagini/ricordi5.jpg" alt="Foto di gruppo">
+        <p class="didascalia">Foto di gruppo dei partecipanti</p>
+    </div>
+    
+    <div class="ricordi-item">
+        <img src="content/ricordi/immagini/ricordi6.jpg" alt="Premiazione">
+        <p class="didascalia">Premiazione e riconoscimenti</p>
+    </div>
+    
+    <div class="ricordi-item">
+        <img src="content/ricordi/immagini/ricordi7.jpg" alt="Incontro istituzionale">
+        <p class="didascalia">Incontro istituzionale con le autorità</p>
+    </div>
+
 </div>
 
 <div class="separator">✦ ✦ ✦</div>
