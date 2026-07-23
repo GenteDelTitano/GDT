@@ -1,0 +1,23 @@
+Mercoledì 22 luglio abbiamo avuto il piacere di accogliere presso il bagno 105 di Rimini, come negli ultimo anni, i ragazzi partecipanti ai soggiorni culturali e accompagnatori, all'insegna di un giorno al mare, al termine del pranzo presto il ristorantino del bagno, i ragazzi sono tornati alle attività di spiaggia e mare, la giornata di è conclusa dopo le 17.30 con il rientro dei ragazzi a San Marino in pulmann, con i ringraziamenti dei partecipanti e  la speranza di avere allietato la giornata, il tutto è stato offerto dalla comunità di Rimini, Associazione "Gente del Titano"
+
+
+Mercoledì 22 luglio abbiamo avuto il piacere di rinnovare una bellissima tradizione: accogliere presso il Bagno 105 di Rimini i ragazzi e gli accompagnatori dei Soggiorni Culturali.
+
+La giornata è trascorsa all'insegna del sole e del mare: dopo un piacevole pranzo presso il ristorantino dello stabilimento, i partecipanti sono tornati a godersi le attività in spiaggia. L'evento si è concluso intorno alle 17:30 con il rientro in pullman a San Marino, tra i saluti e i ringraziamenti di tutti i presenti.
+
+Un sentito ringraziamento va all'Associazione "Gente del Titano" e alla comunità di Rimini, che hanno offerto con gioia questa speciale giornata.
+
+Anche quest'anno la comunità di Rimini e l'Associazione "Gente del Titano" hanno avuto il piacere di offrire una giornata al mare ai ragazzi dei Soggiorni Culturali e ai loro accompagnatori, ospitati mercoledì 22 luglio presso il Bagno 105.
+
+Dopo il pranzo al ristorantino e un pomeriggio di relax e attività in spiaggia, i partecipanti sono ripartiti per San Marino nel tardo pomeriggio. È stato bellissimo ricevere i loro affettuosi ringraziamenti e sapere di aver allietato la loro permanenza!
+
+
+
+@echo off
+for /L %%a in (2016,1,2025) do (
+    if not exist anno-%%a mkdir anno-%%a
+    copy /Y anno-2026\index.html anno-%%a\ >nul
+)
+
+
+
