@@ -115,6 +115,11 @@
 			if (page.startsWith('eventi-')) {
 				url = 'content/' + page + '/index.html';
 			}
+			
+			// Se è una pagina di incontri direttivo (in sottocartella)
+			if (page.startsWith('incontri-direttivo-')) {
+				url = 'content/' + page + '/index.html';
+			}
 
 			// Carica il contenuto
 			fetch(url)
@@ -125,11 +130,11 @@
 				.then(html => {
 					container.innerHTML = html;
 					
-					// 🔥 NUOVO: Esegui gli script nel contenuto caricato
+					// Esegui gli script nel contenuto caricato
 					executeScripts(container);
 					
-					// Corregge i percorsi delle immagini per le pagine eventi
-					if (page.startsWith('eventi-')) {
+					// Corregge i percorsi delle immagini per le pagine in sottocartella
+					if (page.startsWith('eventi-') || page.startsWith('incontri-direttivo-')) {
 						correggiPercorsiImmagini(container, page);
 					}
 					
@@ -140,9 +145,16 @@
 					// Aggiorna il menu attivo
 					aggiornaMenuAttivo(page);
 					
-					// Aggiorna il select degli eventi se necessario
+					// Aggiorna i select se necessario
 					if (page.startsWith('eventi-')) {
 						const select = document.getElementById('eventi-select');
+						if (select) {
+							select.value = page;
+						}
+					}
+					
+					if (page.startsWith('incontri-direttivo-')) {
+						const select = document.getElementById('incontri-direttivo');
 						if (select) {
 							select.value = page;
 						}
@@ -166,7 +178,6 @@
 					});
 				});
 		}
-
 		// 🔥 NUOVA FUNZIONE: Esegue gli script nel container
 		function executeScripts(container) {
 			const scripts = container.querySelectorAll('script');
@@ -236,16 +247,23 @@
             window.history.pushState({ page: page }, '', newUrl);
         }
 
-        /**
-         * Gestisce la selezione dal menu a tendina degli eventi
-         * @param {string} anno - Anno selezionato (es. 'eventi-2026')
-         */
-        function caricaEvento(anno) {
-            if (anno !== "") {
-                caricaPagina(anno);
-            }
-        }
-
+		/**
+		 * Gestisce la selezione dai menu a tendina
+		 * @param {string} value - Valore selezionato (es. 'eventi-2026' o 'incontri-direttivo-2026')
+		 */
+		function caricaEvento(value) {
+			if (value !== "") {
+				// Determina se è un evento o un incontro direttivo
+				if (value.startsWith('incontri-direttivo-')) {
+					// Per gli incontri direttivo, carica la pagina corrispondente
+					caricaPagina(value);
+				} else {
+					// Per gli eventi (e altre voci)
+					caricaPagina(value);
+				}
+			}
+		}
+		
         // ===================== GESTIONE EVENTI =====================
 
         // Carica la pagina iniziale
