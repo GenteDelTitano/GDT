@@ -162,18 +162,20 @@
          */
         function correggiPercorsiImmagini(container, page) {
             const imgElements = container.querySelectorAll('img');
+            // 🔥 PERCORSO CORRETTO
+            const basePath = '/GDT/content/' + page + '/';
+            
             imgElements.forEach(img => {
                 let src = img.getAttribute('src');
-                if (src) {
-                    // Se l'immagine punta a 'immagini/' nella root
+                if (!src) return;
+                
+                // Se è un percorso relativo (non inizia con /, http, https)
+                if (!src.startsWith('/') && !src.startsWith('http://') && !src.startsWith('https://')) {
+                    // Se inizia con "immagini/"
                     if (src.startsWith('immagini/')) {
-                        // Reindirizza a 'content/eventi-XXXX/immagini/'
-                        img.src = 'content/' + page + '/' + src;
-                    }
-                    // Se l'immagine ha un percorso relativo (es. 'foto.jpg')
-                    else if (!src.startsWith('http://') && !src.startsWith('https://') && !src.startsWith('/')) {
-                        // Mantiene il percorso relativo alla sottocartella
-                        img.src = 'content/' + page + '/' + src;
+                        img.src = basePath + src;
+                    } else {
+                        img.src = basePath + src;
                     }
                 }
             });
