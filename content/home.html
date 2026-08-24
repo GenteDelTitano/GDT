@@ -1,0 +1,36 @@
+<!-- 
+<div style="margin-top: 15px;">
+    <img src="/GDT/immagini/main-msg.jpg" class="image-view">
+</div>
+ -->
+
+<h2>La nostra missione</h2>
+<p>L'Associazione "Gente del Titano" è nata nel 1979 con l'obiettivo di mantenere vivi i legami tra i sammarinesi residenti fuori dalla Repubblica e la loro terra d'origine.</p>
+
+<p>Da oltre 40 anni, ci impegniamo a:</p>
+<ul>
+    <li>Promuovere la cultura e le tradizioni sammarinesi</li>
+    <li>Favorire l'incontro tra i sammarinesi residenti nel riminese</li>
+    <li>Rafforzare i legami con la Repubblica di San Marino</li>
+</ul>
+
+<h2>La nostra comunità</h2>
+<p>La comunità sammarinese nel circondario di Rimini è una delle più numerose al mondo.</p>
+
+<!-- Incrementa la home di 1 ad ogni caricamento -->
+<script>
+  (function() {
+    var DB_URL = "https://gente-del-titano-default-rtdb.europe-west1.firebasedatabase.app";
+    
+    fetch(DB_URL + '/visite/home.json')
+      .then(function(res) { return res.json(); })
+      .then(function(valoreAttuale) {
+        var nuovoValore = (valoreAttuale || 0) + 1;
+        fetch(DB_URL + '/visite/home.json', {
+          method: 'PUT',
+          body: JSON.stringify(nuovoValore)
+        });
+      })
+      .catch(function(e) { console.warn("Firebase non raggiungibile"); });
+  })();
+</script>

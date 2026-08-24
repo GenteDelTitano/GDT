@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gente del Titano - Associazione Cittadini Sammarinesi residenti nella circoscrizione Consolare di Rimini</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="immagini/Logo_GDT.jpg">
+	<link rel="icon" type="image/x-icon" href="immagini/favicon.ico">
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <img src="immagini/Logo_GDT.png" alt="Logo Gente del Titano">
+        </div>
+        <div class="header-center">
+            <h1 style="font-size: 20px;">Associazione <i>"Gente del Titano"</i></h1>
+            <div class="sub-title">Rimini - Repubblica di San Marino</div>
+        </div>
+        <div class="header-right">
+            <img src="immagini/img_sede.jpg" alt="Sede dell'Associazione">
+        </div>
+    </header>
+
+    <div class="main-container">
+
+        <!-- MENU LATERALE -->
+        <nav>
+            <ul>
+                <li><a href="#" data-page="home" class="active">🏠 Home</a></li>
+                <li><a href="#" data-page="storia">📕 Storia</a></li>
+                <li><a href="#" data-page="quanti-siamo">👥 Quanti Siamo</a></li>
+                <li><a href="#" data-page="iscritti-per-comunita">👥 Lista Comunità</a></li>
+
+                <!-- MENU A TENDINA EVENTI -->
+                <li>
+                    <select id="eventi-select" onchange="caricaEvento(this.value)" 
+                        style="width: 100%; padding: 8px 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95rem; background-color: white; cursor: pointer;">
+                        <option value="">📅 Eventi Anno?</option>
+                        <option value="eventi-2026">Eventi 2026</option>
+                        <option value="eventi-2025">Eventi 2025</option>
+                        <option value="eventi-2024">Eventi 2024</option>
+                        <option value="eventi-2023">Eventi 2023</option>
+                        <option value="eventi-2022">Eventi 2022</option>
+						<option value="eventi-2021">Eventi 2021</option>
+						<option value="eventi-2020">Eventi 2020</option>
+						<option value="eventi-2019">Eventi 2019</option>
+						<option value="eventi-2018">Eventi 2018</option>
+						<option value="eventi-2017">Eventi 2017</option>
+						<option value="eventi-2016">Eventi 2016</option>
+                        <option value="eventi-2015">Eventi 2015</option>
+                    </select>
+                </li>
+                
+                <!-- MENU A TENDINA INCONTRI DIRETTIVO -->
+                <li>
+                    <select id="incontri-direttivo" onchange="caricaEvento(this.value)" 
+                        style="width: 100%; padding: 8px 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95rem; background-color: white; cursor: pointer;">
+                        <option value="">👫 Incontri Direttivo Anno?</option>
+                        <option value="incontri-direttivo-2026">Incontri Direttivo 2026</option>
+                        <option value="incontri-direttivo-2025">Incontri Direttivo 2025</option>
+                        <option value="incontri-direttivo-2023">Incontri Direttivo 2023</option>
+                        <option value="incontri-direttivo-2022">Incontri Direttivo 2022</option>
+						<option value="incontri-direttivo-2021">Incontri Direttivo 2021</option>
+						<option value="incontri-direttivo-2020">Incontri Direttivo 2020</option>
+						<option value="incontri-direttivo-2019">Incontri Direttivo 2019</option>
+						<option value="incontri-direttivo-2016">Incontri Direttivo 2016</option>
+                    </select>
+                </li>
+				
+				<li><a href="#" data-page="ricordi">📸 Ricordi</a></li>
+				<li><a href="#" data-page="contatti">📇 Contatti</a></li>
+                <li><a href="#" data-page="documenti">📄 Documenti</a></li>
+                <li><a href="#" data-page="link">🔗 Link Utili</a></li>
+                <li><a href="#" data-page="bacheca">📣 Bacheca</a></li>
+                <li><a href="#" data-page="scrivici">📧 Scrivici</a></li>
+                <!-- <li><a href="#" data-page="scrivici_v3">📧 Scrivici v2</a></li> -->
+                <li><a href="#" data-page="sintesi">🧮 Sintesi accessi</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <div class="container" id="content-container">
+                <!-- Il contenuto viene caricato qui via JavaScript -->
+                <p style="text-align:center; padding: 50px;">⏳ Caricamento...</p>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        // ===================== FUNZIONI PRINCIPALI =====================
+
+        /**
+         * Carica una pagina nel container principale
+         * @param {string} page - Nome della pagina da caricare (es. 'home', 'storia', 'eventi-2026')
+         */
+        function loadPage(page) {
+            const container = document.getElementById('content-container');
+            if (!container) return;
+
+            container.innerHTML = '<p style="text-align:center; padding: 50px;">⏳ Caricamento...</p>';
+
+            // 🔥 Usa il percorso dalla root del sito
+            let url = '/GDT/content/' + page + '.html';
+            
+            // Se è una pagina di eventi (in sottocartella)
+            if (page.startsWith('eventi-')) {
+                url = '/GDT/content/' + page + '/index.html';
+            }
+            
+            // Se è una pagina di incontri direttivo
+            if (page.startsWith('incontri-direttivo-')) {
+                url = '/GDT/content/' + page + '/index.html';
+            }
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error('Pagina non trovata');
+                    return response.text();
+                })
+                .then(html => {
+                    container.innerHTML = html;
+                    // ... resto del codice (executeScripts, correggiPercorsiImmagini, ecc.)
+                })
+                .catch(() => {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 50px;">
+                            <h1>😕 Pagina non trovata</h1>
+                            <p>Impossibile caricare "${page}".</p>
+                            <p style="color: #888; font-size: 0.9rem;">Verifica che <code>${url}</code> esista.</p>
+                            <br>
+                            <a href="#" data-page="home" style="display: inline-block; padding: 10px 20px; background: #0886f5fb; color: white; text-decoration: none; border-radius: 5px;">Torna alla Home</a>
+                        </div>
+                    `;
+                });
+        }
+         
+		// 🔥 NUOVA FUNZIONE: Esegue gli script nel container
+		function executeScripts(container) {
+			const scripts = container.querySelectorAll('script');
+			scripts.forEach(function(oldScript) {
+				const newScript = document.createElement('script');
+				
+				// Copia tutti gli attributi
+				Array.from(oldScript.attributes).forEach(function(attr) {
+					newScript.setAttribute(attr.name, attr.value);
+				});
+				
+				// Copia il contenuto
+				newScript.textContent = oldScript.textContent;
+				
+				// Sostituisci il vecchio script con il nuovo
+				oldScript.parentNode.replaceChild(newScript, oldScript);
+			});
+		}
+        /**
+         * Corregge i percorsi delle immagini per le sottocartelle eventi
+         * @param {HTMLElement} container - Container con le immagini da correggere
+         * @param {string} page - Nome della pagina (es. 'eventi-2026')
+         */
+        function correggiPercorsiImmagini(container, page) {
+            const imgElements = container.querySelectorAll('img');
+            imgElements.forEach(img => {
+                let src = img.getAttribute('src');
+                if (src) {
+                    // Se l'immagine punta a 'immagini/' nella root
+                    if (src.startsWith('immagini/')) {
+                        // Reindirizza a 'content/eventi-XXXX/immagini/'
+                        img.src = 'content/' + page + '/' + src;
+                    }
+                    // Se l'immagine ha un percorso relativo (es. 'foto.jpg')
+                    else if (!src.startsWith('http://') && !src.startsWith('https://') && !src.startsWith('/')) {
+                        // Mantiene il percorso relativo alla sottocartella
+                        img.src = 'content/' + page + '/' + src;
+                    }
+                }
+            });
+        }
+
+        /**
+         * Aggiorna la classe 'active' nel menu
+         * @param {string} page - Pagina attiva
+         */
+        function aggiornaMenuAttivo(page) {
+            document.querySelectorAll('nav ul li a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const activeLink = document.querySelector(`nav ul li a[data-page="${page}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        function caricaPagina(page) {       
+            loadPage(page);
+            
+            // Aggiorna l'URL senza ricaricare la pagina
+            const newUrl = window.location.pathname + '?page=' + page;
+            window.history.pushState({ page: page }, '', newUrl);
+        }
+		/**
+		 * Gestisce la selezione dai menu a tendina
+		 * @param {string} value - Valore selezionato (es. 'eventi-2026' o 'incontri-direttivo-2026')
+		 */
+		function caricaEvento(value) {
+			if (value !== "") {
+				// Determina se è un evento o un incontro direttivo
+				if (value.startsWith('incontri-direttivo-')) {
+					// Per gli incontri direttivo, carica la pagina corrispondente
+					caricaPagina(value);
+				} else {
+					// Per gli eventi (e altre voci)
+					caricaPagina(value);
+				}
+			}
+		}
+		
+        // ===================== GESTIONE EVENTI =====================
+
+        // Carica la pagina iniziale
+        document.addEventListener('DOMContentLoaded', function() {
+            // 🔥 GESTISCI IL PARAMETRO "sent=ok" (MESSAGGIO DI CONFERMA)
+            const urlParams = new URLSearchParams(window.location.search);
+            const page = urlParams.get('page') || 'home';
+            const sentOk = urlParams.get('sent');
+
+            // Se il parametro "sent=ok" è presente, mostra il messaggio di conferma
+            if (sentOk === 'ok') {
+                const container = document.getElementById('content-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div style="text-align:center; padding:40px; background:#f0f8ff; border-radius:10px; border-left: 6px solid #28a745;">
+                            <h2 style="color:#28a745;">✅ Messaggio inviato con successo!</h2>
+                            <p style="font-size:1.1rem; margin-top:10px;">Grazie per averci contattato.<br>Ti risponderemo al più presto.</p>
+                            <p style="margin-top:20px;">
+                                <a href="#" data-page="home" style="display:inline-block; padding:10px 25px; background:#0886f5fb; color:white; text-decoration:none; border-radius:6px;">Torna alla Home</a>
+                            </p>
+                        </div>
+                    `;
+                    // Ricollega il link "Torna alla Home"
+                    container.querySelector('a[data-page="home"]')?.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        caricaPagina('home');
+                    });
+                    return; // Esce per non caricare la pagina richiesta
+                }
+            }
+
+            // Se la pagina è un evento, seleziona l'opzione nel menu a tendina
+            if (page.startsWith('eventi-')) {
+                const select = document.getElementById('eventi-select');
+                if (select) {
+                    select.value = page;
+                }
+            }
+            
+            loadPage(page);
+        });
+        // Gestisce i click sui link del menu (con data-page)
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('nav ul li a');
+            if (link && link.dataset.page) {
+                e.preventDefault();
+                const page = link.dataset.page;
+                caricaPagina(page);
+                
+                // Se la pagina è un evento, seleziona l'opzione nel menu a tendina
+                if (page.startsWith('eventi-')) {
+                    const select = document.getElementById('eventi-select');
+                    if (select) {
+                        select.value = page;
+                    }
+                }
+            }
+        });
+
+        // Gestisce il pulsante "Indietro" e "Avanti" del browser
+        window.addEventListener('popstate', function(e) {
+            if (e.state && e.state.page) {
+                loadPage(e.state.page);
+                
+                // Aggiorna il select degli eventi se necessario
+                if (e.state.page.startsWith('eventi-')) {
+                    const select = document.getElementById('eventi-select');
+                    if (select) {
+                        select.value = e.state.page;
+                    }
+                }
+            } else {
+                // Se non c'è stato, carica la home
+                loadPage('home');
+                const select = document.getElementById('eventi-select');
+                if (select) {
+                    select.value = '';
+                }
+            }
+        });
+
+        // Gestisce il caricamento di link esterni (es. da altri file HTML)
+        // Se qualcuno apre direttamente una pagina come content/eventi-2026/index.html
+        // viene reindirizzato all'index principale
+        if (window.location.pathname.includes('/content/')) {
+            const pageMatch = window.location.pathname.match(/content\/(eventi-\d+)\/index\.html/);
+            if (pageMatch) {
+                const page = pageMatch[1];
+                window.location.href = '/index.html?page=' + page;
+            }
+        }
+
+        // ===================== FUNZIONI DI UTILITY =====================
+
+        /**
+         * Ricarica la pagina corrente (utile per debugging)
+         */
+        function ricaricaPaginaCorrente() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const page = urlParams.get('page') || 'home';
+            loadPage(page);
+        }
+
+        /**
+         * Verifica se una pagina esiste
+         * @param {string} page - Nome della pagina
+         * @returns {Promise<boolean>} - True se la pagina esiste
+         */
+        async function paginaEsiste(page) {
+            let url = 'content/' + page + '.html';
+            if (page.startsWith('eventi-')) {
+                url = 'content/' + page + '/index.html';
+            }
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                return response.ok;
+            } catch {
+                return false;
+            }
+        }
+
+        function aggiungiFooter(container) {
+            const footerHTML = `
+                <hr style="border: 0; border-top: 1px solid #ddd; margin-top: 10px;">
+
+                <p style="text-align: center; color: #666666; font-size: 10px; margin-top: 10px;">
+                &copy; Luciano Sammaritani 2026 Vers. 1.0 - Associazione "<em>Gente del Titano</em>" - Rimini
+                </p>
+            `;
+
+            // Evita doppioni: rimuovi eventuale footer precedente
+            const oldFooter = container.querySelector('.footer-auto');
+            if (oldFooter) oldFooter.remove();
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'footer-auto';
+            wrapper.innerHTML = footerHTML;
+            container.appendChild(wrapper);
+        }
+
+        // Esponi le funzioni globalmente per l'uso nell'HTML
+        window.loadPage = loadPage;
+        window.caricaPagina = caricaPagina;
+        window.caricaEvento = caricaEvento;
+        window.ricaricaPaginaCorrente = ricaricaPaginaCorrente;
+        window.paginaEsiste = paginaEsiste;
+
+        console.log('✅ Sito Gente del Titano caricato correttamente!');
+        console.log('📄 Pagina corrente:', new URLSearchParams(window.location.search).get('page') || 'home');
+    </script>
+</body>
+</html>

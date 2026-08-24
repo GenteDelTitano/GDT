@@ -1,0 +1,73 @@
+<h1>🧮 Sintesi accessi</h1>
+<p class="subtitle" style="text-align: center;"><strong>Numero accessi per sezione</strong></p>
+
+<!-- Stile CSS per formattare i testi (Normal per Sezione, Bold per i Numeri) -->
+<style>
+  .sintesi-container table tbody tr,
+  .sintesi-container table tbody tr:nth-child(even),
+  .sintesi-container table tbody tr:nth-child(odd),
+  .sintesi-container table tbody td {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #212529 !important;
+    border: none !important;
+  }
+
+  .sintesi-container table tbody td {
+    border-bottom: 1px solid #e0e0e0 !important;
+  }
+
+  /* Sezione: normale */
+  .sintesi-container table tbody td:first-child {
+    font-weight: normal !important;
+  }
+
+  /* Visite Totali: in grassetto */
+  .sintesi-container table tbody td:last-child {
+    font-weight: bold !important;
+  }
+</style>
+
+<!-- Tabella Sintesi -->
+<div class="sintesi-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Sezione</th>
+        <th>Visite Totali</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>🏠 Homepage (Accessi al portale): </td>
+        <td id="count-home">Caricamento...</td>
+      </tr>
+      <tr>
+        <td>📧 Sezione Scrivici: </td>
+        <td id="count-scrivici">Caricamento...</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  (function() {
+    var DB_URL = "https://gente-del-titano-default-rtdb.europe-west1.firebasedatabase.app";
+
+    function leggiVisiteFirebase(key, elementId) {
+      fetch(DB_URL + '/visite/' + key + '.json')
+        .then(function(res) { return res.json(); })
+        .then(function(valore) {
+          var el = document.getElementById(elementId);
+          if (el) el.innerText = valore !== null ? valore : 0;
+        })
+        .catch(function() {
+          var el = document.getElementById(elementId);
+          if (el) el.innerText = "0";
+        });
+    }
+
+    leggiVisiteFirebase('home', 'count-home');
+    leggiVisiteFirebase('scrivici', 'count-scrivici');
+  })();
+</script>

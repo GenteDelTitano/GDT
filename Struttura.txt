@@ -1,0 +1,23 @@
+root/
+├── index.html              ← Il tuo file principale con tutto il menu
+├── css/
+│   └── style.css
+├── immagini/
+│   ├── Logo_GDT.png
+│   ├── Logo_GDT.jpg
+│   └── img_sede.jpg
+└── content/
+    ├── home.html
+    ├── storia.html
+    ├── quanti-siamo.html
+    ├── documenti.html
+    ├── link.html
+    ├── bacheca.html
+    ├── contatti.html
+    └── eventi-2026/
+        ├── index.html      ← SOLO il contenuto (senza header/footer/nav)
+        └── immagini/
+            ├── pranzo.jpg
+            ├── borse.jpg
+            ├── mare.jpg
+            └── incontro.jpg
