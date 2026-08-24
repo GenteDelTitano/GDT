@@ -6,7 +6,6 @@
     <title>Gente del Titano - Associazione Cittadini Sammarinesi residenti nella circoscrizione Consolare di Rimini</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/x-icon" href="immagini/Logo_GDT.jpg">
-	<link rel="icon" type="image/x-icon" href="immagini/favicon.ico">
 </head>
 <body>
 
@@ -29,7 +28,7 @@
         <nav>
             <ul>
                 <li><a href="#" data-page="home" class="active">🏠 Home</a></li>
-                <li><a href="#" data-page="storia">📕 Storia</a></li>
+                <li><a href="#" data-page="storia">📖 Storia</a></li>
                 <li><a href="#" data-page="quanti-siamo">👥 Quanti Siamo</a></li>
                 <li><a href="#" data-page="iscritti-per-comunita">👥 Lista Comunità</a></li>
 
@@ -75,7 +74,6 @@
                 <li><a href="#" data-page="link">🔗 Link Utili</a></li>
                 <li><a href="#" data-page="bacheca">📣 Bacheca</a></li>
                 <li><a href="#" data-page="scrivici">📧 Scrivici</a></li>
-                <!-- <li><a href="#" data-page="scrivici_v3">📧 Scrivici v2</a></li> -->
                 <li><a href="#" data-page="sintesi">🧮 Sintesi accessi</a></li>
             </ul>
         </nav>
@@ -96,47 +94,86 @@
          * Carica una pagina nel container principale
          * @param {string} page - Nome della pagina da caricare (es. 'home', 'storia', 'eventi-2026')
          */
-        function loadPage(page) {
-            const container = document.getElementById('content-container');
-            if (!container) return;
+		function loadPage(page) {
+			const container = document.getElementById('content-container');
+			if (!container) return;
 
-            container.innerHTML = '<p style="text-align:center; padding: 50px;">⏳ Caricamento...</p>';
+			// Mostra loading
+			container.innerHTML = '<p style="text-align:center; padding: 50px;">⏳ Caricamento...</p>';
 
-            // 🔥 Usa il percorso dalla root del sito
-            let url = '/GDT/content/' + page + '.html';
-            
-            // Se è una pagina di eventi (in sottocartella)
-            if (page.startsWith('eventi-')) {
-                url = '/GDT/content/' + page + '/index.html';
-            }
-            
-            // Se è una pagina di incontri direttivo
-            if (page.startsWith('incontri-direttivo-')) {
-                url = '/GDT/content/' + page + '/index.html';
-            }
+			// Determina l'URL da caricare
+			let url = 'content/' + page + '.html';
+			
+			// Se è una pagina di eventi (in sottocartella)
+			if (page.startsWith('eventi-')) {
+				url = 'content/' + page + '/index.html';
+			}
+			
+			// Se è una pagina di incontri direttivo (in sottocartella)
+			if (page.startsWith('incontri-direttivo-')) {
+				url = 'content/' + page + '/index.html';
+			}
 
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) throw new Error('Pagina non trovata');
-                    return response.text();
-                })
-                .then(html => {
-                    container.innerHTML = html;
-                    // ... resto del codice (executeScripts, correggiPercorsiImmagini, ecc.)
-                })
-                .catch(() => {
-                    container.innerHTML = `
-                        <div style="text-align: center; padding: 50px;">
-                            <h1>😕 Pagina non trovata</h1>
-                            <p>Impossibile caricare "${page}".</p>
-                            <p style="color: #888; font-size: 0.9rem;">Verifica che <code>${url}</code> esista.</p>
-                            <br>
-                            <a href="#" data-page="home" style="display: inline-block; padding: 10px 20px; background: #0886f5fb; color: white; text-decoration: none; border-radius: 5px;">Torna alla Home</a>
-                        </div>
-                    `;
-                });
-        }
-         
+			// Carica il contenuto
+			fetch(url)
+				.then(response => {
+					if (!response.ok) throw new Error('Pagina non trovata');
+					return response.text();
+				})
+				.then(html => {
+					container.innerHTML = html;
+					
+                    // Aggiungi footer automatico
+                    aggiungiFooter(container);
+
+					// Esegui gli script nel contenuto caricato
+					executeScripts(container);
+					
+					// Corregge i percorsi delle immagini per le pagine in sottocartella
+					if (page.startsWith('eventi-') || page.startsWith('incontri-direttivo-')) {
+						correggiPercorsiImmagini(container, page);
+					}
+					
+					// Aggiorna il titolo della pagina
+					const nomePagina = page.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+					document.title = 'Gente del Titano - ' + nomePagina;
+					
+					// Aggiorna il menu attivo
+					aggiornaMenuAttivo(page);
+					
+					// Aggiorna i select se necessario
+					if (page.startsWith('eventi-')) {
+						const select = document.getElementById('eventi-select');
+						if (select) {
+							select.value = page;
+						}
+					}
+					
+					if (page.startsWith('incontri-direttivo-')) {
+						const select = document.getElementById('incontri-direttivo');
+						if (select) {
+							select.value = page;
+						}
+					}
+				})
+				.catch(() => {
+					container.innerHTML = `
+						<div style="text-align: center; padding: 50px;">
+							<h1>😕 Pagina non trovata</h1>
+							<p>Impossibile caricare "${page}".</p>
+							<p style="color: #888; font-size: 0.9rem;">Verifica che <code>${url}</code> esista.</p>
+							<br>
+							<a href="#" data-page="home" style="display: inline-block; padding: 10px 20px; background: #0886f5fb; color: white; text-decoration: none; border-radius: 5px;">Torna alla Home</a>
+						</div>
+					`;
+					
+					// Ricollega gli eventi per il link "Torna alla Home"
+					container.querySelector('a[data-page="home"]')?.addEventListener('click', function(e) {
+						e.preventDefault();
+						caricaPagina('home');
+					});
+				});
+		}
 		// 🔥 NUOVA FUNZIONE: Esegue gli script nel container
 		function executeScripts(container) {
 			const scripts = container.querySelectorAll('script');
@@ -162,20 +199,18 @@
          */
         function correggiPercorsiImmagini(container, page) {
             const imgElements = container.querySelectorAll('img');
-            // 🔥 PERCORSO CORRETTO
-            const basePath = '/GDT/content/' + page + '/';
-            
             imgElements.forEach(img => {
                 let src = img.getAttribute('src');
-                if (!src) return;
-                
-                // Se è un percorso relativo (non inizia con /, http, https)
-                if (!src.startsWith('/') && !src.startsWith('http://') && !src.startsWith('https://')) {
-                    // Se inizia con "immagini/"
+                if (src) {
+                    // Se l'immagine punta a 'immagini/' nella root
                     if (src.startsWith('immagini/')) {
-                        img.src = basePath + src;
-                    } else {
-                        img.src = basePath + src;
+                        // Reindirizza a 'content/eventi-XXXX/immagini/'
+                        img.src = 'content/' + page + '/' + src;
+                    }
+                    // Se l'immagine ha un percorso relativo (es. 'foto.jpg')
+                    else if (!src.startsWith('http://') && !src.startsWith('https://') && !src.startsWith('/')) {
+                        // Mantiene il percorso relativo alla sottocartella
+                        img.src = 'content/' + page + '/' + src;
                     }
                 }
             });
@@ -224,33 +259,10 @@
 
         // Carica la pagina iniziale
         document.addEventListener('DOMContentLoaded', function() {
-            // 🔥 GESTISCI IL PARAMETRO "sent=ok" (MESSAGGIO DI CONFERMA)
+            // Controlla se c'è un parametro 'page' nell'URL
             const urlParams = new URLSearchParams(window.location.search);
             const page = urlParams.get('page') || 'home';
-            const sentOk = urlParams.get('sent');
-
-            // Se il parametro "sent=ok" è presente, mostra il messaggio di conferma
-            if (sentOk === 'ok') {
-                const container = document.getElementById('content-container');
-                if (container) {
-                    container.innerHTML = `
-                        <div style="text-align:center; padding:40px; background:#f0f8ff; border-radius:10px; border-left: 6px solid #28a745;">
-                            <h2 style="color:#28a745;">✅ Messaggio inviato con successo!</h2>
-                            <p style="font-size:1.1rem; margin-top:10px;">Grazie per averci contattato.<br>Ti risponderemo al più presto.</p>
-                            <p style="margin-top:20px;">
-                                <a href="#" data-page="home" style="display:inline-block; padding:10px 25px; background:#0886f5fb; color:white; text-decoration:none; border-radius:6px;">Torna alla Home</a>
-                            </p>
-                        </div>
-                    `;
-                    // Ricollega il link "Torna alla Home"
-                    container.querySelector('a[data-page="home"]')?.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        caricaPagina('home');
-                    });
-                    return; // Esce per non caricare la pagina richiesta
-                }
-            }
-
+            
             // Se la pagina è un evento, seleziona l'opzione nel menu a tendina
             if (page.startsWith('eventi-')) {
                 const select = document.getElementById('eventi-select');
@@ -261,6 +273,7 @@
             
             loadPage(page);
         });
+
         // Gestisce i click sui link del menu (con data-page)
         document.addEventListener('click', function(e) {
             const link = e.target.closest('nav ul li a');
