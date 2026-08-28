@@ -48,9 +48,11 @@ https://reqbin.com/
 </script>
 
 '
-Gestione su GitHub
+# Gestione su GitHub
 https://github.com/GenteDeLTitano/GDT
 
+# Su NetLify
+https://app.netlify.com/teams/gentedeltitano/projects
 
 # Passo 1: Inizializza il repository
 powershell
