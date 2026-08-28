@@ -26,3 +26,24 @@ https://gentedelittiano.github.io/GDT/?page=scrivici
 Utility
 Online REST & SOAP API Testing Tool
 https://reqbin.com/
+
+
+
+<!-- Contatore visite su Firebase -->
+<script>
+(function() {
+    const DB_URL = "https://gente-del-titano-default-rtdb.europe-west1.firebasedatabase.app";
+    
+    fetch(DB_URL + '/visite/scrivici.json')
+        .then(function(res) { return res.json(); })
+        .then(function(valoreAttuale) {
+            const nuovoValore = (valoreAttuale || 0) + 1;
+            fetch(DB_URL + '/visite/scrivici.json', {
+                method: 'PUT',
+                body: JSON.stringify(nuovoValore)
+            });
+        })
+        .catch(function(e) { console.warn("Firebase non raggiungibile"); });
+})();
+</script>
+

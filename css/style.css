@@ -572,6 +572,11 @@ textarea.form-input {
     padding-left: 10px;
 }
 
+.link-doc a {
+    text-decoration: none;
+    color: inherit; /* Mantiene il colore impostato su .link-doc */
+}
+
 .image-view {
     max-width: 100%;
     border-radius: 8px;
