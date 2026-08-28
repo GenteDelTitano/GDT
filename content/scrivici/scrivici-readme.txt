@@ -47,3 +47,72 @@ https://reqbin.com/
 })();
 </script>
 
+'
+Gestione su GitHub
+https://github.com/GenteDeLTitano/GDT
+
+
+# Passo 1: Inizializza il repository
+powershell
+cd "C:\Users\Luciano\Desktop\Soggetti Comunita\GDT"
+
+# Inizializza un nuovo repository Git
+git init
+
+# Passo 2: Aggiungi tutti i file
+powershell
+
+# Aggiungi tutti i file e le cartelle (tranne .git)
+git add .
+
+# Verifica cosa è stato aggiunto
+git status
+
+# Passo 3: Crea il primo commit
+powershell
+git commit -m "Primo commit: ripristino del sito da dump"
+
+# Passo 4: Collega al repository remoto
+powershell
+git remote add origin https://github.com/GenteDeLTitano/GDT.git
+
+# Passo 5: Carica su GitHub
+powershell
+git push -u origin main
+
+# 🔧 Se git add . non aggiunge nulla
+# A volte Git ignora i file se non ci sono modifiche. Prova:
+
+powershell
+# Forza l'aggiunta di tutti i file
+git add --all
+
+# Oppure aggiungi manualmente i file specifici
+git add index.html
+git add css/
+git add immagini/
+git add js/
+git add content/
+
+# 📝 Se il push fallisce
+# Potresti dover fare prima un pull (anche se il repository è vuoto, a volte serve):
+
+powershell
+# Se il repository remoto non è vuoto, fai un pull
+git pull origin main --allow-unrelated-histories
+
+# Poi fai il push
+git push -u origin main
+
+# 🎯 Verifica finale
+# Dopo il push, controlla su GitHub che i file siano stati caricati:
+
+https://github.com/GenteDeLTitano/GDT
+
+Poi configura GitHub Pages:
+
+Settings → Pages
+Branch: main
+Folder: / (root)
+Clicca su Save
+
