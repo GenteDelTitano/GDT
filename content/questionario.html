@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questionario Riforme Istituzionali</title>
+  
+  <!-- SDK EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function(){
+      // SOSTITUISCI 'YOUR_PUBLIC_KEY' con la tua Public Key di EmailJS (trovabile in Account Settings)
+      emailjs.init({
+        publicKey: "dlcgcFKY-gzS7RQKJ",
+      });
+    })();
+  </script>
+
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 20px; 
+      color: #333; 
+      line-height: 1.5; 
+    }
+    
+    h1 { 
+      color: #1a5a1a; 
+      font-size: 1.5rem; 
+    }
+    
+    .subtitle { 
+      font-size: 0.95rem; 
+      margin-bottom: 20px; 
+    }
+
+    .user-info-box {
+      background: #fdfdfd;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 0;
+    }
+
+    .form-group label {
+      white-space: nowrap;
+      font-weight: bold;
+      color: #1a5a1a;
+      margin-bottom: 0;
+    }
+
+    .form-group input {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      width: 250px;
+    }
+
+    .btn-container { 
+      margin: 20px 0; 
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .table-container { 
+      overflow-x: auto; 
+    }
+    
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      min-width: 600px; 
+      margin-bottom: 20px; 
+    }
+    
+    th { 
+      background: #1a5a1a; 
+      color: white; 
+      padding: 10px; 
+      text-align: left; 
+    }
+    
+    td { 
+      padding: 10px; 
+      border-bottom: 1px solid #ddd; 
+      vertical-align: top; 
+    }
+    
+    tr:nth-child(even) { 
+      background-color: #f9f9f9; 
+    }
+
+    select.error, input.error {
+      border: 2px solid #d9534f !important;
+      background-color: #fdf2f2;
+    }
+
+    select, textarea {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+    textarea { 
+      resize: vertical; 
+      height: 42px; 
+    }
+
+    .btn-send {
+      background-color: #0886f5;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .btn-send:hover { background-color: #0669c2; }
+
+    .btn-save {
+      background-color: #1a5a1a;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .btn-save:hover { background-color: #2d8a2d; }
+
+    .note-box { 
+      padding: 15px; 
+      background: #f5f5f5; 
+      border-radius: 6px; 
+      font-size: 0.85rem; 
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="text-align: center !important;">✋ Questionario Riforme Istituzionali</h1>
+  <p class="subtitle" style="text-align: center !important;">
+    <strong> Questionario per raccolta suggerimenti condivisi da presentare in Commissione Consiliare Speciale per le Riforme Istituzionali.</strong><br>
+  Come da lettera della Segreteria per gli Affari Interni.</p>
+
+  <form id="quizForm">
+
+    <!-- Sezione Dati Anagrafici -->
+    <div class="user-info-box">
+      <div class="form-group">
+        <label for="user_name">Nome e Cognome *</label>
+        <input type="text" id="user_name" placeholder="Es. Mario Rossi" required>
+      </div>
+      <div class="form-group">
+        <label for="user_email">Email *</label>
+        <input type="email" id="user_email" placeholder="Es. mario.rossi@example.com" required>
+      </div>
+    </div>
+
+    <!-- Tabella Quesiti -->
+    <div class="table-container">
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-radius: 10px; overflow: hidden;">
+        <thead>
+          <tr style="background: linear-gradient(135deg, #1a5a1a, #2d8a2d); color: white; font-weight: bold;">
+            <th style="width: 55%; text-align: center; border: 1px solid #1a5a1a;">Quesito</th>
+            <th style="width: 20%; text-align: center; border: 1px solid #1a5a1a;">Risposta</th>
+            <th style="width: 25%; text-align: center; border: 1px solid #1a5a1a;">Note</th>
+          </tr>
+        </thead>
+        <tbody id="quiz-body">
+        </tbody>
+      </table>
+    </div>
+
+    <div class="btn-container">
+      <button type="button" class="btn-send" onclick="inviaQuestionario()">Invia Questionario Via Email</button>
+      <button type="button" class="btn-save" onclick="salvaFileLocale()">Salva Copia Locale</button>
+    </div>
+  </form>
+
+  <div class="note-box">
+    <strong>Istruzioni:</strong> Compilare Nome, Cognome, Email e selezionare una <strong>Risposta</strong> obbligatoria per ogni quesito prima di poter inviare o salvare.
+  </div>
+
+  <script>
+    var domande = [
+      "Chiediamo che il principio costituzionale del suffragio universale sia reso effettivamente esercibile anche dai cittadini residenti all'estero.",
+      "PRINCIPIO: Il cittadino sammarinese residente all'estero conserva integralmente il diritto di elettorato?",
+      "RAPPRESENTANZA (una volta riconosciuto il diritto): Collegio estero?",
+      "ESERCIZIO DI VOTO: Rientro in Repubblica?",
+      "ESERCIZIO DI VOTO: Consolato? (Non universalmente applicabile)",
+      "ESERCIZIO DI VOTO: Corrispondenza?",
+      "ESERCIZIO DI VOTO: Telematico? (Soggetto ad approvazione tecnica)",
+      "ESERCIZIO DI VOTO: Altra soluzione (specificare in note)",
+      "PREFERENZE: (Come scegliere i candidati? Uguaglianza voto di preferenza?) Proposte in note.",
+      "COLLEGIO ESTERO: L'istituzione del Collegio Estero è ritenuta necessaria per garantire una rappresenzanza effettiva dei cittadini residenti fuori territorio?",
+      "COLLEGIO ESTERO: Quanto deve essere grande? (specificare in note)",
+      "COLLEGIO ESTERO + MODALITA' di voto compatibile con il Collegio Estero. (Collegio Estero e Voto per corrispondenza potrebbero coesistere).",
+      "VOTO TELEMATICO: Non costituisce, allo stato attuale, una priorità della Consulta e NON DOVREBBE ESSERE INTRODOTTO SENZA ADEGUATE GARANZIE DI SICUREZZA (Segretezza, Autenticazione, Verificabilità e Affidabilità)",
+      "VOTO PER CORRISPONDENZA: Prima scelta.",
+      "VOTO PRESSO SEDI CONSOLARI O DIPLOMATICHE: Seconda scelta con riserva del VOTO PER CORRISPONDENZA per le realtà territoriali difficilmente raggiungibili.",
+      "PREFERENZE: Favorevole. Il cittadino residente all'estero deve disporre dello stesso diritto di esprimere preferenze riconosciuto al cittadino residente sul territorio.<br>La residenza non può costituire motivo di limitazione dell'elettorato attivo.<br>" +
+      "<B>La Risoluzione della 52a Consulta</B> parla espressamente della necessità di eliminare ingiustificate disparità di trattamento nell'espressione del voto di preferenza",
+      "RIACQUISTO DEL DIRITTO DI VOTO: Iscrizione ed aggiornamento delle liste elettorali.",
+      "CARTA DEI PRINCIPI: Pricipio 1, Universalità.<br>" +
+      "Il diritto di elettorato attivo e passivo appartiene a tutti i cittadini aventi diritto, indipendentemente dalla residenza.",
+      "CARTA DEI PRINCIPI: Pricipio 2, Effettività.<br>" +
+      "Il diritto deve poter essere concretamente esercitato anche dal cittadino residente all'estero senza che il rientro fisico in Repubblica costituisca, di fatto, una condizione per il suo esercizio.",
+      "CARTA DEI PRINCIPI: Pricipio 3, Uguaglianza.<br>" +
+      "Il cittadino residente all'estero deve avere, salvo motivate esigenze tecniche, gli stessi diritti elettorali del cittadino residente in territorio.",
+      "CARTA DEI PRINCIPI: Pricipio 4, Rappresentanza.<br>" +
+      "La Repubblica deve valutare l'istituzione di un Collegio Estero, con numero di seggi e modalità da determinare sulla base di criteri oggettivi.",
+      "CARTA DEI PRINCIPI: Pricipio 5, Preferenze.<br>" +
+      "Deve essere garantito ai residenti all'estero lo stesso diritto di esprimere preferenze riconosciuto agli elettori residenti in territorio.",
+      "CARTA DEI PRINCIPI: Pricipio 6, Sicurezza.<br>" +
+      "Qualunque modalità di voto a distanza deve garantire: segretezza,	personalità,	libertà,	autenticità,	unicità del voto, verificabilità, sicurezza",
+      "CARTA DEI PRINCIPI: Pricipio 7, Neutralità tecnologica.<br>" +
+      "La legge dovrebbe stabilire il diritto e le garanzie, non cristallizzare una tecnologia.<br>" +
+      "Cioè non scrivere: si vota via Internet.<br>" +
+      "Ma: il voto può essere esercitato mediante modalità a distanza definite dalla legge e dai relativi regolamenti, nel rispetto delle garanzie costituzionali.<br>" +
+      "Così, se fra cinque anni esisterà una tecnologia migliore, non bisognerà modificare nuovamente la legge.",
+      "<B>IN CONCLUSIONE:</B> " +
+      "La residenza all'estero può incidere sulle modalità di esercizio del diritto di voto,<br>ma non può trasformarsi in una limitazione sostanziale del diritto stesso."
+    ];
+
+    var tbody = document.getElementById('quiz-body');
+
+    for (var i = 0; i < domande.length; i++) {
+      var idx = i + 1;
+      var row = document.createElement('tr');
+      row.innerHTML = '<td><strong>' + idx + '.</strong> ' + domande[i] + '</td>' +
+        '<td>' +
+          '<select id="scelta_' + idx + '" name="scelta_' + idx + '">' +
+            '<option value="">-- Seleziona --</option>' +
+            '<option value="Favorevole">Favorevole</option>' +
+            '<option value="Contrario">Contrario</option>' +
+            '<option value="Da approfondire">Da approfondire</option>' +
+            '<option value="Non saprei">Non saprei</option>' +
+          '</select>' +
+        '</td>' +
+        '<td>' +
+          '<textarea id="note_' + idx + '" name="note_' + idx + '" placeholder="Note opzionali..."></textarea>' +
+        '</td>';
+      tbody.appendChild(row);
+    }
+
+    // Funzione di Validazione Form Completa
+    function validaForm() {
+      var valido = true;
+      var primoInvalido = null;
+
+      // Validazione Nome Cognome
+      var nameInput = document.getElementById('user_name');
+      var nameVal = nameInput.value.trim();
+      var nameParts = nameVal.split(' ').filter(function(part) { return part.length > 0; });
+
+      if (nameParts.length < 2) {
+        valido = false;
+        nameInput.classList.add('error');
+        if (!primoInvalido) primoInvalido = nameInput;
+      } else {
+        nameInput.classList.remove('error');
+      }
+
+      // Validazione Email
+      var emailInput = document.getElementById('user_email');
+      var emailVal = emailInput.value.trim();
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailRegex.test(emailVal)) {
+        valido = false;
+        emailInput.classList.add('error');
+        if (!primoInvalido) primoInvalido = emailInput;
+      } else {
+        emailInput.classList.remove('error');
+      }
+
+      // Validazione Domande
+      for (var j = 0; j < domande.length; j++) {
+        var idxVal = j + 1;
+        var select = document.getElementById('scelta_' + idxVal);
+        
+        if (select.value === "") {
+          valido = false;
+          select.classList.add('error');
+          if (!primoInvalido) primoInvalido = select;
+        } else {
+          select.classList.remove('error');
+        }
+      }
+
+      if (!valido) {
+        alert("Attenzione: Inserisci un Nome e Cognome validi, una Email valida e rispondi a tutti i quesiti.");
+        if (primoInvalido) primoInvalido.focus();
+      }
+
+      return valido;
+    }
+
+    // Genera l'HTML interno della tabella per il salvataggio o per EmailJS
+    function generaTabellaRisposte() {
+      var righeTabellaHTML = "";
+      for (var k = 0; k < domande.length; k++) {
+        var idxRow = k + 1;
+        var risposta = document.getElementById('scelta_' + idxRow).value;
+        var noteTesto = document.getElementById('note_' + idxRow).value;
+        var noteFormattate = noteTesto ? noteTesto.split('\n').join('<br>') : '-';
+
+        righeTabellaHTML += '<tr>' +
+          '<td style="padding: 8px; border: 1px solid #ddd;"><strong>' + idxRow + '.</strong> ' + domande[k] + '</td>' +
+          '<td style="padding: 8px; border: 1px solid #ddd; text-align: center;"><strong>' + risposta + '</strong></td>' +
+          '<td style="padding: 8px; border: 1px solid #ddd;">' + noteFormattate + '</td>' +
+          '</tr>';
+      }
+
+      return '<table style="width:100%; border-collapse:collapse; font-family:Arial, sans-serif; font-size:13px;">' +
+        '<thead>' +
+        '<tr style="background:#1a5a1a; color:white;">' +
+        '<th style="width: 55%; padding:8px; text-align:left;">Quesito</th>' +
+        '<th style="width: 20%; padding:8px; text-align:center;">Risposta</th>' +
+        '<th style="width: 25%; padding:8px; text-align:left;">Note</th>' +
+        '</tr>' +
+        '</thead>' +
+        '<tbody>' +
+        righeTabellaHTML +
+        '</tbody>' +
+        '</table>';
+    }
+
+    // Funzione Invia tramite EmailJS
+    function inviaQuestionario() {
+      if (!validaForm()) return;
+
+      var userName = document.getElementById('user_name').value.trim();
+      var userEmail = document.getElementById('user_email').value.trim();
+      var tabellaRisposte = generaTabellaRisposte();
+
+    var templateParams = {
+      name: userName,
+      email: userEmail, // Corrisponde a {{email}} impostato in Reply To
+      title: "Risposte Questionario Riforme - " + userName,
+      tabella_risposte: tabellaRisposte
+    };
+
+    // Disabilita il pulsante durante l'invio
+      var btnSend = document.querySelector('.btn-send');
+      btnSend.disabled = true;
+      btnSend.innerText = "Invio in corso...";
+
+      // SOSTITUISCI 'YOUR_SERVICE_ID' con il tuo Service ID di EmailJS (es. service_xxxxxxx)
+      emailjs.send('service_f726zbu', 'template_kw214s2', templateParams)
+        .then(function(response) {
+            alert('Questionario inviato con successo!');
+            btnSend.disabled = false;
+            btnSend.innerText = "Invia Questionario Via Email";
+        }, function(error) {
+            alert('Si è verificato un errore durante l\'invio: ' + JSON.stringify(error));
+            btnSend.disabled = false;
+            btnSend.innerText = "Invia Questionario Via Email";
+        });
+    }
+
+    // Funzione Salva File Locale
+    function salvaFileLocale() {
+      if (!validaForm()) return;
+
+      var userName = document.getElementById('user_name').value.trim();
+      var contenutoHTML = '<h2>Questionario Compilato da ' + userName + '</h2>' + generaTabellaRisposte();
+
+      var blob = new Blob([contenutoHTML], { type: 'text/html;charset=utf-8' });
+      var link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'questionario-' + userName.toLowerCase().replace(/\s+/g, '-') + '.html';
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+  </script>
+</body>
+</html>
