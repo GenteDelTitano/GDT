@@ -184,6 +184,10 @@
     <strong>Istruzioni:</strong> Compilare Nome, Cognome, Email e selezionare una <strong>Risposta</strong> obbligatoria per ogni quesito prima di poter inviare o salvare.
   </div>
 
+  <!-- Script EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+
   <script>
     var domande = [
       "Chiediamo che il principio costituzionale del suffragio universale sia reso effettivamente esercibile anche dai cittadini residenti all'estero.",
@@ -333,23 +337,32 @@
     function inviaQuestionario() {
       if (!validaForm()) return;
 
+      // Inizializza EmailJS al momento dell'invio se non ancora fatto
+      if (typeof emailjs !== 'undefined') {
+        emailjs.init({
+          publicKey: "dlcgcFKY-gzS7RQKJ"
+        });
+      } else {
+        alert("Errore: Libreria EmailJS non ancora caricata. Ricarica la pagina.");
+        return;
+      }
+
       var userName = document.getElementById('user_name').value.trim();
       var userEmail = document.getElementById('user_email').value.trim();
       var tabellaRisposte = generaTabellaRisposte();
 
-    var templateParams = {
-      name: userName,
-      email: userEmail, // Corrisponde a {{email}} impostato in Reply To
-      title: "Risposte Questionario Riforme - " + userName,
-      tabella_risposte: tabellaRisposte
-    };
+      var templateParams = {
+        name: userName,
+        email: userEmail,
+        title: "Risposte Questionario Riforme - " + userName,
+        tabella_risposte: tabellaRisposte
+      };
 
-    // Disabilita il pulsante durante l'invio
+      // Disabilita il pulsante durante l'invio
       var btnSend = document.querySelector('.btn-send');
       btnSend.disabled = true;
       btnSend.innerText = "Invio in corso...";
 
-      // SOSTITUISCI 'YOUR_SERVICE_ID' con il tuo Service ID di EmailJS (es. service_xxxxxxx)
       emailjs.send('service_f726zbu', 'template_kw214s2', templateParams)
         .then(function(response) {
             alert('Questionario inviato con successo!');
@@ -378,14 +391,3 @@
     }
   </script>
 
-
-  <!-- SDK EmailJS -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script type="text/javascript">
-    (function(){
-      // SOSTITUISCI 'YOUR_PUBLIC_KEY' con la tua Public Key di EmailJS (trovabile in Account Settings)
-      emailjs.init({
-        publicKey: "dlcgcFKY-gzS7RQKJ",
-      });
-    })();
-  </script>
