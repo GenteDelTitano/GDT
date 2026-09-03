@@ -824,4 +824,8 @@ textarea.form-input {
         font-size: 0.9rem;
         padding: 10px 15px;
     }
+    .no-bullet {
+        background: none !important;
+        padding-left: 0 !important;
+    }
 }

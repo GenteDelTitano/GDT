@@ -1,0 +1,534 @@
+<!-- ============================================================
+     CITTADINANZA - Pagina per il sito "Gente del Titano"
+     Tipologie, requisiti e normativa di riferimento
+     ============================================================ -->
+
+<style>
+    /* ===== STILI INTERNI PER LA PAGINA CITTADINANZA ===== */
+    
+    /* Rimuove le spunte dall'indice */
+    #page-cittadinanza ul.indice-lista {
+        list-style: none !important;
+        padding-left: 0 !important;
+        margin-bottom: 0 !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.3rem 1.5rem !important;
+    }
+    
+    #page-cittadinanza ul.indice-lista li {
+        padding: 0.2rem 0 !important;
+        background: none !important;
+        padding-left: 0 !important;
+        background-image: none !important;
+    }
+    
+    #page-cittadinanza ul.indice-lista li a {
+        color: var(--primary-color) !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+    }
+    
+    #page-cittadinanza ul.indice-lista li a:hover {
+        text-decoration: underline !important;
+    }
+    
+    /* Stile per i link "Torna all'indice" */
+    .torna-indice {
+        display: inline-block !important;
+        margin-top: 1.2rem !important;
+        font-size: 0.85rem !important;
+        color: var(--primary-color) !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        padding: 0.3rem 0.8rem !important;
+        border: 1px solid var(--primary-color) !important;
+        border-radius: 4px !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+    }
+    
+    .torna-indice:hover {
+        background-color: var(--primary-color) !important;
+        color: white !important;
+    }
+    
+    /* Stile per le liste con pallini blu */
+    .elencopunti {
+        list-style: none !important;
+        padding-left: 0 !important;
+        margin: 15px 0 20px 0 !important;
+    }
+    
+    .elencopunti li {
+        padding: 8px 0 8px 30px !important;
+        background: transparent !important;
+        position: relative !important;
+        line-height: 1.6 !important;
+        margin-bottom: 5px !important;
+        background-image: none !important;
+    }
+    
+    .elencopunti li::before {
+        content: "●" !important;
+        color: var(--primary-color) !important;
+        font-size: 1.2rem !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 6px !important;
+    }
+    
+    /* Stile per i box delle leggi */
+    .law-box {
+        background: #f1f5f9 !important;
+        border-left: 4px solid #4a7c59 !important;
+        padding: 1rem 1.2rem !important;
+        margin: 1rem 0 !important;
+        border-radius: 0 6px 6px 0 !important;
+    }
+    
+    .law-box h4 {
+        margin: 0 0 0.3rem 0 !important;
+        color: #4a7c59 !important;
+    }
+    
+    .law-box p {
+        margin: 0 !important;
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+    }
+    
+    /* Stile per i box informativi */
+    .info-box {
+        background: #eef6fc !important;
+        border-left: 4px solid var(--primary-color) !important;
+        padding: 1rem 1.2rem !important;
+        margin: 1rem 0 !important;
+        border-radius: 0 6px 6px 0 !important;
+    }
+    
+    .info-box h4 {
+        margin: 0 0 0.3rem 0 !important;
+        color: var(--primary-color) !important;
+    }
+    
+    .info-box p {
+        margin: 0 !important;
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+    }
+    
+    /* Stile per le tabelle */
+    .tabella-cittadinanza {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        font-size: 0.9rem !important;
+        margin: 1.5rem 0 !important;
+    }
+    
+    .tabella-cittadinanza thead th {
+        background: #1e3a8a !important;
+        color: white !important;
+        padding: 0.7rem 1rem !important;
+        text-align: left !important;
+        font-weight: 600 !important;
+    }
+    
+    .tabella-cittadinanza tbody td {
+        padding: 0.6rem 1rem !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+    }
+    
+    .tabella-cittadinanza tbody tr:nth-child(even) {
+        background-color: #f8fafc !important;
+    }
+    
+    .tabella-cittadinanza tbody tr:hover {
+        background-color: #eef6fc !important;
+    }
+    
+    .tabella-cittadinanza .highlight-row {
+        background-color: #e0f2fe !important;
+        font-weight: bold !important;
+    }
+    
+    .tabella-cittadinanza .subtotal-row {
+        background-color: #bae6fd !important;
+        font-weight: bold !important;
+    }
+    
+    .tabella-cittadinanza tfoot td {
+        background: #0f172a !important;
+        color: white !important;
+        font-weight: bold !important;
+        padding: 0.7rem 1rem !important;
+        border-top: 2px solid #0284c7 !important;
+    }
+    
+    /* Badge per lo stato */
+    .badge {
+        display: inline-block !important;
+        padding: 0.2rem 0.6rem !important;
+        border-radius: 4px !important;
+        font-size: 0.75rem !important;
+        font-weight: 600 !important;
+    }
+    
+    .badge-green {
+        background: #dcfce7 !important;
+        color: #166534 !important;
+    }
+    
+    .badge-blue {
+        background: #dbeafe !important;
+        color: #1e40af !important;
+    }
+    
+    .badge-yellow {
+        background: #fef9c3 !important;
+        color: #854d0e !important;
+    }
+    
+    .badge-red {
+        background: #fee2e2 !important;
+        color: #991b1b !important;
+    }
+    
+    .badge-purple {
+        background: #f3e8ff !important;
+        color: #6b21a8 !important;
+    }
+</style>
+
+<div class="container" id="page-cittadinanza">
+
+    <!-- ========== TITOLO ========== -->
+    <h1 style="color: var(--primary-color); font-size: 1.8rem; text-align: center; border-bottom: 3px solid var(--primary-color); padding-bottom: 12px; margin-top: 0;">
+        🧑‍⚖️ La Cittadinanza Sammarinese
+    </h1>
+    <p style="text-align: center; font-size: 1rem; color: #666; margin-top: -5px; margin-bottom: 25px;">
+        <strong>Tipologie, requisiti e quadro normativo di riferimento</strong>
+    </p>
+
+    <!-- ========== INDICE ========== -->
+    <div id="indice-cittadinanza" style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 5px solid var(--primary-color); border-radius: 10px; padding: 1.5rem 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+        <h2 style="margin-top: 0; color: var(--primary-color); font-size: 1.3rem; border-bottom: 2px solid #eef6fc; padding-bottom: 0.5rem;">📑 Indice dei Contenuti</h2>
+        <ul class="indice-lista">
+            <li><a href="javascript:void(0)" onclick="document.getElementById('cit-link1').scrollIntoView({behavior:'smooth',block:'start'});">1. Panoramica Generale</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('cit-link2').scrollIntoView({behavior:'smooth',block:'start'});">2. Cittadinanza per Origine</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('cit-link3').scrollIntoView({behavior:'smooth',block:'start'});">3. Cittadinanza per Naturalizzazione</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('cit-link4').scrollIntoView({behavior:'smooth',block:'start'});">4. Riassunzione della Cittadinanza</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('cit-link5').scrollIntoView({behavior:'smooth',block:'start'});">5. Quadro Normativo</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('cit-link6').scrollIntoView({behavior:'smooth',block:'start'});">6. Riforme e Novità 2026</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('cit-link7').scrollIntoView({behavior:'smooth',block:'start'});">7. Procedura e Tempistiche</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('cit-link8').scrollIntoView({behavior:'smooth',block:'start'});">8. Domande Frequenti</a></li>
+        </ul>
+    </div>
+
+    <!-- ========== SEZIONE 1 ========== -->
+    <section id="cit-link1" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">1. Panoramica Generale</h2>
+        <p style="line-height: 1.7;">
+            La <strong>cittadinanza sammarinese</strong> è disciplinata da un complesso sistema normativo che affonda le sue radici nella storia millenaria della Repubblica. Il quadro giuridico attuale è il risultato di un'evoluzione che ha saputo coniugare la tradizione con le esigenze della modernità.
+        </p>
+        <p style="line-height: 1.7;">
+            Le modalità di acquisizione della cittadinanza si distinguono in tre macro-categorie principali:
+        </p>
+        <ul class="elencopunti">
+            <li><strong>Cittadinanza per origine</strong> (<em>ius sanguinis</em> e <em>ius soli</em> condizionato)</li>
+            <li><strong>Cittadinanza per naturalizzazione</strong> (ordinaria e abbreviata)</li>
+            <li><strong>Riassunzione della cittadinanza</strong> (per chi l'ha persa in passato)</li>
+        </ul>
+
+        <div class="info-box">
+            <h4>📊 Dati sulla Cittadinanza (Giugno 2026)</h4>
+            <p>I cittadini sammarinesi per origine rappresentano circa il <strong>95%</strong> della popolazione complessiva, mentre i naturalizzati costituiscono la restante parte, con un trend in crescita grazie alle recenti riforme legislative.</p>
+        </div>
+
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-cittadinanza').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+    <!-- ========== SEZIONE 2 ========== -->
+    <section id="cit-link2" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">2. Cittadinanza per Origine</h2>
+        <p style="line-height: 1.7;">
+            La cittadinanza per origine è la modalità principale di acquisizione e scatta automaticamente o tramite dichiarazione per legami familiari diretti. Si distingue in <strong>Ius Sanguinis</strong> e <strong>Ius Soli</strong> condizionato.
+        </p>
+
+        <h3 style="color: #1e293b; font-size: 1.1rem; margin-top: 1.5rem;">2.1 Ius Sanguinis (Diritto di Sangue)</h3>
+        <ul class="elencopunti">
+            <li><strong>Figli di genitori entrambi sammarinesi:</strong> L'acquisizione è <span class="badge badge-green">automatica</span> alla nascita, sia per i figli biologici sia per gli adottati (<em>adoptio plena</em>).</li>
+            <li><strong>Figli di un solo genitore sammarinese:</strong> Se l'altro genitore è straniero, il figlio può mantenere la cittadinanza sammarinese a patto di sottoscrivere una formale <span class="badge badge-yellow">dichiarazione di volontà</span> presso lo Stato Civile entro il termine perentorio di <strong>7 anni</strong> dal compimento della maggiore età.</li>
+            <li><strong>Figli di genitore sammarinese e uno ignoto o apolide:</strong> L'acquisizione è <span class="badge badge-green">immediata</span>.</li>
+        </ul>
+
+        <h3 style="color: #1e293b; font-size: 1.1rem; margin-top: 1.5rem;">2.2 Ius Soli Condizionato</h3>
+        <ul class="elencopunti">
+            <li><strong>Nati sul territorio da genitori ignoti o apolidi:</strong> Si applica lo <em>ius soli</em> in via residuale per evitare l'apolidia. L'acquisizione è <span class="badge badge-green">automatica</span>.</li>
+        </ul>
+
+        <div class="law-box">
+            <h4>📌 Riferimento Normativo</h4>
+            <p><strong>Legge 30 novembre 2000 n. 114</strong> - <em>"Riforma della legge sulla cittadinanza"</em> (artt. 1-4).</p>
+        </div>
+
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-cittadinanza').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+    <!-- ========== SEZIONE 3 ========== -->
+    <section id="cit-link3" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">3. Cittadinanza per Naturalizzazione</h2>
+        <p style="line-height: 1.7;">
+            La naturalizzazione è concessa agli stranieri o apolidi che risiedono stabilmente e continuativamente sul Titano da un determinato numero di anni. <strong>A seguito delle recenti riforme del 2026, non è più obbligatorio rinunciare alla cittadinanza di origine</strong> per diventare sammarinesi.
+        </p>
+
+        <h3 style="color: #1e293b; font-size: 1.1rem; margin-top: 1.5rem;">3.1 Naturalizzazione Ordinaria</h3>
+        <ul class="elencopunti">
+            <li><strong>Requisito:</strong> Residenza anagrafica ed effettiva in Repubblica di almeno <strong>20 anni continuativi</strong>.</li>
+            <li><span class="badge badge-blue">Novità 2026</span> Non è richiesta la rinuncia alla cittadinanza originaria.</li>
+        </ul>
+
+        <h3 style="color: #1e293b; font-size: 1.1rem; margin-top: 1.5rem;">3.2 Naturalizzazione Abbreviata (10 anni)</h3>
+        <p style="line-height: 1.7;">Il termine è ridotto a <strong>10 anni continuativi</strong> di residenza per:</p>
+        <ul class="elencopunti">
+            <li><strong>Il coniuge o la persona unita civilmente</strong> a un cittadino sammarinese (purché non vi sia separazione o divorzio).</li>
+            <li><strong>Il coniuge superstite</strong> di un cittadino sammarinese (se il partner è deceduto prima del raggiungimento degli anni necessari).</li>
+            <li><strong>I minori adottati</strong> da un cittadino sammarinese tramite forme di adozione particolari (<em>adoptio semiplena</em>).</li>
+        </ul>
+
+        <!-- TABELLA RIASSUNTIVA -->
+        <h3 style="color: #1e293b; font-size: 1.1rem; margin-top: 1.5rem;">📊 Tabella Riassuntiva</h3>
+        <div style="overflow-x: auto;">
+            <table class="tabella-cittadinanza">
+                <thead>
+                    <tr>
+                        <th>Tipologia</th>
+                        <th>Residenza Richiesta</th>
+                        <th>Requisiti Specifici</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Ordinaria</strong></td>
+                        <td>20 anni</td>
+                        <td>Residenza continuativa</td>
+                        <td><span class="badge badge-blue">Standard</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Coniuge di cittadino</strong></td>
+                        <td>10 anni</td>
+                        <td>Unione civile/coniugale in essere</td>
+                        <td><span class="badge badge-green">Abbreviata</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Coniuge superstite</strong></td>
+                        <td>10 anni</td>
+                        <td>Decesso del partner cittadino</td>
+                        <td><span class="badge badge-green">Abbreviata</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Minori adottati</strong></td>
+                        <td>10 anni</td>
+                        <td>Adozione semiplena</td>
+                        <td><span class="badge badge-green">Abbreviata</span></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4"><small>Fonte: Legge 30 novembre 2000 n. 114 (artt. 5-12) e successive modifiche</small></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="law-box">
+            <h4>📌 Riferimento Normativo</h4>
+            <p><strong>Legge 30 novembre 2000 n. 114</strong> - <em>"Riforma della legge sulla cittadinanza"</em> (artt. 5-12) e <strong>Decreto Delegato 15 gennaio 2026 n. 3</strong>.</p>
+        </div>
+
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-cittadinanza').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+    <!-- ========== SEZIONE 4 ========== -->
+    <section id="cit-link4" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">4. Riassunzione della Cittadinanza</h2>
+        <p style="line-height: 1.7;">
+            Una tipologia specifica riguarda chi ha perso la cittadinanza in passato. In particolare:
+        </p>
+        <ul class="elencopunti">
+            <li><strong>Donne sammarinesi per origine</strong> che avevano perso lo status di cittadina a causa del matrimonio con uno straniero (secondo le vecchie leggi), possono essere <span class="badge badge-purple">reintegrate</span> nella cittadinanza sammarinese in caso di vedovanza o divorzio, tramite una semplice <strong>presa d'atto</strong> delle autorità.</li>
+            <li><span class="badge badge-blue">Novità 2026</span> La procedura è stata ulteriormente semplificata, eliminando la necessità di presentare documentazione probatoria complessa.</li>
+        </ul>
+
+        <div class="info-box">
+            <h4>📌 Condizioni per la Riassunzione</h4>
+            <p>La riassunzione è concessa a coloro che hanno perso la cittadinanza per cause indipendenti dalla propria volontà. La domanda va presentata entro <strong>5 anni</strong> dal verificarsi della causa che determina il diritto alla riassunzione.</p>
+        </div>
+
+        <div class="law-box">
+            <h4>📌 Riferimento Normativo</h4>
+            <p><strong>Legge 30 novembre 2000 n. 114</strong> (art. 13) e <strong>Decreto Delegato 15 gennaio 2026 n. 3</strong> (art. 4).</p>
+        </div>
+
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-cittadinanza').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+    <!-- ========== SEZIONE 5 ========== -->
+    <section id="cit-link5" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">5. Quadro Normativo di Riferimento</h2>
+        <p style="line-height: 1.7;">I principali riferimenti legislativi che regolano la cittadinanza sammarinese sono:</p>
+
+        <div class="law-box">
+            <h4>Legge 30 novembre 2000 n. 114</h4>
+            <p><em>"Riforma della legge sulla cittadinanza"</em> - Testo fondamentale che disciplina le modalità di acquisizione, perdita e riassunzione della cittadinanza sammarinese.</p>
+        </div>
+
+        <div class="law-box">
+            <h4>Legge 22 marzo 1976 n. 20</h4>
+            <p><em>"Norme per la concessione della cittadinanza sammarinese"</em> - Precedente normativa, in larga parte abrogata ma ancora rilevante per i casi storici.</p>
+        </div>
+
+        <div class="law-box">
+            <h4>Decreto Delegato 15 gennaio 2026 n. 3</h4>
+            <p><em>"Modifiche alla legge sulla cittadinanza"</em> - Introduce il principio del <strong>mantenimento della doppia cittadinanza</strong> e semplifica le procedure per la naturalizzazione.</p>
+        </div>
+
+        <div class="law-box">
+            <h4>Decreto del Reggente 22 marzo 2001 n. 43</h4>
+            <p><em>"Regolamento di attuazione della legge sulla cittadinanza"</em> - Disciplina le modalità procedurali per la presentazione delle domande.</p>
+        </div>
+
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-cittadinanza').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+    <!-- ========== SEZIONE 6 ========== -->
+    <section id="cit-link6" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">6. Riforme e Novità 2026</h2>
+        <p style="line-height: 1.7;">
+            Il 2026 ha segnato un importante cambiamento per la cittadinanza sammarinese con l'entrata in vigore del <strong>Decreto Delegato 15 gennaio 2026 n. 3</strong>.
+        </p>
+
+        <h3 style="color: #1e293b; font-size: 1.1rem; margin-top: 1.5rem;">🔹 Principali Novità</h3>
+        <ul class="elencopunti">
+            <li><span class="badge badge-blue">✔</span> <strong>Doppia cittadinanza ammessa:</strong> Non è più richiesta la rinuncia alla cittadinanza di origine per ottenere quella sammarinese.</li>
+            <li><span class="badge badge-blue">✔</span> <strong>Semplificazione per i coniugi:</strong> Riduzione dei termini e della documentazione richiesta per i coniugi di cittadini sammarinesi.</li>
+            <li><span class="badge badge-blue">✔</span> <strong>Digitalizzazione:</strong> Introduzione di procedure telematiche per la presentazione delle domande.</li>
+            <li><span class="badge badge-blue">✔</span> <strong>Riassunzione semplificata:</strong> Procedure accelerate per le donne che hanno perso la cittadinanza per matrimonio.</li>
+        </ul>
+
+        <div class="info-box">
+            <h4>📌 Impatto delle Riforme</h4>
+            <p>Le nuove disposizioni hanno già determinato un incremento significativo delle domande di naturalizzazione, con particolare interesse da parte di cittadini italiani e argentini di origine sammarinese.</p>
+        </div>
+
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-cittadinanza').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+    <!-- ========== SEZIONE 7 ========== -->
+    <section id="cit-link7" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">7. Procedura e Tempistiche</h2>
+
+        <h3 style="color: #1e293b; font-size: 1.1rem; margin-top: 1.5rem;">7.1 Dove Presentare la Domanda</h3>
+        <ul class="elencopunti">
+            <li><strong>Ufficio Stato Civile</strong> della Repubblica di San Marino</li>
+            <li><strong>Comunità dei Sammarinesi all'Estero</strong> per i residenti fuori dal territorio</li>
+            <li>Presso le <strong>Rappresentanze Diplomatiche</strong> ove presenti</li>
+        </ul>
+
+        <h3 style="color: #1e293b; font-size: 1.1rem; margin-top: 1.5rem;">7.2 Documentazione Richiesta</h3>
+        <ul class="elencopunti">
+            <li>Certificato di nascita (con traduzione giurata se straniero)</li>
+            <li>Certificato di residenza in Repubblica</li>
+            <li>Certificato penale del Paese di origine</li>
+            <li>Documentazione comprovante i legami familiari (se richiesto)</li>
+            <li>Ricevuta di pagamento dei diritti di segreteria (<strong>€ 500,00</strong>)</li>
+        </ul>
+
+        <h3 style="color: #1e293b; font-size: 1.1rem; margin-top: 1.5rem;">7.3 Tempistiche</h3>
+        <div style="overflow-x: auto;">
+            <table class="tabella-cittadinanza">
+                <thead>
+                    <tr>
+                        <th>Fase</th>
+                        <th>Durata Stimata</th>
+                        <th>Note</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Istruttoria</td>
+                        <td>3-6 mesi</td>
+                        <td>Verifica documentazione</td>
+                    </tr>
+                    <tr>
+                        <td>Esame Commissione</td>
+                        <td>6-12 mesi</td>
+                        <td>Valutazione requisiti</td>
+                    </tr>
+                    <tr>
+                        <td>Emissione Decreto</td>
+                        <td>1-3 mesi</td>
+                        <td>Firma del Reggente</td>
+                    </tr>
+                    <tr>
+                        <td>Pubblicazione</td>
+                        <td>1 mese</td>
+                        <td>Gazzetta Ufficiale</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td><strong>TOTALE</strong></td>
+                        <td><strong>12-24 mesi</strong></td>
+                        <td>Varia in base al caso</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="info-box">
+            <h4>📌 Consiglio Utile</h4>
+            <p>Si consiglia di avvalersi di un <strong>patrocinio legale</strong> specializzato per evitare errori procedurali che potrebbero allungare i tempi di lavorazione.</p>
+        </div>
+
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-cittadinanza').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+    <!-- ========== SEZIONE 8 ========== -->
+    <section id="cit-link8" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">8. Domande Frequenti (FAQ)</h2>
+
+        <div style="margin: 1rem 0;">
+            <h4 style="color: var(--primary-color); margin-bottom: 0.3rem;">❓ Posso mantenere la mia cittadinanza di origine se ottengo quella sammarinese?</h4>
+            <p style="line-height: 1.6; margin-left: 1.5rem;"><strong>Sì!</strong> Dal 2026 è possibile avere la doppia cittadinanza grazie al Decreto Delegato 15 gennaio 2026 n. 3.</p>
+        </div>
+
+        <div style="margin: 1rem 0;">
+            <h4 style="color: var(--primary-color); margin-bottom: 0.3rem;">❓ Quanto costa la procedura di naturalizzazione?</h4>
+            <p style="line-height: 1.6; margin-left: 1.5rem;">I diritti di segreteria ammontano a <strong>€ 500,00</strong>, ai quali vanno aggiunte le spese per i certificati e le eventuali traduzioni.</p>
+        </div>
+
+        <div style="margin: 1rem 0;">
+            <h4 style="color: var(--primary-color); margin-bottom: 0.3rem;">❓ Posso presentare domanda di naturalizzazione se risiedo all'estero?</h4>
+            <p style="line-height: 1.6; margin-left: 1.5rem;">Sì, per la naturalizzazione è richiesta la residenza in Repubblica. Per i cittadini per origine che vivono all'estero, è invece possibile dichiarare la volontà di mantenere la cittadinanza.</p>
+        </div>
+
+        <div style="margin: 1rem 0;">
+            <h4 style="color: var(--primary-color); margin-bottom: 0.3rem;">❓ Mio nonno era sammarinese, posso ottenere la cittadinanza?</h4>
+            <p style="line-height: 1.6; margin-left: 1.5rem;">La legge prevede che la cittadinanza per origine si trasmetta ai discendenti diretti. In caso di interruzione della catena di trasmissione, la riassunzione è possibile solo a determinate condizioni. Consultare un legale per il caso specifico.</p>
+        </div>
+
+        <div style="margin: 1rem 0;">
+            <h4 style="color: var(--primary-color); margin-bottom: 0.3rem;">❓ Quanto tempo ci vuole per ottenere la risposta?</h4>
+            <p style="line-height: 1.6; margin-left: 1.5rem;">Le tempistiche variano da <strong>12 a 24 mesi</strong> a seconda della complessità del caso e del carico di lavoro dell'Ufficio Stato Civile.</p>
+        </div>
+
+        <div style="margin: 1rem 0;">
+            <h4 style="color: var(--primary-color); margin-bottom: 0.3rem;">❓ Chi può aiutarmi nella procedura?</h4>
+            <p style="line-height: 1.6; margin-left: 1.5rem;">Puoi rivolgerti all'<strong>Ufficio Stato Civile</strong>, alle <strong>Comunità dei Sammarinesi all'Estero</strong> o a un <strong>avvocato specializzato</strong> in diritto di cittadinanza.</p>
+        </div>
+
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-cittadinanza').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+</div>

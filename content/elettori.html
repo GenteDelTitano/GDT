@@ -1,0 +1,322 @@
+<!-- ============================================================
+     ELETTORI - Pagina per il sito "Gente del Titano"
+     Versione ottimizzata - stili centralizzati
+     ============================================================ -->
+
+<style>
+    /* ===== STILI INTERNI PER LA PAGINA ELETTORI ===== */
+    
+    /* Rimuove le spunte dall'indice */
+    #page-elettori ul.indice-lista {
+        list-style: none !important;
+        padding-left: 0 !important;
+        margin-bottom: 0 !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.3rem 1.5rem !important;
+    }
+    
+    #page-elettori ul.indice-lista li {
+        padding: 0.2rem 0 !important;
+        background: none !important;
+        padding-left: 0 !important;
+        background-image: none !important;
+    }
+    
+    #page-elettori ul.indice-lista li a {
+        color: var(--primary-color) !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+    }
+    
+    #page-elettori ul.indice-lista li a:hover {
+        text-decoration: underline !important;
+    }
+    
+    /* Stile per i link "Torna all'indice" */
+    .torna-indice {
+        display: inline-block !important;
+        margin-top: 1.2rem !important;
+        font-size: 0.85rem !important;
+        color: var(--primary-color) !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        padding: 0.3rem 0.8rem !important;
+        border: 1px solid var(--primary-color) !important;
+        border-radius: 4px !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+    }
+    
+    .torna-indice:hover {
+        background-color: var(--primary-color) !important;
+        color: white !important;
+    }
+    
+    /* Stile per le liste con pallini blu (elencopunti) */
+    .elencopunti {
+        list-style: none !important;
+        padding-left: 0 !important;
+        margin: 15px 0 20px 0 !important;
+    }
+    
+    .elencopunti li {
+        padding: 8px 0 8px 30px !important;
+        background: transparent !important;
+        position: relative !important;
+        line-height: 1.6 !important;
+        margin-bottom: 5px !important;
+        background-image: none !important;
+    }
+    
+    /* Pallino blu senza SVG esterno */
+    .elencopunti li::before {
+        content: "●" !important;
+        color: var(--primary-color) !important;
+        font-size: 1.2rem !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 6px !important;
+    }
+    
+    /* Stile per i box delle leggi */
+    .law-box {
+        background: #f1f5f9 !important;
+        border-left: 4px solid #4a7c59 !important;
+        padding: 1rem 1.2rem !important;
+        margin: 1rem 0 !important;
+        border-radius: 0 6px 6px 0 !important;
+    }
+    
+    .law-box h4 {
+        margin: 0 0 0.3rem 0 !important;
+        color: #4a7c59 !important;
+    }
+    
+    .law-box p {
+        margin: 0 !important;
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+    }
+</style>
+
+<div class="container" id="page-elettori">
+
+    <!-- ========== TITOLO ========== -->
+    <h1 style="color: var(--primary-color); font-size: 1.8rem; text-align: center; border-bottom: 3px solid var(--primary-color); padding-bottom: 12px; margin-top: 0;">
+        🗳️ Il voto dei cittadini sammarinesi<br>residenti all'estero e in Repubblica
+    </h1>
+    <p style="text-align: center; font-size: 1rem; color: #666; margin-top: -5px; margin-bottom: 25px;">
+        <strong>Modalità, evoluzione storica e quadro normativo di riferimento</strong>
+    </p>
+
+    <!-- ========== INDICE ========== -->
+    <div id="indice-elettori" style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 5px solid var(--primary-color); border-radius: 10px; padding: 1.5rem 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+        <h2 style="margin-top: 0; color: var(--primary-color); font-size: 1.3rem; border-bottom: 2px solid #eef6fc; padding-bottom: 0.5rem;">📑 Indice dei Contenuti</h2>
+        <ul class="indice-lista">
+            <li><a href="javascript:void(0)" onclick="document.getElementById('ele-link1').scrollIntoView({behavior:'smooth',block:'start'});">1. Quadro Demografico</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('ele-link2').scrollIntoView({behavior:'smooth',block:'start'});">2. Evoluzione Storica</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('ele-link3').scrollIntoView({behavior:'smooth',block:'start'});">3. Quadro Normativo</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('ele-link4').scrollIntoView({behavior:'smooth',block:'start'});">4. Voto per le Politiche</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('ele-link5').scrollIntoView({behavior:'smooth',block:'start'});">5. Voto per i Referendum</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('ele-link6').scrollIntoView({behavior:'smooth',block:'start'});">6. Elezioni delle Giunte</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('ele-link7').scrollIntoView({behavior:'smooth',block:'start'});">7. Agevolazioni di Viaggio</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('ele-link8').scrollIntoView({behavior:'smooth',block:'start'});">8. Dibattito e Riforme</a></li>
+        </ul>
+    </div>
+
+    <!-- ========== SEZIONE 1 ========== -->
+    <section id="ele-link1" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">1. Quadro Demografico: Residenti in Repubblica vs Residenti all'Estero</h2>
+        <p style="line-height: 1.7;">
+            Di seguito si riporta il quadro demografico completo della popolazione sammarinese elaborato dai dati ufficiali dell'<strong>Ufficio Nazionale di Statistica della Repubblica di San Marino</strong> (aggiornati a giugno 2026).
+        </p>
+        <p style="line-height: 1.7; font-size: 0.9rem; color: #555;">
+            <em>Nota metodologica:</em> I dati del prospetto comprendono la <strong>popolazione totale dei cittadini sammarinesi</strong> (inclusi i minori di 18 anni). La tabella confronta la comunità residente in Patria (suddivisa per sesso) con la presenza dei sammarinesi residenti nelle varie nazioni e macro-aree del mondo.
+        </p>
+
+        <!-- TABELLA -->
+        <div style="overflow-x: auto; margin: 1.5rem 0;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                <thead>
+                    <tr>
+                        <th style="background: #1e3a8a; color: white; padding: 0.7rem 1rem; text-align: left; font-weight: 600;">Categoria / Nazione / Macro-Area</th>
+                        <th style="background: #1e3a8a; color: white; padding: 0.7rem 1rem; text-align: left; font-weight: 600;">Maschi (M)</th>
+                        <th style="background: #1e3a8a; color: white; padding: 0.7rem 1rem; text-align: left; font-weight: 600;">Femmine (F)</th>
+                        <th style="background: #1e3a8a; color: white; padding: 0.7rem 1rem; text-align: left; font-weight: 600;">Totale</th>
+                        <th style="background: #1e3a8a; color: white; padding: 0.7rem 1rem; text-align: left; font-weight: 600;">% sul Totale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Residenti in Repubblica -->
+                    <tr style="background: #e0f2fe; font-weight: bold;">
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">RESIDENTI IN REPUBBLICA (Interni)</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">14.280</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">15.220</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">29.500</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">62,06%</td>
+                    </tr>
+
+                    <!-- Estero - principali -->
+                    <tr style="background: #eef6fc;">
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">• Italia</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">3.009</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">4.173</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">7.182</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">15,11%</td>
+                    </tr>
+                    <tr style="background: #eef6fc;">
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">• Argentina</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">1.522</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">1.702</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">3.224</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">6,78%</td>
+                    </tr>
+                    <tr style="background: #eef6fc;">
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">• Stati Uniti (es. Detroit)</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">1.423</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">1.614</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">3.037</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">6,39%</td>
+                    </tr>
+                    <tr style="background: #eef6fc;">
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">• Francia</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">1.055</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">1.228</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">2.283</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">4,80%</td>
+                    </tr>
+                    
+                    <!-- Altri paesi -->
+                    <tr><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">• Belgio</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">39</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">61</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">100</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">0,21%</td></tr>
+                    <tr><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">• Svizzera</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">35</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">34</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">69</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">0,15%</td></tr>
+                    <tr><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">• Regno Unito</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">23</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">22</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">45</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">0,09%</td></tr>
+                    <tr><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">• Germania</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">20</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">20</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">40</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">0,08%</td></tr>
+                    <tr><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">• Spagna</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">16</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">13</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">29</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">0,06%</td></tr>
+                    <tr><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">• Canada</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">15</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">14</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">29</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">0,06%</td></tr>
+                    <tr><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">• Australia</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">13</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">11</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">24</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">0,05%</td></tr>
+                    <tr><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">• Brasile</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">15</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">6</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">21</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">0,04%</td></tr>
+                    <tr><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">• Altri Paesi Europei</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">64</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">49</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">113</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">0,24%</td></tr>
+                    <tr><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">• Altri Paesi Extra-Europei</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">38</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">33</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">71</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">0,15%</td></tr>
+                    <tr><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">• Sconosciuto / In fase di attrib.</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">782</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">1.041</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">1.823</td><td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">3,83%</td></tr>
+
+                    <!-- Subtotale Estero -->
+                    <tr style="background: #bae6fd; font-weight: bold;">
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">TOTALE SAMMARINESI ALL'ESTERO</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">8.033</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">9.998</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">18.031</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0;">37,94%</td>
+                    </tr>
+
+                    <!-- Totale Generale -->
+                    <tr style="background: #0f172a; color: white; font-weight: bold; font-size: 1.05rem;">
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0; border-top: 2px solid #0284c7;">TOTALE POPOLAZIONE SAMMARINESE</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0; border-top: 2px solid #0284c7;">22.313</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0; border-top: 2px solid #0284c7;">25.218</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0; border-top: 2px solid #0284c7;">47.531</td>
+                        <td style="padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0; border-top: 2px solid #0284c7;">100,00%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="font-size: 0.8rem; color: #64748b; font-style: italic;">Fonte: Ufficio Nazionale di Statistica della Repubblica di San Marino (Dati Popolazione Sammarinese in Repubblica e all'Estero per Nazione - Giugno 2026).</p>
+
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+    <!-- ========== SEZIONE 2 ========== -->
+    <section id="ele-link2" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">2. Evoluzione Storica del Voto Esteri (Dal 1906 ad Oggi)</h2>
+        <p style="line-height: 1.7;">Il dibattito sull'esercizio dei diritti politici dei cittadini sammarinesi residenti all'estero affonda le sue radici nella storia democratica della Repubblica:</p>
+        <ul class="elencopunti">
+            <li><strong>1906 - L'Arengo e le origini:</strong> Con la storica adunanza dell'Arengo del 1906 si ripristinò la democrazia diretta. Il diritto di voto era riservato ai soli capifamiglia residenti in Repubblica.</li>
+            <li><strong>Metà Novecento - L'emigrazione:</strong> I grandi flussi migratori verso l'Europa e le Americhe portarono una fetta consistente del popolo sammarinese a risiedere fuori dai confini. Si pose il tema della salvaguardia del legame con la Madrepatria.</li>
+            <li><strong>1960-1973 - Suffragio femminile:</strong> Con l'estensione del voto alle donne e le riforme degli anni '60 e '70, venne sancito il diritto di voto per tutti i cittadini, stabilendo tuttavia l'obbligo di recarsi di persona ai seggi in Repubblica.</li>
+            <li><strong>Riforma del 1996 e Legge Qualificata 2007:</strong> Vengono consolidate le modalità per la convocazione dei comizi elettorali, stabilendo rimborsi viaggio per gli elettori esteri e disciplinando le liste elettorali.</li>
+        </ul>
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+    <!-- ========== SEZIONE 3 ========== -->
+    <section id="ele-link3" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">3. Quadro Normativo di Riferimento</h2>
+        <p style="line-height: 1.7;">I principali riferimenti legislativi che regolano i diritti elettorali dei cittadini residenti all'estero sono:</p>
+
+        <div class="law-box">
+            <h4>Legge Qualificata 31 gennaio 2007 n. 1</h4>
+            <p><em>"Disposizioni per le elezioni del Consiglio Grande e Generale"</em> (e successive modifiche). Rappresenta il testo unico fondamentale della normativa elettorale sammarinese.</p>
+        </div>
+
+        <div class="law-box">
+            <h4>Legge 29 maggio 1981 n. 33 e s.m.i.</h4>
+            <p><em>"Norme sul Referendum e sulla Iniziativa Legislativa Popolare"</em>. Disciplina le consultazioni referendarie e le specifiche modalità di voto e convocazione.</p>
+        </div>
+
+        <div class="law-box">
+            <h4>Legge 30 novembre 2000 n. 114</h4>
+            <p><em>"Riforma della legge sulla cittadinanza"</em>. Regola i requisiti di trasmissione della cittadinanza e la conseguente iscrizione nelle liste elettorali.</p>
+        </div>
+
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+    <!-- ========== SEZIONE 4 ========== -->
+    <section id="ele-link4" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">4. Voto per le Elezioni Politiche (Consiglio Grande e Generale)</h2>
+        <p style="line-height: 1.7;">Per il rinnovo del <strong>Consiglio Grande e Generale</strong> (il Parlamento sammarinese), la normativa vigente stabilisce principi precisi:</p>
+        <ul class="elencopunti">
+            <li><strong>Obbligo di presenza in territorio:</strong> Non è consentito il voto per corrispondenza né il voto presso sedi diplomatiche. L'elettore residente all'estero <u>deve recarsi personalmente</u> presso la sezione elettorale di iscrizione a San Marino.</li>
+            <li><strong>Iscrizione alle Liste:</strong> L'iscrizione avviene d'ufficio al compimento del 18° anno di età sulla base dei registri dello Stato Civile e dell'Anagrafe dei cittadini residenti all'estero.</li>
+            <li><strong>Certificato Elettorale:</strong> Viene inviato a mezzo posta al domicilio estero dell'elettore prima della data delle consultazioni.</li>
+        </ul>
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+    <!-- ========== SEZIONE 5 ========== -->
+    <section id="ele-link5" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">5. Voto per i Referendum e le Consultazioni Popolari</h2>
+        <p style="line-height: 1.7;">Nelle consultazioni referendarie (abrogativi, propositivi, confermativi), la legge prevede una disciplina volta a favorire la partecipazione dei cittadini:</p>
+        <ul class="elencopunti">
+            <li><strong>Voto in Repubblica:</strong> Di norma, anche per i referendum è richiesta la presenza fisica ai seggi del territorio nazionale.</li>
+            <li><strong>Quorum e Corpo Elettorale:</strong> Nel calcolo dei quorum referendari, la legge ha subito diverse modifiche negli anni per equilibrare il peso dei votanti residenti in Repubblica e di quelli residenti all'estero.</li>
+            <li><strong>Invio dei plichi informativi:</strong> Ai cittadini residenti all'estero viene recapitata la documentazione informativa contenente i testi dei quesiti referendari e i prospetti esplicativi.</li>
+        </ul>
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+    <!-- ========== SEZIONE 6 ========== -->
+    <section id="ele-link6" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">6. Elezioni delle Giunte di Castello (Esclusione)</h2>
+        <p style="line-height: 1.7;">Un'importante distinzione riguarda le consultazioni amministrative locali:</p>
+        <ul class="elencopunti">
+            <li><strong>Esclusione dei non residenti:</strong> Ai sensi della <em>Legge 24 febbraio 1994 n. 22</em> e successive modifiche, l'elettorato attivo e passivo per le elezioni dei Capitani di Castello e dei Membri delle Giunte di Castello è riservato <strong>esclusivamente ai cittadini residenti nel territorio del relativo Castello</strong>.</li>
+            <li>I cittadini sammarinesi residenti all'estero <u>non sono pertanto inseriti</u> nelle liste elettorali delle Giunte di Castello.</li>
+        </ul>
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+    <!-- ========== SEZIONE 7 ========== -->
+    <section id="ele-link7" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">7. Agevolazioni di Viaggio e Contributi di Trasporto</h2>
+        <p style="line-height: 1.7;">Al fine di agevolare l'esercizio del diritto di voto per i residenti all'estero, lo Stato sammarinese prevede apposite provvidenze e facilitazioni:</p>
+        <ul class="elencopunti">
+            <li><strong>Contributi di Viaggio:</strong> In occasione delle elezioni politiche, sono erogati contributi di trasporto a parziale rimborso delle spese sostenute dagli elettori provenienti dai Paesi esteri (fissati da appositi Decreti Regrenziali).</li>
+            <li><strong>Convenzioni Ferroviarie e Autostradali:</strong> Vengono stipulate convenzioni con le società di trasporto italiane e internazionali per l'applicazione di tariffe ridotte per gli elettori in viaggio verso San Marino.</li>
+        </ul>
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+    <!-- ========== SEZIONE 8 ========== -->
+    <section id="ele-link8" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
+        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">8. Il Dibattito Politico e le Proposte di Riforma</h2>
+        <p style="line-height: 1.7;">La questione del voto degli esteri è al centro di un costante dibattito politico e istituzionale:</p>
+        <ul class="elencopunti">
+            <li><strong>Modelli a confronto:</strong> Da un lato vi è la spinta delle Comunità dei Sammarinesi all'Estero per l'introduzione del voto per corrispondenza o l'istituzione di un <em>Circuito/Collegio Elettorale Estero</em> (con seggi dedicati nel CG&G).</li>
+            <li><strong>Principio di territorialità:</strong> Dall'altro lato, i sostenitori del modello attuale evidenziano la necessità che chi decide le sorti politiche del Paese sia soggetto diretto alle leggi e alla fiscalità della Repubblica.</li>
+        </ul>
+        <a href="javascript:void(0)" onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+    </section>
+
+</div>
