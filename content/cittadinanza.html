@@ -3,6 +3,9 @@
      Tipologie, requisiti e normativa di riferimento
      ============================================================ -->
 
+     <!-- TEST LOCALE, RIMUOVERE -->
+     <!-- <link rel="stylesheet" href="../css/style.css"> -->
+
 <style>
     /* ===== STILI INTERNI PER LA PAGINA CITTADINANZA ===== */
     
@@ -199,6 +202,16 @@
         background: #f3e8ff !important;
         color: #6b21a8 !important;
     }
+
+    .titolo-sezione {
+        text-align: center !important; 
+        font-weight: bold; 
+        color: var(--primary-color); 
+        font-size: 22px; 
+        border-bottom: 2px solid #eef6fc; 
+        padding-bottom: 0.5rem;
+    }
+
 </style>
 
 <div class="container" id="page-cittadinanza">
@@ -213,7 +226,7 @@
 
     <!-- ========== INDICE ========== -->
     <div id="indice-cittadinanza" style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 5px solid var(--primary-color); border-radius: 10px; padding: 1.5rem 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-        <h2 style="margin-top: 0; color: var(--primary-color); font-size: 1.3rem; border-bottom: 2px solid #eef6fc; padding-bottom: 0.5rem;">📑 Indice dei Contenuti</h2>
+        <p class="titolo-sezione">📑 Indice dei Contenuti</p>
         <ul class="indice-lista">
             <li><a href="javascript:void(0)" onclick="document.getElementById('cit-link1').scrollIntoView({behavior:'smooth',block:'start'});">1. Panoramica Generale</a></li>
             <li><a href="javascript:void(0)" onclick="document.getElementById('cit-link2').scrollIntoView({behavior:'smooth',block:'start'});">2. Cittadinanza per Origine</a></li>
@@ -228,7 +241,7 @@
 
     <!-- ========== SEZIONE 1 ========== -->
     <section id="cit-link1" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">1. Panoramica Generale</h2>
+        <p class="titolo-sezione">1. Panoramica Generale</p>
         <p style="line-height: 1.7;">
             La <strong>cittadinanza sammarinese</strong> è disciplinata da un complesso sistema normativo che affonda le sue radici nella storia millenaria della Repubblica. Il quadro giuridico attuale è il risultato di un'evoluzione che ha saputo coniugare la tradizione con le esigenze della modernità.
         </p>
@@ -251,7 +264,7 @@
 
     <!-- ========== SEZIONE 2 ========== -->
     <section id="cit-link2" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">2. Cittadinanza per Origine</h2>
+        <p class="titolo-sezione">2. Cittadinanza per Origine</p>
         <p style="line-height: 1.7;">
             La cittadinanza per origine è la modalità principale di acquisizione e scatta automaticamente o tramite dichiarazione per legami familiari diretti. Si distingue in <strong>Ius Sanguinis</strong> e <strong>Ius Soli</strong> condizionato.
         </p>
@@ -278,7 +291,7 @@
 
     <!-- ========== SEZIONE 3 ========== -->
     <section id="cit-link3" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">3. Cittadinanza per Naturalizzazione</h2>
+        <p class="titolo-sezione">3. Cittadinanza per Naturalizzazione</p>
         <p style="line-height: 1.7;">
             La naturalizzazione è concessa agli stranieri o apolidi che risiedono stabilmente e continuativamente sul Titano da un determinato numero di anni. <strong>A seguito delle recenti riforme del 2026, non è più obbligatorio rinunciare alla cittadinanza di origine</strong> per diventare sammarinesi.
         </p>
@@ -298,7 +311,7 @@
         </ul>
 
         <!-- TABELLA RIASSUNTIVA -->
-        <h3 style="color: #1e293b; font-size: 1.1rem; margin-top: 1.5rem;">📊 Tabella Riassuntiva</h3>
+        <h3 style="color: #1e293b; font-size: 1.1rem; margin-top: 1.5rem; text-align: center !important;">📊 Tabella Riassuntiva</h3>
         <div style="overflow-x: auto;">
             <table class="tabella-cittadinanza">
                 <thead>
@@ -353,7 +366,7 @@
 
     <!-- ========== SEZIONE 4 ========== -->
     <section id="cit-link4" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">4. Riassunzione della Cittadinanza</h2>
+        <p class="titolo-sezione">4. Riassunzione della Cittadinanza</p>
         <p style="line-height: 1.7;">
             Una tipologia specifica riguarda chi ha perso la cittadinanza in passato. In particolare:
         </p>
@@ -377,7 +390,7 @@
 
     <!-- ========== SEZIONE 5 ========== -->
     <section id="cit-link5" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">5. Quadro Normativo di Riferimento</h2>
+        <p class="titolo-sezione">5. Quadro Normativo di Riferimento</p>
         <p style="line-height: 1.7;">I principali riferimenti legislativi che regolano la cittadinanza sammarinese sono:</p>
 
         <div class="law-box">
@@ -405,7 +418,7 @@
 
     <!-- ========== SEZIONE 6 ========== -->
     <section id="cit-link6" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">6. Riforme e Novità 2026</h2>
+        <p class="titolo-sezione">6. Riforme e Novità 2026</p>
         <p style="line-height: 1.7;">
             Il 2026 ha segnato un importante cambiamento per la cittadinanza sammarinese con l'entrata in vigore del <strong>Decreto Delegato 15 gennaio 2026 n. 3</strong>.
         </p>
@@ -428,7 +441,7 @@
 
     <!-- ========== SEZIONE 7 ========== -->
     <section id="cit-link7" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">7. Procedura e Tempistiche</h2>
+        <p class="titolo-sezione">7. Procedura e Tempistiche</p>
 
         <h3 style="color: #1e293b; font-size: 1.1rem; margin-top: 1.5rem;">7.1 Dove Presentare la Domanda</h3>
         <ul class="elencopunti">
@@ -496,7 +509,7 @@
 
     <!-- ========== SEZIONE 8 ========== -->
     <section id="cit-link8" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">8. Domande Frequenti (FAQ)</h2>
+        <p class="titolo-sezione">8. Domande Frequenti (FAQ)</p>
 
         <div style="margin: 1rem 0;">
             <h4 style="color: var(--primary-color); margin-bottom: 0.3rem;">❓ Posso mantenere la mia cittadinanza di origine se ottengo quella sammarinese?</h4>

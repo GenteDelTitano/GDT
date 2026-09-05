@@ -3,6 +3,9 @@
      Versione ottimizzata - stili centralizzati
      ============================================================ -->
 
+     <!-- TEST LOCALE, RIMUOVERE -->
+     <!-- <link rel="stylesheet" href="../css/style.css">
+
 <style>
     /* ===== STILI INTERNI PER LA PAGINA ELETTORI ===== */
     
@@ -99,6 +102,16 @@
         font-size: 0.95rem !important;
         line-height: 1.6 !important;
     }
+
+    .titolo-sezione {
+        text-align: center !important; 
+        font-weight: bold; 
+        color: var(--primary-color); 
+        font-size: 22px; 
+        border-bottom: 2px solid #eef6fc; 
+        padding-bottom: 0.5rem;
+    }
+
 </style>
 
 <div class="container" id="page-elettori">
@@ -113,7 +126,7 @@
 
     <!-- ========== INDICE ========== -->
     <div id="indice-elettori" style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 5px solid var(--primary-color); border-radius: 10px; padding: 1.5rem 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-        <h2 style="margin-top: 0; color: var(--primary-color); font-size: 1.3rem; border-bottom: 2px solid #eef6fc; padding-bottom: 0.5rem;">📑 Indice dei Contenuti</h2>
+        <p class="titolo-sezione">📑 Indice dei Contenuti</p>
         <ul class="indice-lista">
             <li><a href="javascript:void(0)" onclick="document.getElementById('ele-link1').scrollIntoView({behavior:'smooth',block:'start'});">1. Quadro Demografico</a></li>
             <li><a href="javascript:void(0)" onclick="document.getElementById('ele-link2').scrollIntoView({behavior:'smooth',block:'start'});">2. Evoluzione Storica</a></li>
@@ -128,7 +141,7 @@
 
     <!-- ========== SEZIONE 1 ========== -->
     <section id="ele-link1" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">1. Quadro Demografico: Residenti in Repubblica vs Residenti all'Estero</h2>
+        <p class="titolo-sezione">1. Quadro Demografico:<br>Residenti in Repubblica vs Residenti all'Estero</p>
         <p style="line-height: 1.7;">
             Di seguito si riporta il quadro demografico completo della popolazione sammarinese elaborato dai dati ufficiali dell'<strong>Ufficio Nazionale di Statistica della Repubblica di San Marino</strong> (aggiornati a giugno 2026).
         </p>
@@ -228,7 +241,7 @@
 
     <!-- ========== SEZIONE 2 ========== -->
     <section id="ele-link2" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">2. Evoluzione Storica del Voto Esteri (Dal 1906 ad Oggi)</h2>
+        <p class="titolo-sezione">2. Evoluzione Storica del Voto Esteri<br>(Dal 1906 ad Oggi)</p>
         <p style="line-height: 1.7;">Il dibattito sull'esercizio dei diritti politici dei cittadini sammarinesi residenti all'estero affonda le sue radici nella storia democratica della Repubblica:</p>
         <ul class="elencopunti">
             <li><strong>1906 - L'Arengo e le origini:</strong> Con la storica adunanza dell'Arengo del 1906 si ripristinò la democrazia diretta. Il diritto di voto era riservato ai soli capifamiglia residenti in Repubblica.</li>
@@ -241,7 +254,7 @@
 
     <!-- ========== SEZIONE 3 ========== -->
     <section id="ele-link3" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">3. Quadro Normativo di Riferimento</h2>
+        <p class="titolo-sezione">3. Quadro Normativo di Riferimento</p>
         <p style="line-height: 1.7;">I principali riferimenti legislativi che regolano i diritti elettorali dei cittadini residenti all'estero sono:</p>
 
         <div class="law-box">
@@ -264,7 +277,7 @@
 
     <!-- ========== SEZIONE 4 ========== -->
     <section id="ele-link4" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">4. Voto per le Elezioni Politiche (Consiglio Grande e Generale)</h2>
+        <p class="titolo-sezione">4. Voto per le Elezioni Politiche<br>(Consiglio Grande e Generale)</p>
         <p style="line-height: 1.7;">Per il rinnovo del <strong>Consiglio Grande e Generale</strong> (il Parlamento sammarinese), la normativa vigente stabilisce principi precisi:</p>
         <ul class="elencopunti">
             <li><strong>Obbligo di presenza in territorio:</strong> Non è consentito il voto per corrispondenza né il voto presso sedi diplomatiche. L'elettore residente all'estero <u>deve recarsi personalmente</u> presso la sezione elettorale di iscrizione a San Marino.</li>
@@ -276,7 +289,7 @@
 
     <!-- ========== SEZIONE 5 ========== -->
     <section id="ele-link5" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">5. Voto per i Referendum e le Consultazioni Popolari</h2>
+        <p class="titolo-sezione">5. Voto per i Referendum e le Consultazioni Popolari</p>
         <p style="line-height: 1.7;">Nelle consultazioni referendarie (abrogativi, propositivi, confermativi), la legge prevede una disciplina volta a favorire la partecipazione dei cittadini:</p>
         <ul class="elencopunti">
             <li><strong>Voto in Repubblica:</strong> Di norma, anche per i referendum è richiesta la presenza fisica ai seggi del territorio nazionale.</li>
@@ -288,7 +301,7 @@
 
     <!-- ========== SEZIONE 6 ========== -->
     <section id="ele-link6" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">6. Elezioni delle Giunte di Castello (Esclusione)</h2>
+        <p class="titolo-sezione">6. Elezioni delle Giunte di Castello (Esclusione)</p>
         <p style="line-height: 1.7;">Un'importante distinzione riguarda le consultazioni amministrative locali:</p>
         <ul class="elencopunti">
             <li><strong>Esclusione dei non residenti:</strong> Ai sensi della <em>Legge 24 febbraio 1994 n. 22</em> e successive modifiche, l'elettorato attivo e passivo per le elezioni dei Capitani di Castello e dei Membri delle Giunte di Castello è riservato <strong>esclusivamente ai cittadini residenti nel territorio del relativo Castello</strong>.</li>
@@ -299,7 +312,7 @@
 
     <!-- ========== SEZIONE 7 ========== -->
     <section id="ele-link7" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">7. Agevolazioni di Viaggio e Contributi di Trasporto</h2>
+        <p class="titolo-sezione">7. Agevolazioni di Viaggio e Contributi di Trasporto</p>
         <p style="line-height: 1.7;">Al fine di agevolare l'esercizio del diritto di voto per i residenti all'estero, lo Stato sammarinese prevede apposite provvidenze e facilitazioni:</p>
         <ul class="elencopunti">
             <li><strong>Contributi di Viaggio:</strong> In occasione delle elezioni politiche, sono erogati contributi di trasporto a parziale rimborso delle spese sostenute dagli elettori provenienti dai Paesi esteri (fissati da appositi Decreti Regrenziali).</li>
@@ -310,7 +323,7 @@
 
     <!-- ========== SEZIONE 8 ========== -->
     <section id="ele-link8" style="background: white; padding: 1.5rem 2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-margin-top: 80px;">
-        <h2 style="color: var(--primary-color); font-size: 1.4rem; margin-top: 0; padding-bottom: 0.5rem; border-bottom: 2px solid #eef6fc;">8. Il Dibattito Politico e le Proposte di Riforma</h2>
+        <p class="titolo-sezione">8. Il Dibattito Politico e le Proposte di Riforma</p>
         <p style="line-height: 1.7;">La questione del voto degli esteri è al centro di un costante dibattito politico e istituzionale:</p>
         <ul class="elencopunti">
             <li><strong>Modelli a confronto:</strong> Da un lato vi è la spinta delle Comunità dei Sammarinesi all'Estero per l'introduzione del voto per corrispondenza o l'istituzione di un <em>Circuito/Collegio Elettorale Estero</em> (con seggi dedicati nel CG&G).</li>
