@@ -1,0 +1,542 @@
+<style>
+  body { 
+    font-family: Arial, sans-serif; 
+    margin: 20px; 
+    color: #333; 
+    line-height: 1.5; 
+  }
+  
+  h1 { 
+    color: #1a5a1a; 
+    font-size: 1.5rem; 
+    text-align: center;
+  }
+  
+  .subtitle { 
+    font-size: 0.95rem; 
+    margin-bottom: 20px; 
+    text-align: center;
+  }
+
+  .user-info-box {
+    background: #fdfdfd;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .form-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+
+  .form-group label {
+    white-space: nowrap;
+    font-weight: bold;
+    color: #1a5a1a;
+    margin-bottom: 0;
+  }
+
+  .form-group input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    width: 250px;
+  }
+
+  .btn-container { 
+    margin: 20px 0; 
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .table-container { 
+    overflow-x: auto; 
+  }
+  
+  table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    min-width: 700px; 
+    margin-bottom: 20px; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  th { 
+    background: linear-gradient(135deg, #1a5a1a, #2d8a2d); 
+    color: white; 
+    padding: 10px; 
+    text-align: center;
+    border: 1px solid #1a5a1a;
+  }
+  
+  td { 
+    padding: 10px; 
+    border-bottom: 1px solid #ddd; 
+    vertical-align: top; 
+  }
+  
+  tr:nth-child(even) { 
+    background-color: #f9f9f9; 
+  }
+
+  select.error, input.error {
+    border: 2px solid #d9534f !important;
+    background-color: #fdf2f2;
+  }
+
+  select, input[type="number"], textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+  }
+  
+  textarea { 
+    resize: vertical; 
+    height: 42px; 
+  }
+
+  .btn-send {
+    background-color: #0886f5;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .btn-send:hover { background-color: #0669c2; }
+
+  .btn-save {
+    background-color: #1a5a1a;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .btn-save:hover { background-color: #2d8a2d; }
+
+  .note-box { 
+    text-align: center !important; 
+    padding: 15px; 
+    background: #f5f5f5; 
+    border-radius: 6px; 
+    font-size: 0.85rem; 
+  }
+</style>
+</head>
+<body>
+
+<h1>✋ Questionario Riforme Istituzionali</h1>
+<p class="subtitle">
+  <strong>Questionario per raccolta suggerimenti condivisi da presentare in Commissione Consiliare Speciale per le Riforme Istituzionali.</strong><br>
+  Come da lettera della Segreteria per gli Affari Interni.
+</p>
+<p class="subtitle" style="text-align: center !important;">
+  <strong>Versione web completa</strong><br>proposta da <em><u>Nicolini Elisabetta</u></em> - Comunità Veneto.
+</p>
+
+<form id="quizForm">
+
+  <!-- Dati Anagrafici -->
+  <div class="user-info-box">
+    <div class="form-group">
+      <label for="user_name">Nome e Cognome *</label>
+      <input type="text" id="user_name" placeholder="Es. Mario Rossi">
+    </div>
+    <div class="form-group">
+      <label for="user_email">Email *</label>
+      <input type="email" id="user_email" placeholder="Es. mario.rossi@example.com">
+    </div>
+  </div>
+
+  <!-- Tabella Quesiti Generata Dinamicamente -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 45%;">Quesito</th>
+          <th style="width: 18%;">Risposta *</th>
+          <th style="width: 12%;">Valore Num.</th>
+          <th style="width: 25%;">Note</th>
+        </tr>
+      </thead>
+      <tbody id="quiz-body">
+        <tr>
+          <td colspan="4" style="text-align:center; padding:20px;">Caricamento quesiti in corso...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="btn-container">
+    <button type="button" class="btn-send" onclick="inviaQuestionario()">Invia Questionario Via Email</button>
+    <button type="button" class="btn-save" onclick="salvaFileLocale()">Salva Copia Locale</button>
+  </div>
+</form>
+
+<div class="note-box" style="background-color: rgb(236, 255, 125);">
+  <p>
+  <strong>Istruzioni:</strong> Compilare Nome, Cognome, Email e selezionare le risposte obbligatorie
+  <strong><em><u>prima di inviare o salvare.</u></em></strong> 
+  </p>
+  <p><strong>NB:</strong>
+      <em>Il campo <u>email</u> è utilizzato per inviare il questionario compilato alla email del compilatore oppure ad altro soggetto.</em>
+  </p>
+</div>
+
+<!-- EmailJS JS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<!-- Script incremento contatori su firebasedatabase -->
+<script>
+(function() {
+  var DB_URL = "https://gente-del-titano-default-rtdb.europe-west1.firebasedatabase.app";
+  
+  fetch(DB_URL + '/visite/questionario-2.json')
+    .then(function(res) { return res.json(); })
+    .then(function(valoreAttuale) {
+      var nuovoValore = (valoreAttuale || 0) + 1;
+      fetch(DB_URL + '/visite/questionario-2.json', {
+        method: 'PUT',
+        body: JSON.stringify(nuovoValore)
+      });
+    })
+    .catch(function(e) { console.warn("Firebase non raggiungibile"); });
+})();
+</script>
+
+<!-- Script Principale -->
+<script>
+  // Dati dei quesiti integrati direttamente
+  var domande = [
+    "1a1 - CITTADINANZA - Modalità di trasmissione Jus sanguinis; Nessuna limitazione temporale; 2; 0;",
+    "1a2 - CITTADINANZA - Modalità di trasmissione Jus sanguinis; Limitazioni in anni  (specificare n. anni); 2; 1;",
+    "1a3 - CITTADINANZA - Modalità di trasmissione Jus sanguinis; Limitazioni generazionali  (specificare n. generazioni); 2; 1;",
+    "1a4 - CITTADINANZA - Modalità di trasmissione Jus sanguinis; Altro (da specificare in campo note); 0; 0;",
+    "1b1 - CITTADINANZA - Naturalizzazione; Ad personam dopo X anni di residenza (specificare n. anni); 2; 1;",
+    "1b2 - CITTADINANZA - Naturalizzazione; Automatica dopo X anni di residenza (specificare n. anni); 2; 1;",
+    "1b3 - CITTADINANZA - Naturalizzazione; Automatica se nascita in territorio e  dopo X anni di residenza (specificare n. anni); 2; 1;",
+    "1b4 - CITTADINANZA - Naturalizzazione; Altro (da specificare in campo note); 0; 0;",
+    "2a1 - Riacquisto cittadinanza; Sempre, a richiesta; 2; 0;",
+    "2a2 - Riacquisto cittadinanza; Sempre, a richiesta, purché gli anni di interruzione non superino X  (specificare n. anni); 2; 1;",
+    "2a3 - Riacquisto cittadinanza; Solo in presenza di periodiche sanatorie; 2; 0;",
+    "2b1 - Riacquisto diritto di voto; Sempre, a richiesta di nuova iscrizione delle liste elettorali; 2; 0;",
+    "2b2 - Riacquisto diritto di voto; Sempre, a richiesta, purché gli anni di interruzione non superino X  (specificare n. anni); 2; 1;",
+    "2b3 - Riacquisto diritto di voto; Solo dopo un periodo di residenza in Repubblica (specificare n. anni); 2; 1;",
+    "3a1 - MODALITA' DI ESPRESSIONE DEL DIRITTO DI VOTO - Collegio Unico Nazionale Voto in Repubblica; Nei seggi dei Castelli di Origine; 2; 0;",
+    "3a2 - MODALITA' DI ESPRESSIONE DEL DIRITTO DI VOTO - Collegio Unico Nazionale Voto in Repubblica; Altro (da specificare in campo note H); 2; 0;",
+    "3b1 - MODALITA' DI ESPRESSIONE DEL DIRITTO DI VOTO - Collegio Unico Nazionale Voto nei luoghi di residenza; Voto nei Consolati; 2; 0;",
+    "3b2 - MODALITA' DI ESPRESSIONE DEL DIRITTO DI VOTO - Collegio Unico Nazionale Voto nei luoghi di residenza; Voto per corrispondenza; 2; 0;",
+    "3b3 - MODALITA' DI ESPRESSIONE DEL DIRITTO DI VOTO - Collegio Unico Nazionale Voto nei luoghi di residenza; Voto telematico; 2; 0;",
+    "3c1 - Collegio ESTERO - CONSISTENZA vs CONSIGLIO GRANDE E GENERALE; Non meno di 15; 2; 0;",
+    "3c2 - Collegio ESTERO - CONSISTENZA vs CONSIGLIO GRANDE E GENERALE; Non meno di 10; 2; 0;",
+    "3c3 - Collegio ESTERO - CONSISTENZA vs CONSIGLIO GRANDE E GENERALE; Non meno di 5; 2; 0;",
+    "3c4 - Collegio ESTERO - CONSISTENZA vs CONSIGLIO GRANDE E GENERALE; Altro (Specificare in note); 0; 0;",
+    "3d1 - Collegio ESTERO - CANDIDATI; Solo cittadini residenti all'estero con domicilio in Repubblica in liste dedicate; 2; 0;",
+    "3d2 - Collegio ESTERO - CANDIDATI; Solo cittadini residenti in Repubblica in liste dedicate; 2; 0;",
+    "3d3 - Collegio ESTERO - CANDIDATI; Liste dedicate con entrambe le tipologie di candidati; 2; 0;",
+    "3d4 - Collegio ESTERO - CANDIDATI; In liste 'ordinarie' candidature specifiche per Collegio Estero riservate a cittadini residenti all'estero con domicilio in Rep.; 2; 0;",
+    "3d5 - Collegio ESTERO - CANDIDATI; In liste 'ordinarie' candidature specifiche per Collegio Estero riservate a cittadini residenti in Rep.; 2; 0;",
+    "3d6 - Collegio ESTERO - CANDIDATI; In liste 'ordinarie' candidature specifiche per Collegio Estero riservate ad entrambe le tipologie di candidati; 2; 0;",
+    "3d7 - Collegio ESTERO - CANDIDATI; Altro (da specificare in campo note); 0; 0;",
+    "3e1 - Collegio ESTERO - PREFERENZE; Nessuna preferenza; 2; 0;",
+    "3e2 - Collegio ESTERO - PREFERENZE; Stesso numero di preferenze previsto per i cittadini residenti; 2; 0;",
+    "3e3 - Collegio ESTERO - PREFERENZE; Altro (da specificare in campo note); 0; 0;",
+    "3f1 - Collegio ESTERO - PREFERENZE VOTO IN REPUBBLICA; Nei seggi dei Castelli di Origine; 2; 0;",
+    "3f2 - Collegio ESTERO - PREFERENZE VOTO IN REPUBBLICA; Altro (da specificare in campo note); 0; 0;",
+    "3g1 - Collegio ESTERO - VOTO NEI LUOGHI DI RESIDENZA; Voto nei Consolati; 2; 0;",
+    "3g2 - Collegio ESTERO - VOTO NEI LUOGHI DI RESIDENZA; Voto per corrispondenza; 2; 0;",
+    "3g3 - Collegio ESTERO - VOTO NEI LUOGHI DI RESIDENZA; Voto telematico; 2; 0;"
+  ];
+
+  var quesitiData = [];
+
+  // SOSTITUISCI CON QUESTO:
+  function inizializzaQuestionario() {
+    if (typeof domande !== 'undefined' && Array.isArray(domande)) {
+      costruisciTabella(domande);
+    }
+  }
+
+  // 1. Esecuzione immediata (per quando il file viene iniettato da index.html)
+  inizializzaQuestionario();
+
+  // 2. Fallback per quando il file viene aperto direttamente da solo nel browser
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", inizializzaQuestionario);
+  }
+
+  function costruisciTabella(righeArray) {
+    var tbody = document.getElementById('quiz-body');
+    tbody.innerHTML = '';
+    quesitiData = [];
+
+    var idxCount = 0;
+
+    for (var i = 0; i < righeArray.length; i++) {
+      var line = righeArray[i].trim();
+      
+      if (!line || line.startsWith('<!--')) continue;
+
+      var parti = line.split(';');
+      if (parti.length < 4) continue;
+
+      idxCount++;
+      var argomento = parti[0].trim();
+      var spiegazione = parti[1].trim();
+      var tipoRisposta = parseInt(parti[2].trim(), 10);
+      var richiedeNum = parseInt(parti[3].trim(), 10);
+
+      quesitiData.push({
+        idx: idxCount,
+        argomento: argomento,
+        spiegazione: spiegazione,
+        tipoRisposta: tipoRisposta,
+        richiedeNum: richiedeNum
+      });
+
+      var row = document.createElement('tr');
+
+      // Colonna 1: Quesito (senza 1. 2. e senza <em> sull'argomento)
+      var cellQuesito = '<strong>' + argomento + '</strong><br>' + '<em>' + spiegazione + '</em>';
+
+      // Colonna 2: Risposta
+      var cellSelect = '';
+      if (tipoRisposta === 1 || tipoRisposta === 2) {
+        var opzioni = tipoRisposta === 1 
+          ? '<option value="">-- Seleziona --</option><option value="Favorevole">Favorevole</option><option value="Contrario">Contrario</option><option value="Da approfondire">Da approfondire</option><option value="Non saprei">Non saprei</option>'
+          : '<option value="">-- Seleziona --</option><option value="Favorevole">Favorevole</option><option value="Contrario">Contrario</option><option value="Indifferente">Indifferente</option>';
+
+        var onChangeAttr = (richiedeNum === 1) ? ' onchange="gestisciCampoNumerico(' + idxCount + ')"' : '';
+        cellSelect = '<select id="scelta_' + idxCount + '" name="scelta_' + idxCount + '"' + onChangeAttr + '>' + opzioni + '</select>';
+      } else {
+        cellSelect = '<span style="color:#777; font-size:0.85rem;">Non richiesta</span>' +
+                      '<input type="hidden" id="scelta_' + idxCount + '" value="N/A">';
+      }
+
+      // Colonna 3: Campo Numerico (disabilitato finché la select non è "Favorevole")
+      var cellNum = '';
+      if (richiedeNum === 1) {
+        cellNum = '<input type="number" id="num_' + idxCount + '" name="num_' + idxCount + '" min="0" max="99999" placeholder="0 - 99999" disabled style="background-color: #e9ecef;">';
+      } else {
+        cellNum = '<span style="color:#aaa; text-align:center; display:block;">-</span>';
+      }
+
+      // Colonna 4: Note
+      var cellNote = '<textarea id="note_' + idxCount + '" name="note_' + idxCount + '" placeholder="Note opzionali..."></textarea>';
+
+      row.innerHTML = '<td>' + cellQuesito + '</td>' +
+                      '<td>' + cellSelect + '</td>' +
+                      '<td>' + cellNum + '</td>' +
+                      '<td>' + cellNote + '</td>';
+
+      tbody.appendChild(row);
+    }
+  }
+
+  // Abilita/Disabilita il campo numerico in base alla risposta scelta
+  function gestisciCampoNumerico(idx) {
+    var select = document.getElementById('scelta_' + idx);
+    var numInput = document.getElementById('num_' + idx);
+
+    if (!numInput || !select) return;
+
+    if (select.value === "Favorevole") {
+      numInput.disabled = false;
+      numInput.style.backgroundColor = "#ffffff";
+    } else {
+      numInput.disabled = true;
+      numInput.value = "";
+      numInput.style.backgroundColor = "#e9ecef";
+      numInput.classList.remove('error');
+    }
+  }
+
+  function pulisciErrori() {
+    var elementiError = document.querySelectorAll('.error');
+    elementiError.forEach(function(el) {
+      el.classList.remove('error');
+    });
+  }
+
+  // Validazione Modulo
+  function validaForm() {
+    pulisciErrori();
+
+    // 1. Validazione Nome e Cognome
+    var nameInput = document.getElementById('user_name');
+    var nameVal = nameInput.value.trim();
+    var nameParts = nameVal.split(' ').filter(function(part) { return part.length > 0; });
+
+    if (nameParts.length < 2) {
+      nameInput.classList.add('error');
+      alert("Attenzione: Inserisci sia il Nome che il Cognome.");
+      nameInput.focus();
+      return false;
+    }
+
+    // 2. Validazione Email
+    var emailInput = document.getElementById('user_email');
+    var emailVal = emailInput.value.trim();
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(emailVal)) {
+      emailInput.classList.add('error');
+      alert("Attenzione: Inserisci un indirizzo Email valido.");
+      emailInput.focus();
+      return false;
+    }
+
+    // 3. Validazione Domande (Selezioni obbligatorie e campi numerici solo se "Favorevole")
+    for (var j = 0; j < quesitiData.length; j++) {
+      var item = quesitiData[j];
+      var idx = item.idx;
+
+      if (item.tipoRisposta !== 0) {
+        var select = document.getElementById('scelta_' + idx);
+        if (select && select.value === "") {
+          select.classList.add('error');
+          alert("Attenzione: Seleziona una risposta per il quesito: " + item.argomento);
+          select.focus();
+          return false;
+        }
+      }
+
+      if (item.richiedeNum === 1) {
+        var select = document.getElementById('scelta_' + idx);
+        var numInput = document.getElementById('num_' + idx);
+
+        if (select && select.value === "Favorevole" && numInput) {
+          var val = parseInt(numInput.value, 10);
+          if (numInput.value === "" || isNaN(val) || val < 0 || val > 99999) {
+            numInput.classList.add('error');
+            alert("Attenzione: Inserisci un valore numerico valido compreso tra 0 e 99999 per il quesito: " + item.argomento);
+            numInput.focus();
+            return false;
+          }
+        }
+      }
+    }
+
+    return true;
+  }
+
+  function generaTabellaRisposte() {
+    var righeHTML = "";
+    for (var k = 0; k < quesitiData.length; k++) {
+      var item = quesitiData[k];
+      var idx = item.idx;
+
+      var rispostaEl = document.getElementById('scelta_' + idx);
+      var rispostaVal = rispostaEl ? rispostaEl.value : '-';
+
+      var numEl = document.getElementById('num_' + idx);
+      var numVal = (numEl && !numEl.disabled && numEl.value !== "") ? numEl.value : '-';
+
+      var noteEl = document.getElementById('note_' + idx);
+      var noteTesto = noteEl ? noteEl.value.trim() : '';
+      var noteFormattate = noteTesto ? noteTesto.split('\n').join('<br>') : '-';
+
+      righeHTML += '<tr>' +
+        '<td style="padding: 8px; border: 1px solid #ddd;"><strong>' + item.argomento + '</strong><br>' + '<em>' + item.spiegazione + '</em></td>' +
+        '<td style="padding: 8px; border: 1px solid #ddd; text-align:center;"><strong>' + rispostaVal + '</strong></td>' +
+        '<td style="padding: 8px; border: 1px solid #ddd; text-align:right;">' + numVal + '</td>' +
+        '<td style="padding: 8px; border: 1px solid #ddd;"><i>' + noteFormattate + '</i></td>' +
+        '</tr>';
+    }
+
+    return '<table style="width:100%; border-collapse:collapse; font-family:Arial, sans-serif; font-size:13px;">' +
+      '<thead>' +
+      '<tr style="background:#1a5a1a; color:white;">' +
+      '<th style="width: 45%; padding:8px; text-align:left;">Quesito</th>' +
+      '<th style="width: 18%; padding:8px; text-align:center;">Risposta</th>' +
+      '<th style="width: 12%; padding:8px; text-align:center;">Valore Num.</th>' +
+      '<th style="width: 25%; padding:8px; text-align:left;">Note</th>' +
+      '</tr>' +
+      '</thead>' +
+      '<tbody>' + righeHTML + '</tbody>' +
+      '</table>';
+  }
+
+  function inviaQuestionario() {
+    if (!validaForm()) return;
+
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init({ publicKey: "dlcgcFKY-gzS7RQKJ" });
+    } else {
+      alert("Errore: Libreria EmailJS non ancora caricata.");
+      return;
+    }
+
+    var userName = document.getElementById('user_name').value.trim();
+    var userEmail = document.getElementById('user_email').value.trim();
+    var tabellaRisposte = generaTabellaRisposte();
+
+    var btnSend = document.querySelector('.btn-send');
+    btnSend.disabled = true;
+    btnSend.innerText = "Invio in corso...";
+
+    fetch('https://api.ipify.org?format=json')
+      .then(res => res.json())
+      .then(data => inviaEmailConParametri(data.ip))
+      .catch(() => inviaEmailConParametri("Non disponibile"));
+
+    function inviaEmailConParametri(userIP) {
+      var templateParams = {
+        name: userName,
+        email: userEmail,
+        title: "Risposte Questionario Riforme - " + userName,
+        tabella_risposte: tabellaRisposte,
+        user_ip: userIP
+      };
+
+      emailjs.send('service_f726zbu', 'template_kw214s2', templateParams)
+        .then(function() {
+          alert('Questionario inviato con successo!');
+          btnSend.disabled = false;
+          btnSend.innerText = "Invia Questionario Via Email";
+        }, function(error) {
+          alert('Errore durante l\'invio: ' + JSON.stringify(error));
+          btnSend.disabled = false;
+          btnSend.innerText = "Invia Questionario Via Email";
+        });
+    }
+  }
+
+  function salvaFileLocale() {
+    if (!validaForm()) return;
+
+    var userName = document.getElementById('user_name').value.trim();
+    var contenutoHTML = '<h2>Questionario Compilato da ' + userName + '</h2>' + generaTabellaRisposte();
+
+    var blob = new Blob([contenutoHTML], { type: 'text/html;charset=utf-8' });
+    var link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'questionario-' + userName.toLowerCase().replace(/\s+/g, '-') + '.html';
+    link.click();
+    URL.revokeObjectURL(link.href);
+  }
+</script>
