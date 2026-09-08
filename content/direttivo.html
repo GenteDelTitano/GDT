@@ -1,0 +1,160 @@
+<style>
+    .pagina-organigramma {
+        position: relative;
+        min-height: 100vh;
+        margin: 0;
+        padding: 40px 0;
+    }
+
+    .sfondo {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.30;
+        z-index: 0;
+    }
+
+    .contenuto {
+        position: relative;
+        z-index: 1;
+    }
+
+    .tabella-organigramma {
+        border-collapse: collapse;
+        margin: 40px auto;
+        table-layout: fixed;
+    }
+
+    /* Reset totale bordi e sfondi ereditati da style.css */
+    .tabella-organigramma,
+    .tabella-organigramma tr,
+    .tabella-organigramma tr:nth-child(even),
+    .tabella-organigramma tr:last-child,
+    .tabella-organigramma td,
+    .tabella-organigramma tr:last-child td {
+        border: none !important;
+        border-top: none !important;
+        border-bottom: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .tabella-organigramma td {
+        width: 5cm;
+        height: 6cm;
+        padding: 5px;
+        text-align: center;
+        vertical-align: top;
+        box-sizing: border-box;
+    }
+
+    /* Stile per la foto */
+    .foto-membro {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 6px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        margin-bottom: 6px;
+    }
+
+    /* Stile per la Carica */
+    .carica {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: #1a5a1a;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: block;
+        margin-top: 4px;
+    }
+
+    /* Stile per Nome e Cognome */
+    .nome-firma {
+        font-family: 'Brush Script MT', 'Comic Sans MS', 'Segoe Print', cursive;
+        font-size: 1.35rem;
+        font-style: italic;
+        color: #1a2a3a;
+        display: block;
+        margin-top: 2px;
+    }
+</style>
+
+<div class="pagina-organigramma">
+    <div class="sfondo" style="background-image: url('../immagini/san-marino-visto-da-rimini.jpg');"></div>
+    <div class="contenuto">
+        <h1 style="text-align: center !important;">🏛️ Consiglio direttivo</h1>
+        <p class="subtitle" style="text-align: center !important;">
+            In carica per il triennio <strong>2025-2028</strong>,<br>
+            a seguito delle elezioni svoltesi durante l'Assemblea Generale dei Soci del <strong>20 maggio 2025</strong>,<br>
+            il Consiglio Direttivo dell'Associazione è così composto:
+        </p>
+
+        <table class="tabella-organigramma" border="0">
+            <!-- Riga 1 -->
+            <tr>
+				<td></td>
+                <td>
+                    <img src="../immagini/martino.jpg" class="foto-membro" alt="Berardi Martino">
+                    <span class="carica">Presidente</span>
+                    <span class="nome-firma">Berardi Martino</span>
+                </td>
+                <td>
+                    <img src="../immagini/luciano.jpg" class="foto-membro" alt="Sammaritani Luciano">
+                    <span class="carica">Vice Presidente</span>
+                    <span class="nome-firma">Sammaritani Luciano</span>
+                </td>
+				<td></td>
+            </tr>
+            <!-- Righe successive... -->
+			<tr>
+                <td>
+					<img src="../immagini/mirco.jpg" class="foto-membro">
+                    <span class="carica">Consigliere</span>
+                    <span class="nome-firma">Ciacci Mirco</span>
+                </td>
+                <td>
+                    <img src="../immagini/elisa.jpg" class="foto-membro">
+                    <span class="carica">Consigliere</span>
+                    <span class="nome-firma">Amadei Elisa</span>
+                </td>
+                <td>
+					<img src="../immagini/teresa.jpg" class="foto-membro">
+                    <span class="carica">Consigliere</span>
+                    <span class="nome-firma">Ferrari Teresa</span>
+                </td>
+                <td>
+					<img src="../immagini/monica.jpg" class="foto-membro">
+                    <span class="carica">Sindaco revisore</span>
+                    <span class="nome-firma">Berardi Monica</span>
+                </td>
+
+            </tr>
+            <!-- Righe successive... -->
+			<tr>
+                <td>
+					<img src="../immagini/helene.jpg" class="foto-membro">
+                    <span class="carica">Sindaco Revisore</span>
+                    <span class="nome-firma">Giannini Helene</span>
+                </td>
+                <td>
+					<img src="../immagini/vilma.jpg" class="foto-membro">
+                    <span class="carica">Consigliere Onorario</span>
+                    <span class="nome-firma">Galli Vilma</span>
+                </td>
+                <td>
+					<img src="../immagini/simona.jpg" class="foto-membro">
+                    <span class="carica">Consigliere Onorario</span>
+                    <span class="nome-firma">Sammaritani Simona</span>
+                </td>
+				<td></td>
+            </tr>
+
+        </table>
+    </div> 
+</div>
