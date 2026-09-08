@@ -1,0 +1,510 @@
+<!-- ============================================================
+     EVOTING - Pagina per il sito "Gente del Titano"
+     ============================================================ -->
+
+<div id="page-elettori">
+
+<style>
+    /* ===== STILI INTERNI PER LA PAGINA EVOTING ===== */
+
+    #page-elettori ul.indice-lista {
+        list-style: none !important;
+        padding-left: 0 !important;
+        margin-bottom: 0 !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.3rem 1.5rem !important;
+    }
+
+    #page-elettori ul.indice-lista li {
+        padding: 0.2rem 0 !important;
+        background: none !important;
+        padding-left: 0 !important;
+        background-image: none !important;
+    }
+
+    #page-elettori ul.indice-lista li a {
+        color: var(--primary-color) !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+    }
+
+    #page-elettori ul.indice-lista li a:hover {
+        text-decoration: underline !important;
+    }
+
+    .torna-indice {
+        display: inline-block !important;
+        margin-top: 1.2rem !important;
+        font-size: 0.85rem !important;
+        color: var(--primary-color) !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        padding: 0.3rem 0.8rem !important;
+        border: 1px solid var(--primary-color) !important;
+        border-radius: 4px !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+    }
+
+    .torna-indice:hover {
+        background-color: var(--primary-color) !important;
+        color: white !important;
+    }
+
+    .elencopunti {
+        list-style: none !important;
+        padding-left: 0 !important;
+        margin: 15px 0 20px 0 !important;
+    }
+
+    .elencopunti li {
+        padding: 8px 0 8px 30px !important;
+        background: transparent !important;
+        position: relative !important;
+        line-height: 1.6 !important;
+        margin-bottom: 5px !important;
+        background-image: none !important;
+    }
+
+    .elencopunti li::before {
+        content: "●" !important;
+        color: var(--primary-color) !important;
+        font-size: 1.2rem !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 6px !important;
+    }
+
+    .law-box {
+        background: #f1f5f9 !important;
+        border-left: 4px solid #4a7c59 !important;
+        padding: 1rem 1.2rem !important;
+        margin: 1rem 0 !important;
+        border-radius: 0 6px 6px 0 !important;
+    }
+
+    .law-box h4 {
+        margin: 0 0 0.3rem 0 !important;
+        color: #4a7c59 !important;
+    }
+
+    .law-box p {
+        margin: 0 !important;
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+    }
+
+    .titolo-sezione {
+        text-align: center !important;
+        font-weight: bold !important;
+        color: var(--primary-color) !important;
+        font-size: 22px !important;
+        border-bottom: 2px solid #eef6fc !important;
+        padding-bottom: 0.5rem !important;
+        margin-top: 2rem !important;
+    }
+
+    /* TIMELINE */
+    .timeline {
+        border-left: 3px solid var(--primary-color);
+        margin: 2rem 0;
+        padding-left: 1rem;
+    }
+
+    .timeline-entry {
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .timeline-entry::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        position: absolute;
+        left: -1.1rem;
+        top: 0.3rem;
+    }
+
+    .country-box {
+        background: #eef6fc;
+        border-left: 4px solid var(--primary-color);
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 6px;
+    }
+
+    .country-box h4 {
+        margin: 0 0 0.3rem 0;
+        color: var(--primary-color);
+    }
+</style>
+
+<h1 style="color: var(--primary-color); font-size: 1.8rem; text-align: center; border-bottom: 3px solid var(--primary-color); padding-bottom: 12px; margin-top: 0;">
+    🗳️ Voto elettronico (evoting)
+</h1>
+<p style="text-align: center; font-size: 1rem; color: #666; margin-top: -5px; margin-bottom: 25px;">
+    <strong>Storia e stato attuale</strong>
+</p>
+
+<h2 class="titolo-sezione">Indice degli argomenti</h2>
+<ul class="indice-lista" id="indice-elettori">
+    <li><a href="javascript:void(0)" onclick="document.getElementById('origini').scrollIntoView({behavior:'smooth',block:'start'});">Origini del voto elettronico</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('timeline').scrollIntoView({behavior:'smooth',block:'start'});">Timeline storica</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('adozioni-mondiali').scrollIntoView({behavior:'smooth',block:'start'});">Paesi che lo hanno adottato</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('tipologie-sistemi').scrollIntoView({behavior:'smooth',block:'start'});">Tipologie di sistemi e‑voting</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('sicurezza').scrollIntoView({behavior:'smooth',block:'start'});">Problemi di sicurezza</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('costs').scrollIntoView({behavior:'smooth',block:'start'});">Costi e sostenibilità</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('fallimenti').scrollIntoView({behavior:'smooth',block:'start'});">Casi di fallimento o ritiro</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('successi').scrollIntoView({behavior:'smooth',block:'start'});">Casi di successo</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('normative').scrollIntoView({behavior:'smooth',block:'start'});">Normative e approvazioni</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('oggi').scrollIntoView({behavior:'smooth',block:'start'});">Situazione attuale nel mondo</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('referendum').scrollIntoView({behavior:'smooth',block:'start'});">Uso nei referendum</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('amministrative').scrollIntoView({behavior:'smooth',block:'start'});">Uso nelle elezioni amministrative</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('politiche').scrollIntoView({behavior:'smooth',block:'start'});">Uso nelle elezioni politiche</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('tecnologie').scrollIntoView({behavior:'smooth',block:'start'});">Tecnologie utilizzate</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('blockchain').scrollIntoView({behavior:'smooth',block:'start'});">Blockchain e voto elettronico</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('privacy').scrollIntoView({behavior:'smooth',block:'start'});">Privacy e anonimato</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('audit').scrollIntoView({behavior:'smooth',block:'start'});">Audit e verificabilità</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('standard').scrollIntoView({behavior:'smooth',block:'start'});">Standard internazionali</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('futuro').scrollIntoView({behavior:'smooth',block:'start'});">Il futuro dell’e‑voting</a></li>
+</ul>
+
+<!-- ===================== SEZIONI ===================== -->
+
+<h3 id="origini" class="titolo-sezione">Origini del voto elettronico</h3>
+<p>
+Le prime forme di voto elettronico risalgono agli anni ’60 negli Stati Uniti, quando vennero introdotti sistemi di conteggio meccanico e successivamente scanner ottici per la lettura delle schede.  
+Negli anni ’80 iniziano i primi esperimenti con macchine elettroniche dedicate (DRE – Direct Recording Electronic), che registravano il voto direttamente in memoria digitale.
+</p>
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="timeline" class="titolo-sezione">Timeline storica</h3>
+
+<div class="timeline">
+    <div class="timeline-entry">
+        <strong>1964 – USA</strong><br>
+        Prime macchine per conteggio meccanico.
+    </div>
+
+    <div class="timeline-entry">
+        <strong>1986 – USA</strong><br>
+        Prime macchine DRE utilizzate in elezioni locali.
+    </div>
+
+    <div class="timeline-entry">
+        <strong>1996 – Brasile</strong><br>
+        Introduzione del voto elettronico su larga scala.
+    </div>
+
+    <div class="timeline-entry">
+        <strong>2000 – India</strong><br>
+        Prime elezioni con Electronic Voting Machines (EVM).
+    </div>
+
+    <div class="timeline-entry">
+        <strong>2005 – Estonia</strong><br>
+        Primo paese al mondo ad adottare il voto online per elezioni nazionali.
+    </div>
+
+    <div class="timeline-entry">
+        <strong>2007 – Olanda</strong><br>
+        Ritiro totale delle macchine elettroniche per problemi di sicurezza.
+    </div>
+
+    <div class="timeline-entry">
+        <strong>2009 – Germania</strong><br>
+        Corte Costituzionale dichiara incostituzionale il voto elettronico non verificabile.
+    </div>
+
+    <div class="timeline-entry">
+        <strong>2014 – Norvegia</strong><br>
+        Sospensione del voto online dopo test pilota.
+    </div>
+
+    <div class="timeline-entry">
+        <strong>2020 – Svizzera</strong><br>
+        Stop temporaneo ai sistemi di voto online per problemi di sicurezza.
+    </div>
+</div>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="adozioni-mondiali" class="titolo-sezione">Paesi che lo hanno adottato</h3>
+
+<div class="country-box">
+    <h4>🇪🇪 Estonia</h4>
+    <p>
+        Dal 2005 utilizza il voto online per elezioni nazionali.  
+        È considerato il modello più avanzato al mondo.  
+        Sistema basato su ID digitale, crittografia e verificabilità.
+    </p>
+</div>
+
+<div class="country-box">
+    <h4>🇧🇷 Brasile</h4>
+    <p>
+        Dal 1996 utilizza macchine elettroniche per tutte le elezioni federali.  
+        Conteggio rapidissimo, ma verificabilità limitata.
+    </p>
+</div>
+
+<div class="country-box">
+    <h4>🇮🇳 India</h4>
+    <p>
+        Utilizza EVM dal 2000.  
+        Gestisce elezioni con centinaia di milioni di votanti.
+    </p>
+</div>
+
+<div class="country-box">
+    <h4>🇺🇸 Stati Uniti</h4>
+    <p>
+        Uso misto: scanner ottici, macchine DRE, sistemi ibridi.  
+        Grande attenzione alla verificabilità e audit.
+    </p>
+</div>
+
+<div class="country-box">
+    <h4>🇨🇭 Svizzera</h4>
+    <p>
+        Test di voto online dal 2004.  
+        Programma sospeso nel 2020 per problemi di sicurezza.
+    </p>
+</div>
+
+<div class="country-box">
+    <h4>🇳🇱 Olanda</h4>
+    <p>
+        Ha ritirato completamente il voto elettronico nel 2007.
+    </p>
+</div>
+
+<div class="country-box">
+    <h4>🇩🇪 Germania</h4>
+    <p>
+        Nel 2009 la Corte Costituzionale ha stabilito che il voto elettronico deve essere verificabile da ogni cittadino.
+    </p>
+</div>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="tipologie-sistemi" class="titolo-sezione">Tipologie di sistemi e‑voting</h3>
+
+<ul class="elencopunti">
+    <li>Macchine DRE (Direct Recording Electronic)</li>
+    <li>Scanner ottici per schede cartacee</li>
+    <li>Voto online (remote e‑voting)</li>
+    <li>Sistemi ibridi (cartaceo + digitale)</li>
+    <li>Voto elettronico assistito</li>
+</ul>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="sicurezza" class="titolo-sezione">Problemi di sicurezza</h3>
+
+<ul class="elencopunti">
+    <li>Manipolazione del software</li>
+    <li>Attacchi informatici</li>
+    <li>Mancanza di verificabilità indipendente</li>
+    <li>Dipendenza da infrastrutture critiche</li>
+    <li>Problemi di privacy e anonimato</li>
+</ul>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="costs" class="titolo-sezione">Costi e sostenibilità</h3>
+
+<p>
+I costi includono produzione delle macchine, manutenzione, formazione del personale, sicurezza informatica, audit, certificazioni e aggiornamenti software.
+</p>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="fallimenti" class="titolo-sezione">Casi di fallimento o ritiro</h3>
+
+<ul class="elencopunti">
+    <li>Olanda (2007): ritiro totale</li>
+    <li>Germania (2009): incostituzionale</li>
+    <li>Irlanda: progetto abbandonato per costi eccessivi</li>
+    <li>Norvegia: sospensione del voto online</li>
+    <li>Svizzera: stop temporaneo nel 2020</li>
+</ul>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="successi" class="titolo-sezione">Casi di successo</h3>
+
+<ul class="elencopunti">
+    <li>Estonia: voto online stabile dal 2005</li>
+    <li>Brasile: conteggio rapidissimo</li>
+    <li>India: gestione elezioni di massa</li>
+</ul>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="normative" class="titolo-sezione">Normative e approvazioni</h3>
+
+<div class="law-box">
+    <h4>Linee guida OSCE</h4>
+    <p>Richiedono verificabilità indipendente e audit pubblico.</p>
+</div>
+
+<div class="law-box">
+    <h4>Standard ISO/IEC</h4>
+    <p>Definiscono requisiti tecnici per sistemi di voto elettronico.</p>
+</div>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="oggi" class="titolo-sezione">Situazione attuale nel mondo</h3>
+
+<p>
+Il voto elettronico è oggi adottato in forme diverse: macchine DRE, scanner ottici, voto online, sistemi ibridi.  
+Ogni paese adotta soluzioni diverse in base a normative, infrastrutture e cultura digitale.
+</p>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="referendum" class="titolo-sezione">Uso nei referendum</h3>
+
+<p>
+Alcuni paesi hanno sperimentato il voto elettronico nei referendum, soprattutto a livello locale o regionale.
+</p>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="amministrative" class="titolo-sezione">Uso nelle elezioni amministrative</h3>
+
+<p>
+Molti test di voto elettronico sono stati condotti in elezioni comunali o regionali, dove il rischio sistemico è più contenuto.
+</p>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="politiche" class="titolo-sezione">Uso nelle elezioni politiche</h3>
+
+<p>
+Solo pochi paesi utilizzano il voto elettronico per elezioni politiche nazionali, principalmente Estonia, Brasile e India.
+</p>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="tecnologie" class="titolo-sezione">Tecnologie utilizzate</h3>
+
+<ul class="elencopunti">
+    <li>Crittografia end‑to‑end</li>
+    <li>Firma digitale</li>
+    <li>Hardware certificato</li>
+    <li>Scanner ottici</li>
+    <li>Blockchain (in alcuni test)</li>
+</ul>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="blockchain" class="titolo-sezione">Blockchain e voto elettronico</h3>
+
+<p>
+La blockchain è stata proposta come tecnologia per garantire integrità e verificabilità del voto, ma presenta sfide legate a privacy, scalabilità e complessità.
+</p>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="privacy" class="titolo-sezione">Privacy e anonimato</h3>
+
+<p>
+La protezione dell’anonimato è una delle sfide principali del voto elettronico, soprattutto nei sistemi online.
+</p>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="audit" class="titolo-sezione">Audit e verificabilità</h3>
+
+<p>
+La verificabilità indipendente è considerata essenziale da molte organizzazioni internazionali.  
+I sistemi devono permettere audit pubblici senza compromettere l’anonimato.
+</p>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="standard" class="titolo-sezione">Standard internazionali</h3>
+
+<p>
+Diversi organismi internazionali hanno definito linee guida e standard tecnici per i sistemi di voto elettronico.  
+Questi standard non impongono modelli specifici, ma stabiliscono criteri minimi di sicurezza, verificabilità e trasparenza.
+</p>
+
+<ul class="elencopunti">
+    <li><strong>ISO/IEC 15408</strong> – Common Criteria per la valutazione della sicurezza dei sistemi informatici.</li>
+    <li><strong>ISO/IEC 27001</strong> – Gestione della sicurezza delle informazioni.</li>
+    <li><strong>OSCE/ODIHR Guidelines</strong> – Raccomandazioni sulla verificabilità e trasparenza del voto elettronico.</li>
+    <li><strong>Council of Europe Recommendations</strong> – Linee guida per garantire integrità e anonimato.</li>
+</ul>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+
+<h3 id="futuro" class="titolo-sezione">Il futuro dell’e‑voting</h3>
+
+<p>
+Il futuro del voto elettronico dipende da diversi fattori: maturità tecnologica, fiducia pubblica, normative, sicurezza informatica e costi.  
+Le tendenze attuali mostrano un interesse crescente verso sistemi:
+</p>
+
+<ul class="elencopunti">
+    <li><strong>ibridi</strong> (scheda cartacea + scanner digitale)</li>
+    <li><strong>verificabili end‑to‑end</strong> con crittografia avanzata</li>
+    <li><strong>auditabili pubblicamente</strong> senza compromettere l’anonimato</li>
+    <li><strong>basati su identità digitale</strong> (come in Estonia)</li>
+    <li><strong>con protocolli crittografici avanzati</strong> (Zero‑Knowledge Proofs)</li>
+</ul>
+
+<p>
+Molti paesi stanno valutando il voto elettronico come possibile strumento per facilitare la partecipazione, soprattutto per cittadini residenti all’estero.  
+Tuttavia, la sicurezza e la verificabilità rimangono le principali sfide da affrontare.
+</p>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-elettori').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+</div>
