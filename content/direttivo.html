@@ -6,7 +6,7 @@
         margin: 0;
         padding: 40px 0;
         width: 100%;
-        overflow-x: hidden; /* Evita lo scorrimento indotto dell'intera pagina */
+        overflow-x: hidden;
     }
 
     /* Sfondo responsivo */
@@ -15,7 +15,7 @@
         inset: 0;
         background-size: cover;
         background-position: center;
-        opacity: 0.30;
+        opacity: 0.40;
         z-index: 0;
         width: 100%;
         height: 100%;
@@ -25,12 +25,6 @@
         position: relative;
         z-index: 1;
         width: 100%;
-    }
-
-    /* Regola per forzare il no-wrap sulle singole righe del sottotitolo */
-    .subtitle-line {
-        white-space: nowrap !important;
-        display: block;
     }
 
     /* Container per lo scroll orizzontale su dispositivi mobili */
@@ -43,8 +37,8 @@
 
     .tabella-organigramma {
         border-collapse: collapse;
-        margin: 20px auto;
-        min-width: 650px; /* Assicura la leggibilità min su mobile */
+        margin: 0 auto;
+        min-width: 650px; /* Assicura la larghezza uniforme */
     }
 
     /* Reset totale bordi e sfondi ereditati da style.css */
@@ -66,11 +60,24 @@
 
     .tabella-organigramma td {
         width: 5cm;
-        height: 6cm;
         padding: 5px;
         text-align: center;
         vertical-align: top;
         box-sizing: border-box;
+    }
+
+    /* Stile per le celle del testo introduttivo */
+    .cella-introduzione {
+        width: auto !important;
+        height: auto !important;
+        padding: 4px 10px !important;
+        white-space: nowrap;
+    }
+
+    /* Stile per la riga di separazione vuota */
+    .riga-separatore td {
+        height: 25px !important;
+        padding: 0 !important;
     }
 
     /* Stile per la foto */
@@ -109,7 +116,6 @@
     @media (max-width: 768px) {
         .tabella-organigramma td {
             width: auto !important;
-            height: auto !important;
             padding: 8px 4px;
         }
         .foto-membro {
@@ -120,18 +126,41 @@
 </style>
 
 <div class="pagina-organigramma">
-    <div class="sfondo" style="background-image: url('/GDT/immagini/san-marino-visto-da-rimini.jpg');"></div>
+    <div class="sfondo" style="background-image: url('immagini/san-marino-visto-da-rimini.jpg');"></div>
     <div class="contenuto">
         <h1 style="text-align: center !important;">🏛️ Consiglio direttivo</h1>
-        <p class="subtitle" style="text-align: center !important;">
-            <span class="subtitle-line">In carica per il triennio <strong>2025-2028</strong>,</span>
-            <span class="subtitle-line">a seguito delle elezioni svoltesi durante l'Assemblea Generale dei Soci del <strong>20 maggio 2025</strong>,</span>
-            <span class="subtitle-line">il Consiglio Direttivo dell'Associazione è così composto:</span>
-        </p>
 
         <div class="tabella-container">
             <table class="tabella-organigramma" border="0">
-                <!-- Riga 1 -->
+                <!-- Testo Introduttivo integrato nella tabella -->
+                <tr>
+                    <td colspan="4" class="cella-introduzione">
+                        <p class="subtitle" style="text-align: center !important; margin: 0;">
+                            In carica per il triennio <strong>2025-2028</strong>,
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="cella-introduzione">
+                        <p class="subtitle" style="text-align: center !important; margin: 0;">
+                            a seguito delle elezioni svoltesi durante l'<em>Assemblea Generale dei Soci</em> del <strong>20 maggio 2025</strong>,
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="cella-introduzione">
+                        <p class="subtitle" style="text-align: center !important; margin: 0;">
+                            il <strong><em>Consiglio Direttivo</em></strong> dell'Associazione è così composto:
+                        </p>
+                    </td>
+                </tr>
+
+                <!-- Riga vuota di separazione -->
+                <tr class="riga-separatore">
+                    <td colspan="4"></td>
+                </tr>
+
+                <!-- Riga 1 Membri -->
                 <tr>
                     <td></td>
                     <td>
@@ -140,14 +169,14 @@
                         <span class="nome-firma">Berardi Martino</span>
                     </td>
                     <td>
-                        <img src="/GDT/immagini/luciano.jpg" class="foto-membro" alt="Sammaritani Luciano">
+                        <img src="immagini/luciano.jpg" class="foto-membro" alt="Sammaritani Luciano">
                         <span class="carica">Vice Presidente</span>
                         <span class="nome-firma">Sammaritani Luciano</span>
                     </td>
                     <td></td>
                 </tr>
 
-                <!-- Riga 2 -->
+                <!-- Riga 2 Membri -->
                 <tr>
                     <td>
                         <img src="/GDT/immagini/mirco.jpg" class="foto-membro" alt="Ciacci Mirco">
@@ -171,7 +200,7 @@
                     </td>
                 </tr>
 
-                <!-- Riga 3 -->
+                <!-- Riga 3 Membri -->
                 <tr>
                     <td>
                         <img src="/GDT/immagini/helene.jpg" class="foto-membro" alt="Giannini Helene">
