@@ -120,10 +120,12 @@ header {
 /* MENU LATERALE */
 /* ========================================== */
 nav {
-    background: linear-gradient(180deg, var(--nav-bg), #7fe0d0);
+    background: linear-gradient(180deg, var(--nav-bg), #8dc6fc);
     width: 250px;
     padding: 20px 15px;
     flex-shrink: 0;
+    /* border-right: 2px solid #0319df; */
+    /* box-shadow: 2px 0 10px  #b9c0fc; */
     border-right: 2px solid rgba(5, 152, 250, 0.2);
     box-shadow: 2px 0 10px rgba(0,0,0,0.05);
 }

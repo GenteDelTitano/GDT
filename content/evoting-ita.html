@@ -1,0 +1,265 @@
+<style>
+    .pagina-evoting {
+        position: relative;
+        min-height: 100vh;
+        margin: 0;
+        padding: 40px 20px;
+        box-sizing: border-box;
+    }
+
+    .sfondo-evoting {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.15;
+        z-index: 0;
+    }
+
+    .contenuto-evoting {
+        position: relative;
+        z-index: 1;
+        max-width: 1000px;
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+        color: #2c3e50;
+        line-height: 1.6;
+    }
+
+    .evoting-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-left: 5px solid #1a5a1a;
+    }
+
+    .evoting-mail-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-left: 5px solid #0d6efd;
+        border-radius: 6px;
+        padding: 20px;
+        margin: 20px 0;
+        font-size: 0.95rem;
+    }
+
+    .evoting-link-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .evoting-link-list li {
+        margin-bottom: 12px;
+        padding-left: 20px;
+        position: relative;
+    }
+
+    .evoting-link-list li::before {
+        content: "🔗";
+        position: absolute;
+        left: 0;
+        top: 2px;
+    }
+
+    .evoting-link-list a {
+        color: #0d6efd;
+        text-decoration: none;
+        word-break: break-all;
+        font-weight: bold;
+    }
+
+    .evoting-link-list a:hover {
+        text-decoration: underline;
+    }
+
+    /* Reset totale tabelle per evitare sovrascritture CSS ereditate */
+    .tabella-evoting,
+    .tabella-evoting tr,
+    .tabella-evoting tr:nth-child(even),
+    .tabella-evoting tr:last-child,
+    .tabella-evoting td,
+    .tabella-evoting th {
+        border: 1px solid #ddd !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .tabella-evoting {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        table-layout: fixed;
+    }
+
+    .tabella-evoting th {
+        background-color: #f1f3f5 !important;
+        color: #1a5a1a;
+        padding: 10px;
+        font-size: 0.9rem;
+        text-align: left;
+    }
+
+    .tabella-evoting td {
+        padding: 10px;
+        font-size: 0.88rem;
+        vertical-align: top;
+    }
+
+    .evoting-badge {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .badge-danger { background-color: #f8d7da; color: #842029; }
+    .badge-warning { background-color: #fff3cd; color: #664d03; }
+    .badge-info { background-color: #cff4fc; color: #055160; }
+</style>
+
+<div class="pagina-evoting">
+    <div class="sfondo-evoting" style="background-image: url('immagini/san-marino-visto-da-rimini.jpg');"></div>
+    
+    <div class="contenuto-evoting">
+        <h1 style="text-align: center !important;">🗳️ Voto Elettronico (e-Voting)</h1>
+        <p class="subtitle" style="text-align: center !important;">
+            Analisi storica, dossier inviato alle autorità ed evoluzione dei test di voto elettronico in Italia
+        </p>
+
+        <!-- Sezione 1: Nota d'archivio e Email inviata -->
+        <div class="evoting-card">
+            <h2 style="color: #1a5a1a; margin-top: 0;">📩 Da una ricerca sullo stato della sperimentazione in Italia</h2>
+            <p>
+                Nel 2015, a seguito di un confronto istituzionale,<br>
+                era stato predisposto e trasmesso al Segretario di Stato dell'epoca e al Presidente della Consulta<br>
+                un report informativo contenente una ricognizione sullo stato dell'arte dell'e-Voting,<br>
+                focalizzato sulle sperimentazioni italiane e sulle relative criticità.
+            </p>
+
+            <div class="evoting-mail-box">
+                <ul class="evoting-link-list">
+                    <li>
+                        <strong>Report generale e-Voting:</strong><br>
+                        <a href="http://www.freefoundation.com/wp-content/uploads/2012/09/125_-_e-VOTING.pdf" target="_blank" rel="noopener">
+                            http://www.freefoundation.com/wp-content/uploads/2012/09/125_-_e-VOTING.pdf
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Panoramica e situazione in Italia (Andrea Gratteri - Marzo 2015):</strong><br>
+                        <a href="http://www.forumcostituzionale.it/wordpress/wp-content/uploads/2015/03/gratteri.pdf" target="_blank" rel="noopener">
+                            http://www.forumcostituzionale.it/wordpress/wp-content/uploads/2015/03/gratteri.pdf
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Rassegna Voto Online Salento:</strong><br>
+                        <a href="http://www.salentoevoting.it" target="_blank" rel="noopener">
+                            http://www.salentoevoting.it
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Relazione finale Progetto “Salento eVoting 2013”:</strong><br>
+                        <a href="http://www.salentoevoting.it/sites/www.salentoevoting.it/files/documenti/relazione_eVoting%202013_web.pdf" target="_blank" rel="noopener">
+                            http://www.salentoevoting.it/sites/www.salentoevoting.it/files/documenti/relazione_eVoting%202013_web.pdf
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Sperimentazione Cremona 2003 (Galleria fotografica):</strong><br>
+                        <a href="http://www.repubblica.it/2003/e/gallerie/politica/voto-elettronico/1.html" target="_blank" rel="noopener">
+                            http://www.repubblica.it/2003/e/gallerie/politica/voto-elettronico/1.html
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Vulnerabilità e vulnerabilità negli USA (2012):</strong><br>
+                        <a href="http://www.tecnocino.it/2012/11/articolo/elezioni-usa-facilissimo-hackerare-le-votazioni-elettroniche-video/41565/" target="_blank" rel="noopener">
+                            http://www.tecnocino.it/2012/11/articolo/elezioni-usa-facilissimo-hackerare-le-votazioni-elettroniche-video/41565/
+                        </a>
+                    </li>
+                </ul>
+
+                <p>Tutti i sistemi sono costosi in fase di start-up ma questo, a mio modesto avviso, oltre che antiquato, tecnologicamente parlando, e' un' inutile investimento.</p>
+                <p>Mettere d'accordo sicurezza, a tutti i livelli, facilita' d'uso per l'elettore, minore investimento possibile in vista di future evoluzioni/aggiornamenti, penso sia abbastanza difficile.</p>
+            </div>
+        </div>
+
+        <!-- Sezione 2: Approfondimento storico delle sperimentazioni in Italia -->
+        <div class="evoting-card">
+            <h2 style="color: #1a5a1a; margin-top: 0;">🇮🇹 La Cronistoria dei Test in Italia</h2>
+            <p>
+                A partire dagli anni 2000, il Ministero dell'Interno e vari enti locali italiani hanno promosso molteplici progetti pilota per valutare l'introduzione dell'e-voting al seggio o a distanza. La quasi totalità delle sperimentazioni si è svolta con valore **esclusivamente consultivo o affiancato alla scheda cartacea tradizionale**.
+            </p>
+
+            <table class="tabella-evoting">
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">Anno / Luogo</th>
+                        <th style="width: 25%;">Tecnologia Utilizzata</th>
+                        <th style="width: 35%;">Esito e Risultati</th>
+                        <th style="width: 20%;">Stato Finale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Cremona (2003)</strong><br><em>Elezioni Amministrative</em></td>
+                        <td>Kiosk touch-screen dedicati (DRE - Direct Recording Electronic) installati all'interno delle cabine elettorali.</td>
+                        <td>Test di usabilità positivo per la popolazione, ma con costi infrastrutturali e di supporto tecnico fuori scala per singolo seggio.</td>
+                        <td><span class="evoting-badge badge-danger">Abbandonato</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Avellino, Liguria, Spezia (2004 - 2006)</strong></td>
+                        <td>Smart card personali, lettori di schede al seggio e terminali protetti.</td>
+                        <td>I tempi di spoglio si ridussero, ma nacquero forti dubbi dei periti informatici sulla possibilità di audit indipendente dei voti registrati solo in memoria.</td>
+                        <td><span class="evoting-badge badge-danger">Accantonato</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Salento (2013)</strong><br><em>Progetto Salento eVoting</em></td>
+                        <td>Piattaforma web-based gestita dall'Università del Salento per consultazioni universitarie e comunali pilota.</td>
+                        <td>Risultò una delle sperimentazioni meglio documentate. Dimostrò la fattibilità per referendum locali, ma rilevò la forte dipendenza da infrastrutture di rete stabili.</td>
+                        <td><span class="evoting-badge badge-warning">Limitato all'Unisalento</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lombardia & Veneto (2017)</strong><br><em>Referendum Autonomia</em></td>
+                        <td>Oltre 24.000 "Tablet da Voto" acquistati dalla multinazionale Smartmatic per un valore di ~23 milioni di Euro.</td>
+                        <td>Il voto procedette senza blackout gravi, ma l'assenza di un riscontro cartaceo stampato (VVPAT) scatenò aspre polemiche tra gli esperti di cyber-security.</td>
+                        <td><span class="evoting-badge badge-danger">Dismesso / Inutilizzato</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Sezione 3: Che fine hanno fatto i dispositivi? -->
+        <div class="evoting-card">
+            <h2 style="color: #1a5a1a; margin-top: 0;">📦 Che fine hanno fatto i dispositivi hardware?</h2>
+            <p>
+                Una delle criticità principali segnalate nel dossier inviato alle autorità riguarda i **costi d'acquisto e il rapido decadimento tecnologico (obsolescenza)**. La sorte dell'hardware impiegato nelle varie sperimentazioni italiane ne è la dimostrazione:
+            </p>
+            
+            <ul>
+                <li>
+                    <strong>I Tablet del Referendum 2017 (Lombardia/Veneto):</strong> Dopo il referendum, migliaia di tablet Smartmatic sono rimasti depositati in magazzini provinciali. Alcune quote sono state distribuite alle scuole pubbliche durante l'emergenza scolastica 2020-2021 per la Didattica a Distanza (DaD), mentre la maggioranza è rimasta inutilizzata a causa del software proprietario bloccato e delle batterie degradate.
+                </li>
+                <li>
+                    <strong>Le macchine da seggio 2003-2006:</strong> Gli apparati utilizzati a Cremona, Spezia e in Campania sono stati rottamati come RAEE (Rifiuti di Apparecchiature Elettriche ed Elettroniche) o rimasti nei depositi del Ministero dell'Interno, in quanto l'evoluzione dei sistemi operativi e della crittografia ha reso il loro hardware del tutto obsoleto nell'arco di pochissimi anni.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Sezione 4: Conclusioni ed evoluzione globale -->
+        <div class="evoting-card">
+            <h2 style="color: #1a5a1a; margin-top: 0;">⚠️ Le criticità irrisolte: Perché molti Paesi sono tornati alla carta</h2>
+            <p>
+                L'analisi condotta nel report si è rivelata profetica. In ambito internazionale e nazionale si è assistito ad un vero e proprio **abbandono o forte ridimensionamento dell'e-voting politico**:
+            </p>
+
+            <ul>
+                <li><strong>La Germania:</strong> Nel 2009 la Corte Costituzionale Tedesca ha dichiarato incostituzionale l'uso delle macchine da voto prive di riscontro cartaceo visibile, stabilendo che il processo elettorale deve essere pubblicamente verificabile da qualsiasi cittadino senza competenze informatiche avanzate.</li>
+                <li><strong>Olanda e Regno Unito:</strong> Hanno completamente abbandonato i sistemi elettronici ritornando al 100% alla scheda e matita copiativa per motivi di sicurezza informatica e vulnerabilità alle ingerenze esterne.</li>
+                <li><strong>Il trilemma dell'e-Voting:</strong> Garantire contemporaneamente **Anonymity** (Segretezza del voto), **Verifiability** (Possibilità per l'elettore di verificare che il voto sia stato contato) e **Security** (Impossibilità di attacchi hacker al server centrale) con costi sostenibili rimane una sfida tecnologica tuttora non completamente risolta per le consultazioni politiche a valore legale.</li>
+            </ul>
+        </div>
+    </div>
+</div>
