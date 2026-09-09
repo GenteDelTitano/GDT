@@ -15,7 +15,7 @@
         inset: 0;
         background-size: cover;
         background-position: center;
-        opacity: 0.40;
+        opacity: 0.30;
         z-index: 0;
         width: 100%;
         height: 100%;
@@ -25,6 +25,12 @@
         position: relative;
         z-index: 1;
         width: 100%;
+    }
+
+    /* Regola per forzare il no-wrap sulle singole righe del sottotitolo */
+    .subtitle-line {
+        white-space: nowrap !important;
+        display: block;
     }
 
     /* Container per lo scroll orizzontale su dispositivi mobili */
@@ -118,9 +124,9 @@
     <div class="contenuto">
         <h1 style="text-align: center !important;">🏛️ Consiglio direttivo</h1>
         <p class="subtitle" style="text-align: center !important;">
-            In carica per il triennio <strong>2025-2028</strong>,<br>
-            a seguito delle elezioni svoltesi durante l'Assemblea Generale dei Soci del <strong>20 maggio 2025</strong>,<br>
-            il Consiglio Direttivo dell'Associazione è così composto:
+            <span class="subtitle-line">In carica per il triennio <strong>2025-2028</strong>,</span>
+            <span class="subtitle-line">a seguito delle elezioni svoltesi durante l'Assemblea Generale dei Soci del <strong>20 maggio 2025</strong>,</span>
+            <span class="subtitle-line">il Consiglio Direttivo dell'Associazione è così composto:</span>
         </p>
 
         <div class="tabella-container">
