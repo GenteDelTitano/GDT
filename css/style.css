@@ -418,26 +418,6 @@ footer a:hover {
     margin: 3px;
 }
 
-.tabella-no-capo td {
-    white-space: nowrap;
-}
-
-/* Pagina Documenti */
-.testo-costruzione {
-    text-align: center;
-    color: #e74c3c;
-    font-size: 28px;
-    font-weight: bold;
-    margin: 40px 0 10px 0;
-}
-
-.sottotesto-costruzione {
-    text-align: center;
-    color: #999;
-    font-size: 16px;
-    margin: 0 0 30px 0;
-}
-
 /* ========================================== */
 /* FORM SCRIVICI */
 /* ========================================== */
@@ -825,9 +805,5 @@ textarea.form-input {
     #form-status {
         font-size: 0.9rem;
         padding: 10px 15px;
-    }
-    .no-bullet {
-        background: none !important;
-        padding-left: 0 !important;
     }
 }

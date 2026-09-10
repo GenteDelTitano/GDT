@@ -1,0 +1,442 @@
+========================================================================
+REPORT ANALISI CSS/HTML
+Cartella: C:/Users/Luciano/Desktop/Soggetti Comunita/GDT-v11
+File .css analizzati:  2
+File .html analizzati: 47
+========================================================================
+
+### 1a) DEFINIZIONI DUPLICATE (stesso selettore in PIU' FILE .css)
+------------------------------------------------------------------------
+(nessuna)
+
+
+### 1b) DEFINIZIONI RIPETUTE NELLO STESSO FILE .css
+------------------------------------------------------------------------
+(nessuna)
+
+
+### 2) SELETTORI DEFINITI NEI .css MA MAI USATI NEGLI .html
+------------------------------------------------------------------------
+
+.label
+    css\style.css
+
+.number
+    css\style.css
+
+.sottotitoloblu
+    css\style.css
+
+.stats
+    css\style.css
+
+.stats-item
+    css\style.css
+
+.success
+    css\style.css
+
+.titoloblu
+    css\style.css
+
+
+### 3) CLASSI/ID USATI NEGLI .html MA NON DEFINITI IN NESSUN .css
+------------------------------------------------------------------------
+
+#adozioni-mondiali
+    content\evoting.html
+
+#altro
+    content\attivita.html
+
+#amministrative
+    content\evoting.html
+
+#anagrafica
+    content\quanti-siamo.html
+
+#audit
+    content\evoting.html
+
+#blockchain
+    content\evoting.html
+
+#borse
+    content\attivita.html
+
+#btn-text
+    content\scrivici.html
+    content\scrivici\scrivici-emailjs.html
+    content\scrivici\scrivici-web3forms.html
+    content\scrivici\scrivici.html
+
+#cit-link1
+    content\cittadinanza.html
+
+#cit-link2
+    content\cittadinanza.html
+
+#cit-link3
+    content\cittadinanza.html
+
+#cit-link4
+    content\cittadinanza.html
+
+#cit-link5
+    content\cittadinanza.html
+
+#cit-link6
+    content\cittadinanza.html
+
+#cit-link7
+    content\cittadinanza.html
+
+#cit-link8
+    content\cittadinanza.html
+
+#contact-form
+    content\scrivici.html
+    content\scrivici\scrivici-emailjs.html
+    content\scrivici\scrivici-web3forms.html
+    content\scrivici\scrivici.html
+
+#content-container
+    index.html
+
+#costs
+    content\evoting.html
+
+#count-home
+    content\sintesi.html
+
+#count-questionario
+    content\sintesi.html
+
+#count-questionario-2
+    content\sintesi.html
+
+#count-scrivici
+    content\sintesi.html
+
+#ele-link1
+    content\elettori.html
+
+#ele-link2
+    content\elettori.html
+
+#ele-link3
+    content\elettori.html
+
+#ele-link4
+    content\elettori.html
+
+#ele-link5
+    content\elettori.html
+
+#ele-link6
+    content\elettori.html
+
+#ele-link7
+    content\elettori.html
+
+#ele-link8
+    content\elettori.html
+
+#eventi-select
+    index.html
+
+#fallimenti
+    content\evoting.html
+
+#futuro
+    content\evoting.html
+
+#incontri
+    content\attivita.html
+
+#incontri-direttivo
+    index.html
+
+#indice-cittadinanza
+    content\cittadinanza.html
+
+#indice-elettori
+    content\elettori.html
+    content\evoting.html
+
+#message
+    content\scrivici.html
+    content\scrivici\scrivici-emailjs.html
+    content\scrivici\scrivici-formsubmit.html
+    content\scrivici\scrivici-web3forms.html
+    content\scrivici\scrivici.html
+
+#normative
+    content\evoting.html
+
+#note_
+    content\questionario-2.html
+    content\questionario.html
+
+#num_
+    content\questionario-2.html
+
+#oggi
+    content\evoting.html
+
+#origini
+    content\evoting.html
+
+#page-cittadinanza
+    content\cittadinanza.html
+
+#page-elettori
+    content\elettori.html
+    content\evoting.html
+
+#politiche
+    content\evoting.html
+
+#pranzo
+    content\attivita.html
+
+#privacy
+    content\evoting.html
+
+#quiz-body
+    content\questionario-2.html
+    content\questionario.html
+
+#quizForm
+    content\questionario-2.html
+    content\questionario.html
+
+#referendum
+    content\evoting.html
+
+#scelta_
+    content\questionario-2.html
+    content\questionario.html
+
+#sicurezza
+    content\evoting.html
+
+#standard
+    content\evoting.html
+
+#submit-btn
+    content\scrivici.html
+    content\scrivici\scrivici-emailjs.html
+    content\scrivici\scrivici-web3forms.html
+    content\scrivici\scrivici.html
+
+#successi
+    content\evoting.html
+
+#tecnologie
+    content\evoting.html
+
+#timeline
+    content\evoting.html
+
+#tipologie-sistemi
+    content\evoting.html
+
+#user_email
+    content\questionario-2.html
+    content\questionario.html
+    content\scrivici.html
+    content\scrivici\scrivici-emailjs.html
+    content\scrivici\scrivici-formsubmit.html
+    content\scrivici\scrivici-web3forms.html
+    content\scrivici\scrivici.html
+
+#user_name
+    content\questionario-2.html
+    content\questionario.html
+    content\scrivici.html
+    content\scrivici\scrivici-emailjs.html
+    content\scrivici\scrivici-formsubmit.html
+    content\scrivici\scrivici-web3forms.html
+    content\scrivici\scrivici.html
+
+#user_phone
+    content\scrivici.html
+    content\scrivici\scrivici-emailjs.html
+    content\scrivici\scrivici-formsubmit.html
+    content\scrivici\scrivici-web3forms.html
+    content\scrivici\scrivici.html
+
+.badge
+    content\cittadinanza.html
+
+.badge-blue
+    content\cittadinanza.html
+
+.badge-danger
+    content\evoting-ita.html
+
+.badge-green
+    content\cittadinanza.html
+
+.badge-info
+    content\evoting-ita.html
+
+.badge-purple
+    content\cittadinanza.html
+
+.badge-red
+    content\cittadinanza.html
+
+.badge-warning
+    content\evoting-ita.html
+
+.badge-yellow
+    content\cittadinanza.html
+
+.btn-container
+    content\questionario-2.html
+    content\questionario.html
+
+.btn-save
+    content\questionario-2.html
+    content\questionario.html
+
+.btn-send
+    content\questionario-2.html
+    content\questionario.html
+
+.carica
+    content\direttivo.html
+
+.cella-introduzione
+    content\direttivo.html
+
+.contenuto
+    content\direttivo.html
+
+.contenuto-evoting
+    content\evoting-ita.html
+
+.country-box
+    content\evoting.html
+
+.elencopunti
+    content\cittadinanza.html
+    content\elettori.html
+    content\evoting.html
+
+.evoting-badge
+    content\evoting-ita.html
+
+.evoting-card
+    content\evoting-ita.html
+
+.evoting-link-list
+    content\evoting-ita.html
+
+.evoting-mail-box
+    content\evoting-ita.html
+
+.foto-membro
+    content\direttivo.html
+
+.highlight-row
+    content\cittadinanza.html
+
+.indice-lista
+    content\cittadinanza.html
+    content\elettori.html
+    content\evoting.html
+
+.info-box
+    content\cittadinanza.html
+
+.law-box
+    content\cittadinanza.html
+    content\elettori.html
+    content\evoting.html
+
+.lista-scadenze
+    content\bacheca.html
+
+.messaggio-grazie
+    content\eventi-2026\index.html
+
+.nome-firma
+    content\direttivo.html
+
+.note-box
+    content\questionario-2.html
+    content\questionario.html
+
+.page-title
+    content\iscritti-per-comunita.html
+
+.pagina-evoting
+    content\evoting-ita.html
+
+.pagina-organigramma
+    content\direttivo.html
+
+.ricordi-item
+    content\ricordi.html
+
+.riga-separatore
+    content\direttivo.html
+
+.sfondo
+    content\direttivo.html
+
+.sfondo-evoting
+    content\evoting-ita.html
+
+.sintesi-container
+    content\sintesi.html
+
+.subtotal-row
+    content\cittadinanza.html
+
+.tabella-cittadinanza
+    content\cittadinanza.html
+
+.tabella-container
+    content\direttivo.html
+
+.tabella-evoting
+    content\evoting-ita.html
+
+.tabella-organigramma
+    content\direttivo.html
+
+.table-container
+    content\questionario-2.html
+    content\questionario.html
+
+.timeline
+    content\evoting.html
+
+.timeline-entry
+    content\evoting.html
+
+.titolo-sezione
+    content\cittadinanza.html
+    content\elettori.html
+    content\evoting.html
+
+.torna-indice
+    content\cittadinanza.html
+    content\elettori.html
+    content\evoting.html
+
+.user-info-box
+    content\questionario-2.html
+    content\questionario.html
+
+
+### NOTE
+- Le @media/@supports sono espanse ricorsivamente.
+- Le @keyframes sono ignorate.
+- I tag HTML (div, p, table, ...) sono esclusi da sez. 2.
+- Le classi aggiunte via JavaScript a runtime NON sono rilevate:
+  possibili falsi positivi nella sezione 2.

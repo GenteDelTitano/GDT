@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gente del Titano - Associazione Cittadini Sammarinesi residenti nella circoscrizione Consolare di Rimini</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/x-icon" href="immagini/Logo_GDT.jpg">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style-home.css">    
+	<link rel="icon" type="image/x-icon" href="immagini/Logo_GDT.jpg">
 </head>
-<body>
+<body class="home-page">
 
     <header>
         <div class="header-left">
@@ -35,8 +36,7 @@
 
                 <!-- MENU A TENDINA EVENTI -->
                 <li>
-                    <select id="eventi-select" onchange="caricaEvento(this.value)" 
-                        style="width: 100%; padding: 8px 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95rem; background-color: white; cursor: pointer;">
+                    <select id="eventi-select" onchange="caricaEvento(this.value)">
                         <option value="">📅 Eventi Anno?</option>
                         <option value="eventi-2026">Eventi 2026</option>
                         <option value="eventi-2025">Eventi 2025</option>
@@ -55,9 +55,8 @@
                 
                 <!-- MENU A TENDINA INCONTRI DIRETTIVO -->
                 <li>
-                    <select id="incontri-direttivo" onchange="caricaEvento(this.value)" 
-                        style="width: 100%; padding: 8px 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95rem; background-color: white; cursor: pointer;">
-                        <option value="">👫 Incontri Direttivo Anno?</option>
+                    <select id="incontri-direttivo" onchange="caricaEvento(this.value)">
+                        <option value="">👫 Incontri Anno?</option>
                         <option value="incontri-direttivo-2026">Incontri Direttivo 2026</option>
                         <option value="incontri-direttivo-2025">Incontri Direttivo 2025</option>
                         <option value="incontri-direttivo-2023">Incontri Direttivo 2023</option>
