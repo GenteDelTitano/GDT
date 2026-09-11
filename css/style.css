@@ -403,19 +403,25 @@ footer a:hover {
 /* UTILITY */
 /* ========================================== */
 .titoloblu {
-    text-align: center;
-    color: blue;
-    font-size: 22px;
+    color: #0886f5fb;
+    font-size: 26px;
     font-weight: bold;
+    line-height: 1 !important; 
     margin: 3px;
+    /* padding: 1px 1px; */
+    text-align: center !important; 
+    border-bottom: 3px solid #0886f5fb;
+    padding-bottom: 12px;
 }
 
 .sottotitoloblu {
-    text-align: center;
-    color: #8fc5ff;
-    font-size: 18px;
+    color: #1100ff;
+    font-size: 16px;
     font-style: italic;
+    line-height: 1 !important; 
     margin: 3px;
+    /* padding: 1px 1px; */
+    text-align: center !important; 
 }
 
 /* ========================================== */
