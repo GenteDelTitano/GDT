@@ -94,6 +94,23 @@ body.home-page nav ul li select {
     transition: background 0.2s ease, color 0.2s ease;
 }
 
+body.home-page nav ul li:has(select) {
+    position: relative;
+}
+
+body.home-page nav ul li:has(select)::after {
+    content: "";
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    /* border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff; */
+    /* transform: translateY(-70%) rotate(45deg); */
+    pointer-events: none;
+}
+
 /* ==========================================
    EVENTI-SELECT  →  font 1rem fin dall'avvio
    ========================================== */
