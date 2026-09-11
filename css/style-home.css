@@ -82,47 +82,77 @@ body.home-page nav ul li a.active {
 /* ==========================================
    SELECT (tendine) — stile mattoncino
    ========================================== */
-/* Stato di default: quando è selezionato un anno valido
-   (se non è il placeholder) → giallo evidenziato */
+/* ---------- Base comune: solo struttura ---------- */
 body.home-page nav ul li select {
     width: 100%;
     padding: 10px 12px;
-    font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    background-color: #fcfbbb;     /* giallo "c'è una scelta attiva" */
-    color: #0a0000;                /* testo nero, ben leggibile */
-    border: 1px solid #c9c46e;
     border-radius: 4px;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.25),
                 0 1px 2px rgba(0,0,0,0.15);
     transition: background 0.2s ease, color 0.2s ease;
 }
 
-/* Quando è selezionato il placeholder (nessun anno scelto)
-   → torna blu come i mattoncini, testo giallo chiaro */
-body.home-page nav ul li select:has(option[value=""]:checked) {
+/* ==========================================
+   EVENTI-SELECT  →  font 1rem fin dall'avvio
+   ========================================== */
+body.home-page nav ul li select#eventi-select {
+    font-size: 1rem;
+    font-weight: 600;
     background-color: #4a90d9;
-    color: #fcfbb8;
+    color: #ffffff;
+    border: 1px solid #c9c46e;
 }
 
-/* Hover: schiarisce, in entrambi gli stati */
-body.home-page nav ul li select:hover {
+body.home-page nav ul li select#eventi-select:hover {
     background-color: #7ab3e6;
     color: #ffffff;
 }
 
-/* Focus */
-body.home-page nav ul li select:focus {
+body.home-page nav ul li select#eventi-select:focus {
     outline: none;
     border-color: #1e6fbf;
+    background-color: #ffffff;
+    color: #1e6fbf;
     box-shadow: 0 0 0 3px rgba(30, 111, 191, 0.25);
 }
 
-/* Voci della tendina aperta, sempre leggibili */
+/* ==========================================
+   INCONTRI-DIRETTIVO  →  resta 0.88rem
+   ========================================== */
+body.home-page nav ul li select#incontri-direttivo {
+    font-size: 0.88rem;
+    background-color: #4a90d9;
+    color: #ffffff;
+    border: 1px solid #c9c46e;
+}
+
+/* Placeholder (nessun anno scelto): testo più chiaro */
+body.home-page nav ul li select#incontri-direttivo:has(option[value=""]:checked) {
+    background-color: #4a90d9;
+    color: #f1f3f5;
+}
+
+body.home-page nav ul li select#incontri-direttivo:hover {
+    background-color: #7ab3e6;
+    color: #ffffff;
+}
+
+body.home-page nav ul li select#incontri-direttivo:focus {
+    outline: none;
+    border-color: #1e6fbf;
+    background-color: #ffffff;
+    color: #1e6fbf;
+    box-shadow: 0 0 0 3px rgba(30, 111, 191, 0.25);
+}
+
+/* ---------- Voci della tendina aperta, sempre leggibili ---------- */
 body.home-page nav ul li select option {
     background-color: #ffffff;
     color: #1a3a5c;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 /* ---------- MAIN: solo piccola rifinitura (opzionale) ---------- */
