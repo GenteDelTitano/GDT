@@ -164,3 +164,54 @@ body.home-page .container {
     background-color: #ffffff;
     box-shadow: 0 4px 18px rgba(30, 111, 191, 0.12);
 }
+
+/* ==========================================
+   MENU DI STAMPA
+   ========================================== */
+.menu-stampa {
+    position: absolute;
+    display: none;
+    background: #fff;
+    border: 1px solid #a9c7e3;
+    border-radius: 6px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    padding: 6px;
+    min-width: 220px;
+    z-index: 500;
+}
+
+.menu-stampa.aperto {
+    display: block;
+}
+
+.menu-stampa button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 9px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #1a3a5c;
+    font-weight: 600;
+    transition: background 0.15s ease;
+}
+
+.menu-stampa button:hover {
+    background: #eef4fb;
+}
+
+.menu-stampa .numero {
+    display: inline-block;
+    min-width: 16px;
+    font-weight: bold;
+    color: #2f6fb0;
+    margin-right: 8px;
+}
+
+/* Il link "Stampa" nel menu si comporta come gli altri */
+#btn-stampa-menu {
+    cursor: pointer;
+}

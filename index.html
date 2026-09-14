@@ -82,8 +82,24 @@
                 <li><a href="#" data-page="evoting-ita">🗳️ e-Voting Ita</a></li>
                 <li><a href="#" data-page="cittadinanza">🧑‍⚖️ Cittadinanza</a></li>
                 <li><a href="#" data-page="sintesi">🧮 Sintesi accessi</a></li>
+                <li id="li-stampa"><a href="#" id="btn-stampa-menu">🖨️ Stampa</a></li>
             </ul>
         </nav>
+
+        <div id="menu-stampa" class="menu-stampa" role="menu">
+            <button type="button" data-azione="anteprima">
+                <span class="numero">1</span> 👁️ Anteprima
+            </button>
+            <button type="button" data-azione="grafica">
+                <span class="numero">2</span> 🖨️ Stampa grafica
+            </button>
+            <button type="button" data-azione="testo">
+                <span class="numero">3</span> 📄 Stampa testo
+            </button>
+            <button type="button" data-azione="pdf">
+                <span class="numero">4</span> 💾 Salva come PDF
+            </button>
+        </div>        
 
         <main>
             <div class="container" id="content-container">
@@ -387,6 +403,207 @@
         window.ricaricaPaginaCorrente = ricaricaPaginaCorrente;
         window.paginaEsiste = paginaEsiste;
 
+        // ===================== STAMPA =====================
+        (function () {
+            const btnMenu = document.getElementById('btn-stampa-menu');
+            const menu = document.getElementById('menu-stampa');
+            if (!btnMenu || !menu) return;
+
+            // Posiziona il menu accanto alla voce di menu
+            function posizionaMenu() {
+                const rect = btnMenu.getBoundingClientRect();
+                menu.style.top  = (rect.bottom + window.scrollY) + 'px';
+                menu.style.left = (rect.right + 8 + window.scrollX) + 'px';
+            }
+
+            // Apri/chiudi
+            btnMenu.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                menu.classList.toggle('aperto');
+                if (menu.classList.contains('aperto')) posizionaMenu();
+            });
+
+            // Chiudi cliccando fuori
+            document.addEventListener('click', function (e) {
+                if (!menu.contains(e.target) && e.target !== btnMenu) {
+                    menu.classList.remove('aperto');
+                }
+            });
+
+            // Chiudi al resize
+            window.addEventListener('resize', function () {
+                menu.classList.remove('aperto');
+            });
+
+            // Scorciatoie 1/2/3/4 quando il menu è aperto
+            document.addEventListener('keydown', function (e) {
+                const tag = (e.target.tagName || '').toLowerCase();
+                if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+                if (!menu.classList.contains('aperto')) return;
+
+                if (e.key === '1') avvia('anteprima');
+                else if (e.key === '2') avvia('grafica');
+                else if (e.key === '3') avvia('testo');
+                else if (e.key === '4') avvia('pdf');
+                else if (e.key === 'Escape') menu.classList.remove('aperto');
+            });
+
+            // Click sulle voci
+            menu.querySelectorAll('button[data-azione]').forEach(function (b) {
+                b.addEventListener('click', function () {
+                    avvia(b.dataset.azione);
+                });
+            });
+
+            // ---------- DISPATCHER ----------
+            function avvia(azione) {
+                menu.classList.remove('aperto');
+                const contenitore = document.getElementById('content-container');
+                if (!contenitore) return;
+
+                // Clona e rimuove il footer automatico
+                const clone = contenitore.cloneNode(true);
+                clone.querySelectorAll('.footer-auto').forEach(el => el.remove());
+                clone.querySelectorAll('script').forEach(el => el.remove());
+
+                const nomePagina = getNomePaginaCorrente();
+                const nomeFile = costruisciNomeFile(nomePagina);
+
+                if (azione === 'anteprima') anteprima(clone, nomeFile);
+                else if (azione === 'grafica') stampaGrafica(clone, nomeFile);
+                else if (azione === 'testo')   stampaTesto(clone, nomeFile);
+                else if (azione === 'pdf')     salvaPdf(clone, nomeFile);
+            }
+
+            // Nome pagina corrente, dal parametro ?page=... o "home"
+            function getNomePaginaCorrente() {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get('page') || 'home';
+            }
+
+            // Costruisce "Gente-del-Titano-[gg-mm-aaaa]-[hh-mm]"
+            function costruisciNomeFile(nomePagina) {
+                const ora = new Date();
+                const pad = n => String(n).padStart(2, '0');
+                const data = pad(ora.getDate()) + '-' + pad(ora.getMonth() + 1) + '-' + ora.getFullYear();
+                const ore  = pad(ora.getHours()) + '-' + pad(ora.getMinutes());
+                return 'Gente-del-Titano-' + data + '-' + ore;
+            }
+
+            // ---------- ANTEPRIMA (nuova scheda) ----------
+            function anteprima(clone, nomeFile) {
+                const html = costruisciHtmlCompleto(clone, nomeFile, true);
+                const w = window.open('', '_blank');
+                if (!w) { alert('Popup bloccato. Consenti i popup per questo sito.'); return; }
+                w.document.open();
+                w.document.write(html);
+                w.document.close();
+            }
+
+            // ---------- STAMPA GRAFICA ----------
+            function stampaGrafica(clone, nomeFile) {
+                const html = costruisciHtmlCompleto(clone, nomeFile, false);
+                eseguiStampaInIframe(html);
+            }
+
+            // ---------- STAMPA TESTO ----------
+            function stampaTesto(clone, nomeFile) {
+                const testo = clone.textContent || '';
+                const w = window.open('', '_blank', 'width=800,height=600');
+                if (!w) { alert('Popup bloccato. Consenti i popup per questo sito.'); return; }
+                // Nome file nel titolo (il browser lo usa per il PDF)
+                w.document.open();
+                w.document.write(
+                    '<!DOCTYPE html><html lang="it"><head><meta charset="utf-8">' +
+                    '<title>' + escapeHtml(nomeFile) + '</title>' +
+                    '<style>body { font-family: "Courier New", monospace; white-space: pre-wrap; ' +
+                    '       font-size: 11pt; line-height: 1.5; padding: 20px; color: #000; }</style>' +
+                    '</head><body>' +
+                    escapeHtml(testo) +
+                    '</bo' + 'dy></ht' + 'ml>'
+                );
+                w.document.close();
+                setTimeout(function () {
+                    w.focus();
+                    w.print();
+                    setTimeout(function () { w.close(); }, 1000);
+                }, 300);
+            }
+
+            // ---------- SALVA COME PDF ----------
+            function salvaPdf(clone, nomeFile) {
+                if (!confirm('Nella finestra di stampa che si aprirà, scegli:\n\n' +
+                            '  • "Salva come PDF" (Chrome, Edge)\n' +
+                            '  • oppure "Microsoft Print to PDF" (Windows)\n\n' +
+                            'Il nome file sarà: ' + nomeFile + '.pdf\n\nContinuare?')) return;
+                const html = costruisciHtmlCompleto(clone, nomeFile, false);
+                eseguiStampaInIframe(html);
+            }
+
+            // ---------- UTILITY: HTML completo per la stampa ----------
+            function costruisciHtmlCompleto(clone, nomeFile, conBordino) {
+                const stili = document.querySelectorAll('link[rel="stylesheet"], style');
+                let testaStili = '';
+                stili.forEach(s => { testaStili += s.outerHTML; });
+
+                const stileExtra =
+                    '<style>' +
+                    'body { background: #fff !important; padding: 20px; }' +
+                    '.container { box-shadow: none !important; max-width: 100% !important; ' +
+                    (conBordino ? 'border: 1px dashed #ccc; ' : '') +
+                    '}' +
+                    '.footer-auto { display: none !important; }' +
+                    '</style>';
+
+                return '<!DOCTYPE html><html lang="it"><head><meta charset="utf-8">' +
+                    '<title>' + escapeHtml(nomeFile) + '</title>' +
+                    testaStili + stileExtra +
+                    '</head><body class="stampa-grafica">' +
+                    '<div class="container">' + clone.innerHTML + '</div>' +
+                    '</bo' + 'dy></ht' + 'ml>';
+            }
+
+            // ---------- UTILITY: stampa via iframe nascosto ----------
+            function eseguiStampaInIframe(html) {
+                const iframe = document.createElement('iframe');
+                iframe.style.position = 'fixed';
+                iframe.style.right = '0';
+                iframe.style.bottom = '0';
+                iframe.style.width = '0';
+                iframe.style.height = '0';
+                iframe.style.border = '0';
+                document.body.appendChild(iframe);
+
+                const doc = iframe.contentWindow.document;
+                doc.open();
+                doc.write(html);
+                doc.close();
+
+                const attesa = Array.from(doc.images).map(img => {
+                    if (img.complete) return Promise.resolve();
+                    return new Promise(res => { img.onload = img.onerror = res; });
+                });
+
+                Promise.all(attesa).then(() => {
+                    setTimeout(() => {
+                        iframe.contentWindow.focus();
+                        iframe.contentWindow.print();
+                        setTimeout(() => {
+                            document.body.removeChild(iframe);
+                        }, 1000);
+                    }, 300);
+                });
+            }
+
+            // ---------- UTILITY: escape HTML ----------
+            function escapeHtml(s) {
+                return String(s).replace(/[&<>"']/g, c => ({
+                    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+                }[c]));
+            }
+        })();
+        
         console.log('✅ Sito Gente del Titano caricato correttamente!');
         console.log('📄 Pagina corrente:', new URLSearchParams(window.location.search).get('page') || 'home');
     </script>

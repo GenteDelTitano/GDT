@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stampa - Gente del Titano</title>
+    <style>        
+        /* ==========================================
+           RESET E BASE
+           ========================================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Verdana, Arial, sans-serif;
+            background: #eef4fb;
+            color: #333;
+            min-height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #1e6fbf;
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+
+        .sottotitolo {
+            color: #557;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        /* ==========================================
+           CARD CONTENITORE
+           ========================================== */
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 28px;
+            max-width: 640px;
+            width: 100%;
+            margin-bottom: 24px;
+        }
+
+        .card h2 {
+            color: #1e6fbf;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            border-left: 4px solid #2f6fb0;
+            padding-left: 10px;
+        }
+
+        /* ==========================================
+           SELEZIONE PAGINA (select)
+           ========================================== */
+        .campo {
+            margin-bottom: 16px;
+        }
+
+        .campo label {
+            display: block;
+            font-weight: 600;
+            color: #1a3a5c;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .campo select {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 0.95rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: #fafafa;
+            cursor: pointer;
+            color: #1a3a5c;
+            font-weight: 600;
+            transition: border-color 0.2s ease;
+        }
+
+        .campo select:hover,
+        .campo select:focus {
+            border-color: #2f6fb0;
+            outline: none;
+        }
+
+        /* ==========================================
+           PULSANTI
+           ========================================== */
+        .pulsanti {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .pulsanti button {
+            border: none;
+            border-radius: 8px;
+            padding: 12px 14px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.2s ease;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .pulsanti button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .pulsanti button:active {
+            transform: translateY(0);
+        }
+
+        .btn-anteprima { background: #6c757d; }
+        .btn-grafica   { background: #2f6fb0; }
+        .btn-testo     { background: #17a2b8; }
+        .btn-pdf       { background: #28a745; }
+
+        .numero-tasto {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 4px;
+            padding: 1px 6px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* ==========================================
+           AREA DI ANTEPRIMA (nascosta)
+           ========================================== */
+        #area-contenuto {
+            display: none;
+        }
+
+        /* ==========================================
+           MESSAGGIO DI STATO
+           ========================================== */
+        #stato {
+            margin-top: 16px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: center;
+            display: none;
+        }
+
+        #stato.ok {
+            background: #e8f5e9;
+            color: #1b5e20;
+            border: 1px solid #a5d6a7;
+            display: block;
+        }
+
+        #stato.err {
+            background: #ffebee;
+            color: #b71c1c;
+            border: 1px solid #ef9a9a;
+            display: block;
+        }
+
+        /* ==========================================
+           SCORCIATOIE DA TASTIERA
+           ========================================== */
+        .scorciatoie {
+            margin-top: 20px;
+            padding: 14px;
+            background: #f4f8fd;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #445;
+            line-height: 1.7;
+        }
+
+        .scorciatoie strong {
+            color: #1e6fbf;
+        }
+
+        /* ==========================================
+           REGOLE DI STAMPA (per la pagina principale)
+           ========================================== */
+        @media print {
+            body { background: #fff; padding: 0; }
+            .card, .scorciatoie, h1, .sottotitolo {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🖨️ Centro di Stampa</h1>
+    <p class="sottotitolo">Seleziona la pagina e scegli la modalità di stampa</p>
+
+    <div class="card">
+        <h2>1. Scegli la pagina</h2>
+        <div class="campo">
+            <label for="selezione-pagina">Pagina da stampare:</label>
+            <select id="selezione-pagina">
+                <option value="home">🏠 Home</option>
+                <option value="direttivo">🏛️ Direttivo</option>
+                <option value="storia">📖 Storia</option>
+                <option value="quanti-siamo">👥 Quanti Siamo</option>
+                <option value="iscritti-per-comunita">👥 Lista Comunità</option>
+                <option value="eventi-2026">📅 Eventi 2026</option>
+                <option value="eventi-2025">📅 Eventi 2025</option>
+                <option value="eventi-2024">📅 Eventi 2024</option>
+                <option value="eventi-2023">📅 Eventi 2023</option>
+                <option value="ricordi">📸 Ricordi</option>
+                <option value="contatti">📇 Contatti</option>
+                <option value="documenti">📄 Documenti</option>
+                <option value="link">🔗 Link Utili</option>
+                <option value="bacheca">📣 Bacheca</option>
+            </select>
+        </div>
+
+        <h2>2. Scegli la modalità</h2>
+        <div class="pulsanti">
+            <button type="button" class="btn-anteprima" data-azione="anteprima">
+                <span class="numero-tasto">1</span> Anteprima
+            </button>
+            <button type="button" class="btn-grafica" data-azione="grafica">
+                <span class="numero-tasto">2</span> Stampa grafica
+            </button>
+            <button type="button" class="btn-testo" data-azione="testo">
+                <span class="numero-tasto">3</span> Stampa testo
+            </button>
+            <button type="button" class="btn-pdf" data-azione="pdf">
+                <span class="numero-tasto">4</span> Salva come PDF
+            </button>
+        </div>
+
+        <div id="stato"></div>
+
+        <div class="scorciatoie">
+            <strong>Scorciatoie da tastiera:</strong><br>
+            <strong>1</strong> Anteprima &nbsp;·&nbsp;
+            <strong>2</strong> Stampa grafica &nbsp;·&nbsp;
+            <strong>3</strong> Stampa testo &nbsp;·&nbsp;
+            <strong>4</strong> Salva come PDF
+        </div>
+    </div>
+
+    <!-- Contenitore nascosto dove viene caricato il contenuto della pagina scelta -->
+    <div id="area-contenuto"></div>
+
+    <script>
+    (function () {
+        const selectPagina = document.getElementById('selezione-pagina');
+        const areaContenuto = document.getElementById('area-contenuto');
+        const stato = document.getElementById('stato');
+
+        // --- Utility: mostra messaggio di stato ---
+        function mostraStato(msg, tipo) {
+            stato.textContent = msg;
+            stato.className = tipo || '';
+            if (tipo === 'ok') {
+                setTimeout(function () { stato.className = ''; }, 3000);
+            }
+        }
+
+        // --- Carica il contenuto della pagina scelta via fetch ---
+        async function caricaContenuto(pagina) {
+            let url;
+            // Pagine evento (sottocartella)
+            if (pagina.startsWith('eventi-') || pagina.startsWith('incontri-direttivo-')) {
+                url = 'content/' + pagina + '/index.html';
+            } else {
+                url = 'content/' + pagina + '.html';
+            }
+
+            try {
+                const risposta = await fetch(url);
+                if (!risposta.ok) throw new Error('HTTP ' + risposta.status);
+                const html = await risposta.text();
+                areaContenuto.innerHTML = html;
+                return true;
+            } catch (err) {
+                areaContenuto.innerHTML = '';
+                mostraStato('❌ Impossibile caricare la pagina: ' + err.message, 'err');
+                return false;
+            }
+        }
+
+        // --- Rimuove il footer automatico (se presente) ---
+        function preparaContenuto() {
+            const clone = areaContenuto.cloneNode(true);
+            clone.querySelectorAll('.footer-auto').forEach(function (el) {
+                el.remove();
+            });
+            // Se l'HTML caricato ha <script>, li rimuoviamo per sicurezza
+            clone.querySelectorAll('script').forEach(function (el) {
+                el.remove();
+            });
+            return clone;
+        }
+
+        // --- Azione principale ---
+        async function avvia(azione) {
+            const pagina = selectPagina.value;
+            if (!pagina) {
+                mostraStato('⚠️ Seleziona prima una pagina.', 'err');
+                return;
+            }
+
+            mostraStato('⏳ Caricamento contenuto...', 'ok');
+
+            const ok = await caricaContenuto(pagina);
+            if (!ok) return;
+
+            const clone = preparaContenuto();
+
+            if (azione === 'anteprima') anteprima(clone, pagina);
+            else if (azione === 'grafica') stampaGrafica(clone, pagina);
+            else if (azione === 'testo')   stampaTesto(clone, pagina);
+            else if (azione === 'pdf')     salvaPdf(clone, pagina);
+        }
+
+        // ==================================================
+        // ANTEPRIMA
+        // ==================================================
+        function anteprima(clone, pagina) {
+            const html = costruisciHtmlCompleto(clone, 'Anteprima - ' + pagina, true);
+            const w = window.open('', '_blank');
+            if (!w) {
+                mostraStato('❌ Popup bloccato. Consenti i popup per questo sito.', 'err');
+                return;
+            }
+            w.document.open();
+            w.document.write(html);
+            w.document.close();
+            mostraStato('✅ Anteprima aperta in una nuova scheda.', 'ok');
+        }
+
+        // ==================================================
+        // STAMPA GRAFICA
+        // ==================================================
+        function stampaGrafica(clone, pagina) {
+            const html = costruisciHtmlCompleto(clone, 'Stampa - ' + pagina, false);
+            eseguiStampaInIframe(html);
+            mostraStato('🖨️ Finestra di stampa aperta.', 'ok');
+        }
+
+        // ==================================================
+        // STAMPA TESTO
+        // ==================================================
+        function stampaTesto(clone, pagina) {
+            const testo = clone.textContent || '';
+            const w = window.open('', '_blank', 'width=800,height=600');
+            if (!w) {
+                mostraStato('❌ Popup bloccato. Consenti i popup per questo sito.', 'err');
+                return;
+            }
+            // Stringhe spezzate per evitare che Live Server le riconosca come tag
+            const CHIUSURA_BODY   = '</bo' + 'dy>';
+            const CHIUSURA_HTML   = '</ht' + 'ml>';
+
+            w.document.open();
+            w.document.write(
+                '<!DOCTYPE html><html lang="it"><head><meta charset="utf-8">' +
+                '<title>Stampa testo - ' + escapeHtml(pagina) + '</title>' +
+                '<style>' +
+                'body { font-family: "Courier New", monospace; white-space: pre-wrap; ' +
+                '       font-size: 11pt; line-height: 1.5; padding: 20px; color: #000; }' +
+                '</style></head><body>' +
+                escapeHtml(testo) +
+                CHIUSURA_BODY + CHIUSURA_HTML
+            );
+            w.document.close();
+            setTimeout(function () {
+                w.focus();
+                w.print();
+                setTimeout(function () { w.close(); }, 1000);
+            }, 300);
+            mostraStato('📄 Finestra di stampa testo aperta.', 'ok');
+        }
+        // ==================================================
+        // SALVA COME PDF
+        // ==================================================
+        function salvaPdf(clone, pagina) {
+            const conferma = confirm(
+                'Nella finestra di stampa che si aprirà, scegli:\n\n' +
+                '  • "Salva come PDF" (Chrome, Edge)\n' +
+                '  • oppure "Microsoft Print to PDF" (Windows)\n\n' +
+                'Continuare?'
+            );
+            if (!conferma) return;
+            const html = costruisciHtmlCompleto(clone, 'PDF - ' + pagina, false);
+            eseguiStampaInIframe(html);
+            mostraStato('💾 Finestra di stampa aperta: scegli "Salva come PDF".', 'ok');
+        }
+
+        // ==================================================
+        // UTILITY: costruisce documento HTML completo
+        // ==================================================
+        function costruisciHtmlCompleto(clone, titolo, conBordino) {
+            // Reca gli stili del sito principale (style.css e style-home.css)
+            // In questa pagina stampa.html gli stili del sito NON sono caricati,
+            // quindi li carichiamo esplicitamente per la stampa grafica.
+            const stiliBase =
+                '<link rel="stylesheet" href="css/style.css">' +
+                '<link rel="stylesheet" href="css/style-home.css">';
+
+            const stileExtra =
+                '<style>' +
+                'body { background: #fff !important; padding: 20px; }' +
+                '.container { box-shadow: none !important; max-width: 100% !important; ' +
+                (conBordino ? 'border: 1px dashed #ccc; ' : '') +
+                '}' +
+                '.footer-auto { display: none !important; }' +
+                '</style>';
+            const CHIUSURA_BODY = '</bo' + 'dy>';
+            const CHIUSURA_HTML = '</ht' + 'ml>';
+
+            return '<!DOCTYPE html><html lang="it"><head><meta charset="utf-8">' +
+                    '<title>' + escapeHtml(titolo) + '</title>' +
+                    stiliBase + stileExtra +
+                    '</head><body class="stampa-grafica">' +
+                    '<div class="container">' + clone.innerHTML + '</div>' +
+                    CHIUSURA_BODY + CHIUSURA_HTML;
+        }
+
+        // ==================================================
+        // UTILITY: stampa via iframe nascosto
+        // ==================================================
+        function eseguiStampaInIframe(html) {
+            const iframe = document.createElement('iframe');
+            iframe.style.position = 'fixed';
+            iframe.style.right = '0';
+            iframe.style.bottom = '0';
+            iframe.style.width = '0';
+            iframe.style.height = '0';
+            iframe.style.border = '0';
+            document.body.appendChild(iframe);
+
+            const doc = iframe.contentWindow.document;
+            doc.open();
+            doc.write(html);
+            doc.close();
+
+            const attesa = Array.from(doc.images).map(function (img) {
+                if (img.complete) return Promise.resolve();
+                return new Promise(function (res) {
+                    img.onload = img.onerror = res;
+                });
+            });
+
+            Promise.all(attesa).then(function () {
+                setTimeout(function () {
+                    iframe.contentWindow.focus();
+                    iframe.contentWindow.print();
+                    setTimeout(function () {
+                        document.body.removeChild(iframe);
+                    }, 1000);
+                }, 300);
+            });
+        }
+
+        // ==================================================
+        // UTILITY: escape HTML
+        // ==================================================
+        function escapeHtml(s) {
+            return String(s).replace(/[&<>"']/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+            });
+        }
+
+        // ==================================================
+        // EVENTI: click pulsanti + scorciatoie tastiera
+        // ==================================================
+        document.querySelectorAll('button[data-azione]').forEach(function (b) {
+            b.addEventListener('click', function () {
+                avvia(b.dataset.azione);
+            });
+        });
+
+        document.addEventListener('keydown', function (e) {
+            const tag = (e.target.tagName || '').toLowerCase();
+            if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+
+            if (e.key === '1') avvia('anteprima');
+            else if (e.key === '2') avvia('grafica');
+            else if (e.key === '3') avvia('testo');
+            else if (e.key === '4') avvia('pdf');
+        });
+    })();
+    </script>
+
+</body>
+</html>
