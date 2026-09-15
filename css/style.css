@@ -403,35 +403,71 @@ footer a:hover {
 /* UTILITY */
 /* ========================================== */
 .titolo {
-    color: #0886f5fb;
+    color: var(--primary-color);
     font-size: 26px;
     font-weight: bold;
     line-height: 1 !important; 
     margin: 3px;
-    /* padding: 1px 1px; */
     text-align: center !important; 
     border-bottom: 3px solid #0886f5fb;
     padding-bottom: 12px;
 }
 
-.sottotitolo {
-    color: #555;
+.sotto-titolo {
+    color: #8f8f8f;
     font-size: 16px;
     /* font-style: italic; */
     line-height: 1 !important; 
     margin: 3px;
-    /* padding: 1px 1px; */
     text-align: center !important; 
+    padding-bottom: 12px;
 }
 
 .titolo-sezione {
-    color: #0886f5fb;
-    font-size: 18px;
+    color: var(--primary-color);
+    font-size: 22px;
     font-weight: bold;
     line-height: 1 !important; 
-    margin: 3px;
-    text-align: center !important; 
-    padding-bottom: 12px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    /* border-left: 5px solid var(--primary-color); */
+    padding-left: 15px;
+
+}
+
+.titolo-sezione-centro {    
+    color: var(--primary-color);
+    font-size: 22px;
+    font-weight: bold; 
+    /* border-left: 5px solid var(--primary-color); */
+    text-align: center !important;
+}
+
+.titolo-sezione-b {
+    color: var(--primary-color);
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1 !important; 
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-left: 5px solid var(--primary-color);
+    padding-left: 15px;
+
+}
+
+.titolo-sezione-centro-b {    
+    color: var(--primary-color);
+    font-size: 22px;
+    font-weight: bold; 
+    border-left: 5px solid var(--primary-color);
+    text-align: center !important;
+}
+
+.bordo-div {
+    border: 2px solid var(--primary-color); 
+    border-radius: 10px; 
+    padding: 1rem 1.5rem;
+    margin-bottom: 20px; 
 }
 
 /* ========================================== */
@@ -589,16 +625,6 @@ textarea.form-input {
     font-size: 0.85rem;
     color: #888;
     margin-top: 5px;
-}
-
-.titolo-paragrafo {
-    display: block;
-    width: 100%;
-    text-align: center !important;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #f87474;
-    margin: 12px 0 3px 0;
 }
 
 .articolo-evento .data-evento {
