@@ -1,0 +1,337 @@
+<!-- ============================================================
+     ACCORDO SAN MARINO - UE | Pagina per "Gente del Titano"
+     ============================================================ -->
+
+<div id="page-accordo-ue">
+
+<style>
+    /* ===== STILI INTERNI PER LA PAGINA ACCORDO UE ===== */
+
+    #page-accordo-ue ul.indice-lista {
+        list-style: none !important;
+        padding-left: 0 !important;
+        margin-bottom: 0 !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.3rem 1.5rem !important;
+    }
+
+    #page-accordo-ue ul.indice-lista li {
+        padding: 0.2rem 0 !important;
+        background: none !important;
+        padding-left: 0 !important;
+        background-image: none !important;
+    }
+
+    #page-accordo-ue ul.indice-lista li a {
+        color: var(--primary-color) !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+    }
+
+    #page-accordo-ue ul.indice-lista li a:hover {
+        text-decoration: underline !important;
+    }
+
+    .torna-indice {
+        display: inline-block !important;
+        margin-top: 1.2rem !important;
+        font-size: 0.85rem !important;
+        color: var(--primary-color) !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        padding: 0.3rem 0.8rem !important;
+        border: 1px solid var(--primary-color) !important;
+        border-radius: 4px !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+    }
+
+    .torna-indice:hover {
+        background-color: var(--primary-color) !important;
+        color: white !important;
+    }
+
+    .elencopunti {
+        list-style: none !important;
+        padding-left: 0 !important;
+        margin: 15px 0 20px 0 !important;
+    }
+
+    .elencopunti li {
+        padding: 8px 0 8px 30px !important;
+        background: transparent !important;
+        position: relative !important;
+        line-height: 1.6 !important;
+        margin-bottom: 5px !important;
+        background-image: none !important;
+    }
+
+    .elencopunti li::before {
+        content: "●" !important;
+        color: var(--primary-color) !important;
+        font-size: 1.2rem !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 6px !important;
+    }
+
+    .law-box {
+        background: #f1f5f9 !important;
+        border-left: 4px solid #4a7c59 !important;
+        padding: 1rem 1.2rem !important;
+        margin: 1rem 0 !important;
+        border-radius: 0 6px 6px 0 !important;
+    }
+
+    .law-box h4 {
+        margin: 0 0 0.3rem 0 !important;
+        color: #4a7c59 !important;
+    }
+
+    .law-box p {
+        margin: 0 !important;
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+    }
+
+    .titolo-sezione {
+        text-align: center !important;
+        font-weight: bold !important;
+        color: var(--primary-color) !important;
+        font-size: 22px !important;
+        border-bottom: 2px solid #eef6fc !important;
+        padding-bottom: 0.5rem !important;
+        margin-top: 1.5rem !important;
+    }
+
+    /* TIMELINE */
+    .timeline {
+        border-left: 3px solid var(--primary-color);
+        margin: 2rem 0;
+        padding-left: 1rem;
+    }
+
+    .timeline-entry {
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .timeline-entry::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        position: absolute;
+        left: -1.1rem;
+        top: 0.3rem;
+    }
+
+    .country-box {
+        background: #eef6fc;
+        border-left: 4px solid var(--primary-color);
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 6px;
+    }
+
+    .country-box h4 {
+        margin: 0 0 0.3rem 0;
+        color: var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+        #page-accordo-ue ul.indice-lista {
+            grid-template-columns: 1fr !important;
+        }
+    }
+</style>
+
+<p class="titolo">🇪🇺 L'Accordo di Associazione San Marino – Unione Europea</p>  
+<p class="sotto-titolo">Guida e analisi dettagliata: obiettivi, opportunità, sfide e impatti sulla Repubblica<br></p>
+<p class="titolo-sezione">Indice degli argomenti</p>
+
+<div style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 5px solid var(--primary-color); border-radius: 10px; padding: 1.5rem 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+    <ul class="indice-lista" id="indice-accordo">
+        <li><a href="javascript:void(0)" onclick="document.getElementById('introduzione').scrollIntoView({behavior:'smooth',block:'start'});">Introduzione</a></li>
+        <li><a href="javascript:void(0)" onclick="document.getElementById('scopo-finalita').scrollIntoView({behavior:'smooth',block:'start'});">Scopo e finalità</a></li>
+        <li><a href="javascript:void(0)" onclick="document.getElementById('quattro-liberta').scrollIntoView({behavior:'smooth',block:'start'});">Le quattro libertà fondamentali</a></li>
+        <li><a href="javascript:void(0)" onclick="document.getElementById('vantaggi').scrollIntoView({behavior:'smooth',block:'start'});">Vantaggi per San Marino</a></li>
+        <li><a href="javascript:void(0)" onclick="document.getElementById('svantaggi').scrollIntoView({behavior:'smooth',block:'start'});">Svantaggi e criticità</a></li>
+        <li><a href="javascript:void(0)" onclick="document.getElementById('deroghe-salvaguardie').scrollIntoView({behavior:'smooth',block:'start'});">Deroghe e clausole di salvaguardia</a></li>
+        <li><a href="javascript:void(0)" onclick="document.getElementById('fasi-attuazione').scrollIntoView({behavior:'smooth',block:'start'});">Fasi di attuazione</a></li>
+        <li><a href="javascript:void(0)" onclick="document.getElementById('stato-attuale').scrollIntoView({behavior:'smooth',block:'start'});">Stato attuale dell'Accordo</a></li>
+        <li><a href="javascript:void(0)" onclick="document.getElementById('prospettive-future').scrollIntoView({behavior:'smooth',block:'start'});">Prospettive future</a></li>
+    </ul>
+</div>
+
+<!-- ===================== SEZIONI ===================== -->
+
+<h3 id="introduzione" class="titolo-sezione">Introduzione</h3>
+<p>
+L'Accordo di Associazione con l'Unione Europea rappresenta la trasformazione geopolitica ed economica più rilevante per la Repubblica di San Marino dagli accordi di vicinato con l'Italia. 
+Aperto nei negoziati unitamente ad Andorra, l'accordo mira a integrare progressivamente San Marino all'interno del <strong>Mercato Unico Europeo</strong>, pur senza trasformare la Repubblica in uno Stato membro dell'UE e preservandone la sovranità costituzionale e statutaria.
+</p>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-accordo').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="scopo-finalita" class="titolo-sezione">Scopo e finalità</h3>
+<p>
+L'accordo nasce dall'esigenza di eliminare l'isolamento operativo e normativo delle imprese ed enti sammarinesi nell'ambito del mercato europeo, stabilendo regole paritarie e certe.
+</p>
+
+<ul class="elencopunti">
+    <li><strong>Integrazione economica:</strong> Accesso diretto delle imprese sammarinesi a un mercato di oltre 450 milioni di consumatori senza barriere burocratiche o discriminazioni.</li>
+    <li><strong>Certezza del diritto:</strong> Adozione dell'<i>acquis</i> comunitario nelle materie rilevanti per garantire standard normativi equivalenti.</li>
+    <li><strong>Parità di trattamento:</strong> Garanzia di pari condizioni per cittadini e aziende sammarinesi all'interno dello Spazio Economico Europeo.</li>
+    <li><strong>Sviluppo competitivo:</strong> Attrazione di investimenti esteri qualificati ed espansione del settore finanziario e industriale.</li>
+</ul>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-accordo').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="quattro-liberta" class="titolo-sezione">Le quattro libertà fondamentali</h3>
+
+<div class="country-box">
+    <h4>📦 Libera circolazione delle merci</h4>
+    <p>
+        Abbattimento delle barriere tecniche al commercio (TBT). Eliminazione delle doppie procedure di omologazione e sdoganamento nei rapporti commerciali verso i Paesi membri UE.
+    </p>
+</div>
+
+<div class="country-box">
+    <h4>👥 Libera circolazione delle persone e dei lavoratori</h4>
+    <p>
+        Possibilità per i cittadini sammarinesi di studiare, lavorare e risiedere liberamente nei Paesi UE senza necessità di permessi speciali, con riconoscimento reciproco dei titoli.
+    </p>
+</div>
+
+<div class="country-box">
+    <h4>💼 Libera prestazione dei servizi e stabilimento</h4>
+    <p>
+        Accesso del settore bancario e finanziario sammarinese al mercato unico della prestazione dei servizi, con facoltà di operare in regime di passaportazione europea previa conformità di vigilanza.
+    </p>
+</div>
+
+<div class="country-box">
+    <h4>💶 Libera circolazione dei capitali</h4>
+    <p>
+        Semplificazione dei flussi finanziari, integrazione nei sistemi di pagamento europei e maggiore attrattività per i capitali produttivi trasfrontaleiri.
+    </p>
+</div>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-accordo').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="vantaggi" class="titolo-sezione">Vantaggi per San Marino</h3>
+
+<ul class="elencopunti">
+    <li><strong>Opportunità per i giovani e studenti:</strong> Pieno inserimento nei programmi di mobilità (Erasmus+), tirocinio e lavoro nell'Unione Europea.</li>
+    <li><strong>Sviluppo bancario e finanziario:</strong> Possibilità di accesso ai mercati finanziari europei e supporto di liquidità (es. operatività con BCE/Eurosistema).</li>
+    <li><strong>Competitività industriale:</strong> Superamento dell'imposta T2 per le merci, eliminazione di prassi burocratiche penalizzanti nei confronti dell'Italia e UE.</li>
+    <li><strong>Riconoscimento dei titoli di studio:</strong> Valore legale automatico o agevolato dei titoli accademici e delle qualifiche professionali sammarinesi nell'UE.</li>
+</ul>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-accordo').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="svantaggi" class="titolo-sezione">Svantaggi e criticità</h3>
+
+<ul class="elencopunti">
+    <li><strong>Costi di adeguamento normativo:</strong> Impegno burocratico e legislativo notevole per recepire migliaia di atti normativi europei nel sistema giudiziario locale.</li>
+    <li><strong>Pressione competitiva interna:</strong> Apertura del mercato domestico (servizi, commercio, professioni) ad operatori europei di grandi dimensioni.</li>
+    <li><strong>Limiti all'autonomia legislativa:</strong> Necessità di uniformarsi alle direttive europee nei settori contemplati dall'accordo.</li>
+    <li><strong>Capacità amministrativa:</strong> Pressione sulle strutture della Pubblica Amministrazione sammarinese per monitorare e gestire l'applicazione costante dell'accordo.</li>
+</ul>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-accordo').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna me'indice</a>
+
+<h3 id="deroghe-salvaguardie" class="titolo-sezione">Deroghe e clausole di salvaguardia</h3>
+
+<div class="law-box">
+    <h4>Sostenibilità demografica e residenza</h4>
+    <p>San Marino mantiene un sistema ad aliquote/quote sul soggiorno e residenza per tutelare la propria dimensione micro-statale e il mercato immobiliare interno da afflussi incontrollati.</p>
+</div>
+
+<div class="law-box">
+    <h4>Clausola di salvaguardia generale</h4>
+    <p>Meccanismo di sospensione temporanea che consente alla Repubblica di intervenire in caso di gravi squilibri settoriali, economici o sociali improvvisi.</p>
+</div>
+
+<div class="law-box">
+    <h4>Monopoli di Stato e settore energetico</h4>
+    <p>Riconoscimento delle specificità locali riguardanti la distribuzione dei servizi pubblici essenziali ed energia.</p>
+</div>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-accordo').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="fasi-attuazione" class="titolo-sezione">Fasi di attuazione</h3>
+
+<div class="timeline">
+    <div class="timeline-entry">
+        <strong>2015 – Avvio formale</strong><br>
+        Inizio ufficiale dei negoziati di associazione tra la Commissione Europea, San Marino, Andorra e Monaco.
+    </div>
+
+    <div class="timeline-entry">
+        <strong>2015-2023 – Trattative tecniche</strong><br>
+        Incontri e sessioni negoziali per la definizione degli allegati tecnici e la negoziazione delle deroghe per i micro-stati.
+    </div>
+
+    <div class="timeline-entry">
+        <strong>Dicembre 2023 – Chiusura dei negoziati</strong><br>
+        Conclusione ufficiale del negoziato politico e parafatura dei testi concordati tra San Marino e la Commissione Europea.
+    </div>
+
+    <div class="timeline-entry">
+        <strong>2024 – Firma formale e traduzione</strong><br>
+        Revisione giuridico-linguistica ufficiale delle bozze dell'Accordo nelle lingue dell'Unione Europea e firma Solenne.
+    </div>
+
+    <div class="timeline-entry">
+        <strong>Fase di Ratifica ed Entrata in vigore</strong><br>
+        Passaggio parlamentare (Consiglio Grande e Generale) e ratifica da parte del Parlamento Europeo e Stati membri UE.
+    </div>
+</div>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-accordo').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="stato-attuale" class="titolo-sezione">Stato attuale dell'Accordo</h3>
+<p>
+I testi dell'Accordo sono stati negoziati e definiti nei dettagli giuridici. La Repubblica di San Marino è attualmente impegnata nella preparazione dell'infrastruttura normativa interna e nel piano di comunicazione per spiegare alla cittadinanza e al tessuto imprenditoriale la portata concreta dell'intesa, prima dell'entrata in vigore e della piena efficacia operativa.
+</p>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-accordo').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+<h3 id="prospettive-future" class="titolo-sezione">Prospettive future</h3>
+
+<p>
+L'entrata in vigore dell'Accordo aprirà una fase transitoria cruciale basata su:
+</p>
+
+<ul class="elencopunti">
+    <li><strong>Adeguamento della Pubblica Amministrazione:</strong> Digitalizzazione e potenziamento delle competenze tecniche ed europee.</li>
+    <li><strong>Riforma della regolamentazione finanziaria:</strong> Piena armonia con le direttive europee di trasparenza, antiriciclaggio e vigilanza prudenziale.</li>
+    <li><strong>Integrazione del sistema economico:</strong> Nuova fase di attrazione investimenti e posizionamento strategico nel cuore dell'Europa.</li>
+</ul>
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-accordo').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+</div>

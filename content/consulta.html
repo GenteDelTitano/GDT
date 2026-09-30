@@ -1,0 +1,410 @@
+<!-- INIZIO CONTENITORE CONSULTA -->
+<div class="consulta-wrapper" id="page-consulta">
+
+    <!-- STILI CSS DEDICATI -->
+    <style>
+        .consulta-wrapper {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+            color: #333333;
+            font-family: inherit;
+        }
+
+        .consulta-wrapper p.titolo {
+            text-align: center;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .consulta-wrapper .sotto-titolo {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        /* ===== STILI INDICE PARIFICATI A CITTADINANZA.HTML ===== */
+        #page-consulta ul.indice-lista {
+            list-style: none !important;
+            padding-left: 0 !important;
+            margin-bottom: 0 !important;
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 0.5rem 1.5rem !important;
+        }
+
+        #page-consulta ul.indice-lista li {
+            padding: 0.2rem 0 !important;
+            background: none !important;
+            padding-left: 0 !important;
+            background-image: none !important;
+        }
+
+        #page-consulta ul.indice-lista li a {
+            color: var(--primary-color, #0077cc) !important;
+            text-decoration: none !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            font-size: 0.95rem !important;
+        }
+
+        #page-consulta ul.indice-lista li a:hover {
+            text-decoration: underline !important;
+        }
+
+        @media (max-width: 640px) {
+            #page-consulta ul.indice-lista {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* TITOLO SEZIONE */
+        .titolo-sezione {
+            text-align: center !important; 
+            font-weight: bold; 
+            color: var(--primary-color, #1a365d); 
+            font-size: 22px; 
+            border-bottom: 2px solid #eef6fc; 
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        /* STILE LINK "TORNA ALL'INDICE" */
+        .torna-indice {
+            display: inline-block !important;
+            margin-top: 1.2rem !important;
+            font-size: 0.85rem !important;
+            color: var(--primary-color, #0077cc) !important;
+            text-decoration: none !important;
+            font-weight: 600 !important;
+            padding: 0.3rem 0.8rem !important;
+            border: 1px solid var(--primary-color, #0077cc) !important;
+            border-radius: 4px !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+        }
+
+        .torna-indice:hover {
+            background-color: var(--primary-color, #0077cc) !important;
+            color: white !important;
+        }
+
+        /* SEZIONI CONTENUTO */
+        .consulta-section {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            scroll-margin-top: 80px;
+            line-height: 1.6;
+        }
+
+        .consulta-section ul, .consulta-section ol {
+            padding-left: 1.2rem;
+        }
+
+        .consulta-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* CARD ANELLI E COMUNITÀ */
+        .anelli-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .anello-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .anello-header {
+            padding: 0.8rem 1rem;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .anello-header h3 {
+            margin: 0;
+            font-size: 1.05rem;
+            color: #ffffff;
+        }
+
+        .anello-header.italia { background-color: #0077cc; }
+        .anello-header.europa { background-color: #0d9488; }
+        .anello-header.america-nord { background-color: #d97706; }
+        .anello-header.america-sud { background-color: #059669; }
+
+        .comunita-count {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .anello-list {
+            list-style: none;
+            padding: 1rem;
+            margin: 0;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .anello-list li {
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px dashed #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .anello-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .iscritti-badge {
+            background-color: #f1f5f9;
+            color: #334155;
+            font-weight: 600;
+            padding: 0.15rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        /* BOX NORMATIVA */
+        .normativa-box {
+            background-color: #f1f5f9;
+            border-left: 4px solid var(--primary-color, #00aaff);
+            padding: 1.2rem;
+            border-radius: 0 6px 6px 0;
+            margin-top: 1rem;
+        }
+
+        .normativa-box ul {
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+    </style>
+
+    <!-- INTESTAZIONE -->
+    <p class="titolo">🏛️ Consulta dei Cittadini Sammarinesi all'Estero</p>
+    <p class="sotto-titolo"><strong>Organo istituzionale di collegamento tra la Repubblica di San Marino e le Comunità dei concittadini nel mondo.</strong></p>
+
+    <!-- INDICE DEI CONTENUTI -->
+    <div id="indice-consulta" style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 5px solid var(--primary-color, #0077cc); border-radius: 10px; padding: 1.5rem 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+        <p class="titolo-sezione">📑 Indice dei Contenuti</p>
+        <ul class="indice-lista">
+            <li><a href="javascript:void(0)" onclick="document.getElementById('con-link1').scrollIntoView({behavior:'smooth',block:'start'});">1. Cos'è la Consulta</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('con-link2').scrollIntoView({behavior:'smooth',block:'start'});">2. Funzioni e Compiti</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('con-link3').scrollIntoView({behavior:'smooth',block:'start'});">3. Com'è composta</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('con-link4').scrollIntoView({behavior:'smooth',block:'start'});">4. Designazione Organi</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('con-link5').scrollIntoView({behavior:'smooth',block:'start'});">5. Durata e Convocazioni</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('con-link6').scrollIntoView({behavior:'smooth',block:'start'});">6. I 4 Anelli e Comunità</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('con-link7').scrollIntoView({behavior:'smooth',block:'start'});">7. Commi e Risoluzione</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('con-link8').scrollIntoView({behavior:'smooth',block:'start'});">8. Normativa di Riferimento</a></li>
+        </ul>
+    </div>
+
+    <!-- CONTENUTO PRINCIPALE -->
+    <article>
+        
+        <!-- 1. DESCRIZIONE -->
+        <section id="con-link1" class="consulta-section">
+            <p class="titolo-sezione">1. Cos'è la Consulta</p>
+            <p>La <strong>Consulta dei Cittadini Sammarinesi all'Estero</strong> è un organo istituzionale di diritto pubblico istituito dalla Repubblica di San Marino.</p>
+            <p>Rappresenta l'organo ufficiale di raccordo e dialogo permanente tra le Istituzioni dello Stato (Governo e Consiglio Grande e Generale) e le Comunità ufficialmente riconosciute di cittadini sammarinesi residenti all'estero.</p>
+
+            <a href="javascript:void(0)" onclick="document.getElementById('indice-consulta').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+        </section>
+
+        <!-- 2. COMPITI -->
+        <section id="con-link2" class="consulta-section">
+            <p class="titolo-sezione">2. Funzioni e Compiti</p>
+            <p>Le attività principali della Consulta riguardano la tutela dei diritti e la valorizzazione dei legami con la Madrepatria:</p>
+            <ul>
+                <li><strong>Tutela e promozione:</strong> esamina i problemi delle Comunità all'estero e ne sostiene le iniziative culturali, sociali ed educative.</li>
+                <li><strong>Funzione consultiva e propositiva:</strong> esprime pareri e formulazioni su provvedimenti legislativi, amministrativi o trattati internazionali riguardanti i sammarinesi all'estero.</li>
+                <li><strong>Confronto istituzionale:</strong> si interfaccia direttamente con i Segretari di Stato su risorse destinate alle Comunità, servizi consolari, esercizio del diritto di voto e norme sulla cittadinanza.</li>
+                <li><strong>Progetti per i giovani:</strong> promuove iniziative per le nuove generazioni di origine sammarinese, tra cui i Soggiorni Culturali e gli scambi formativi.</li>
+            </ul>
+
+            <a href="javascript:void(0)" onclick="document.getElementById('indice-consulta').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+        </section>
+
+        <!-- 3. COMPOSIZIONE -->
+        <section id="con-link3" class="consulta-section">
+            <p class="titolo-sezione">3. Com'è composta la Consulta</p>
+            <p>Dell'Assemblea della Consulta fanno parte di diritto e con diverse funzioni:</p>
+            <ul>
+                <li><strong>Presidente dell'Assemblea:</strong> eletto dall'Assemblea stessa tra i suoi membri.</li>
+                <li><strong>Presidente Onorario:</strong> il Segretario di Stato per gli Affari Esteri <em>(con diritto di parola ma senza diritto di voto)</em>.</li>
+                <li><strong>Referente del Dipartimento Esteri:</strong> partecipa con funzioni consultive ed esecutive.</li>
+                <li><strong>I Presidenti delle Comunità riconosciute:</strong> tutti i Presidenti delle associazioni estere ufficialmente riconosciute.</li>
+                <li><strong>I Delegati/Rappresentanti delle Comunità:</strong> eletti proporzionalmente al numero dei soci iscritto a ciascuna Comunità:
+                    <ul>
+                        <li>1 delegato per Comunità da 150 a 500 soci;</li>
+                        <li>2 delegati per Comunità da 501 a 800 soci;</li>
+                        <li>3 delegati per Comunità con oltre 800 soci.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <a href="javascript:void(0)" onclick="document.getElementById('indice-consulta').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+        </section>
+
+        <!-- 4. DESIGNAZIONE -->
+        <section id="con-link4" class="consulta-section">
+            <p class="titolo-sezione">4. Designazione dei Rappresentanti</p>
+            <p>I rappresentanti ed i vertici della Consulta sono scelti tramite procedure democratiche:</p>
+            <ul>
+                <li><strong>I Delegati delle Comunità:</strong> vengono eletti dalle rispettive Assemblee dei Soci di ogni singola Comunità locale.</li>
+                <li><strong>Il Presidente della Consulta:</strong> viene eletto dall'Assemblea della Consulta a maggioranza semplice durante la prima seduta della sessione.</li>
+                <li><strong>Il Consiglio della Consulta:</strong> organo ristretto di coordinamento composto dai rappresentanti eletti all'interno dei 4 "Anelli" geografici.</li>
+            </ul>
+
+            <a href="javascript:void(0)" onclick="document.getElementById('indice-consulta').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+        </section>
+
+        <!-- 5. DURATA E CONVOCAZIONI -->
+        <section id="con-link5" class="consulta-section">
+            <p class="titolo-sezione">5. Durata e Convocazioni</p>
+            <p>I vertici ed il Consiglio della Consulta rimangono in carica per un anno e vengono rinnovati durante le sessioni dell'Assemblea.</p>
+            <p>La Consulta si riunisce in via ordinaria due volte all'anno con differenti modalità e finalità:</p>
+            <ul>
+                <li><strong>Sessione in presenza (Prima settimana di Ottobre):</strong> si svolge a San Marino subito dopo l'insediamento dei Capitani Reggenti. A questa sessione plenaria partecipano i Presidenti ed i Rappresentanti delegati di tutte le Comunità, i quali vengono ufficialmente ricevuti in <strong>Udienza dai Capitani Reggenti</strong>.</li>
+                <li><strong>Sessione in videoconferenza (Prima settimana di Aprile):</strong> si tiene in modalità a distanza ed è riservata esclusivamente ai <strong>Presidenti delle Comunità</strong> per fare il punto sui lavori, sullo stato di attuazione delle risoluzioni e sulla preparazione dei commi.</li>
+            </ul>
+
+            <a href="javascript:void(0)" onclick="document.getElementById('indice-consulta').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+        </section>
+
+        <!-- 6. ANELLI GEOGRAFICI E COMUNITÀ CON ISCRITTI -->
+        <section id="con-link6" class="consulta-section">
+            <p class="titolo-sezione">6. I 4 "Anelli" Geografici e le Comunità</p>
+            <p>Per coordinare al meglio le esigenze delle differenti aree del mondo, le Comunità ufficialmente riconosciute dei Cittadini Sammarinesi all'Estero sono suddivise in 4 macro-aree geografiche denominate <strong>Anelli</strong> (totale di <strong>8.230 iscritti</strong>).</p>
+
+            <div class="anelli-grid">
+
+                <!-- ANELLO ITALIA -->
+                <div class="anello-card">
+                    <div class="anello-header italia">
+                        <h3>Anello Italia</h3>
+                        <span class="comunita-count">11 Comunità</span>
+                    </div>
+                    <ul class="anello-list">
+                        <li><span>Associazione Gente del Titano (Rimini)</span> <span class="iscritti-badge">864 iscritti</span></li>
+                        <li><span>Comunità Sammarinese di Ravenna</span> <span class="iscritti-badge">413 iscritti</span></li>
+                        <li><span>Fratellanza Sammarinese Comunità della Liguria</span> <span class="iscritti-badge">300 iscritti</span></li>
+                        <li><span>Fratellanza Sammarinese di Roma</span> <span class="iscritti-badge">203 iscritti</span></li>
+                        <li><span>Collettività Sammarinese dell’Emilia</span> <span class="iscritti-badge">166 iscritti</span></li>
+                        <li><span>Comunità Sammarinese di Milano</span> <span class="iscritti-badge">150 iscritti</span></li>
+                        <li><span>Comunità Sammarinese del Piemonte e Valle D’Aosta</span> <span class="iscritti-badge">112 iscritti</span></li>
+                        <li><span>Comunità dei Sammarinesi del Montefeltro</span> <span class="iscritti-badge">76 iscritti</span></li>
+                        <li><span>Comunità Sammarinese del Veneto</span> <span class="iscritti-badge">57 iscritti</span></li>
+                        <li><span>Comunità Sammarinese della Toscana</span> <span class="iscritti-badge">31 iscritti</span></li>
+                        <li><span>Comunità Sammarinese delle Marche</span> <span class="iscritti-badge">0 iscritti</span></li>
+                    </ul>
+                </div>
+
+                <!-- ANELLO EUROPA -->
+                <div class="anello-card">
+                    <div class="anello-header europa">
+                        <h3>Anello Europa (extra Italia)</h3>
+                        <span class="comunita-count">6 Comunità</span>
+                    </div>
+                    <ul class="anello-list">
+                        <li><span>Comitato COSMA Parigi</span> <span class="iscritti-badge">800 iscritti</span></li>
+                        <li><span>Associazione della Rep. di San Marino a Grenoble</span> <span class="iscritti-badge">636 iscritti</span></li>
+                        <li><span>Associazione dei Sammarinesi dell’Est della Francia</span> <span class="iscritti-badge">105 iscritti</span></li>
+                        <li><span>Associazione dei Sammarinesi dell’Aquitania</span> <span class="iscritti-badge">93 iscritti</span></li>
+                        <li><span>Comunità dei Sammarinesi dell’Alsazia e Lorena</span> <span class="iscritti-badge">86 iscritti</span></li>
+                        <li><span>Fratellanza Sammarinese in Belgio</span> <span class="iscritti-badge">79 iscritti</span></li>
+                    </ul>
+                </div>
+
+                <!-- ANELLO AMERICA SETTENTRIONALE -->
+                <div class="anello-card">
+                    <div class="anello-header america-nord">
+                        <h3>Anello America Settentrionale</h3>
+                        <span class="comunita-count">2 Comunità</span>
+                    </div>
+                    <ul class="anello-list">
+                        <li><span>Comunità Sammarinese di Detroit</span> <span class="iscritti-badge">1.131 iscritti</span></li>
+                        <li><span>Comunità Sammarinese di New York</span> <span class="iscritti-badge">524 iscritti</span></li>
+                    </ul>
+                </div>
+
+                <!-- ANELLO AMERICA MERIDIONALE -->
+                <div class="anello-card">
+                    <div class="anello-header america-sud">
+                        <h3>Anello America Meridionale</h3>
+                        <span class="comunita-count">7 Comunità</span>
+                    </div>
+                    <ul class="anello-list">
+                        <li><span>Associazione Sammarinese del Centro-Est Argentina (Pergamino)</span> <span class="iscritti-badge">636 iscritti</span></li>
+                        <li><span>Associazione Sammarinese dell’Argentina (Jujuy)</span> <span class="iscritti-badge">505 iscritti</span></li>
+                        <li><span>Associazione Sammarinese di Cordoba Capital</span> <span class="iscritti-badge">343 iscritti</span></li>
+                        <li><span>Associazione dei Residenti Sammarinesi nella città di Buenos Aires</span> <span class="iscritti-badge">270 iscritti</span></li>
+                        <li><span>Comunità dei Residenti R.S.M. in Patagonia</span> <span class="iscritti-badge">269 iscritti</span></li>
+                        <li><span>Associazione Sammarinese di Cuyo</span> <span class="iscritti-badge">233 iscritti</span></li>
+                        <li><span>Comunità Sammarinese dell’Argentina Centrale</span> <span class="iscritti-badge">148 iscritti</span></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <a href="javascript:void(0)" onclick="document.getElementById('indice-consulta').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+        </section>
+
+        <!-- 7. RISOLUZIONE E COMMI -->
+        <section id="con-link7" class="consulta-section">
+            <p class="titolo-sezione">7. Commi, Risoluzione Conclusiva ed Iter</p>
+            <p>L'attività deliberativa svolta durante le sessioni della Consulta segue un iter definito:</p>
+            <ol>
+                <li><strong>Discussione dei Commi:</strong> l'Assemblea affronta i punti posti all'ordine del giorno (denominati "commi") su questioni specifiche (diritto di voto, cittadinanza, sostegno alle comunità, giovani, ecc.).</li>
+                <li><strong>Approvazione della Risoluzione:</strong> al termine dei lavori si approva la <strong>Risoluzione Conclusiva</strong>, contenente le richieste ed i pareri ufficiali della Consulta.</li>
+                <li><strong>Trasmissione alle Istituzioni:</strong> la Risoluzione viene inviata al <strong>Congresso di Stato</strong> (Governo) ed alla <strong>Commissione Consiliare Permanente Affari Esteri</strong>.</li>
+                <li><strong>Riscontro ed Iter:</strong> il Governo valuta le proposte e risponde ufficialmente sui provvedimenti adottati o programmabili, tracciando la base per i lavori della Consulta successiva.</li>
+            </ol>
+
+            <a href="javascript:void(0)" onclick="document.getElementById('indice-consulta').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+        </section>
+
+        <!-- 8. NORMATIVA -->
+        <section id="con-link8" class="consulta-section">
+            <p class="titolo-sezione">8. Riferimenti Normativi e Decreti</p>
+            <div class="normativa-box">
+                <ul>
+                    <li><strong>Legge 30 novembre 1979 n. 76:</strong> Costituzione di Associazioni sammarinesi all'estero.</li>
+                    <li><strong>Legge 30 novembre 1979 n. 77:</strong> Istituzione della Consulta dei cittadini sammarinesi all'estero.</li>
+                    <li><strong>Legge 28 marzo 2019 n. 55:</strong> Nuova disciplina della Consulta e delle Comunità dei Cittadini Sammarinesi all'Estero.</li>
+                    <li><strong>Regolamento Interno della Consulta:</strong> norme operative per lo svolgimento delle sedute e la gestione dei lavori.</li>
+                </ul>
+            </div>
+
+            <a href="javascript:void(0)" onclick="document.getElementById('indice-consulta').scrollIntoView({behavior:'smooth',block:'start'});" class="torna-indice">↑ Torna all'indice</a>
+        </section>
+
+    </article>
+</div>
+<!-- FINE CONTENITORE CONSULTA -->
