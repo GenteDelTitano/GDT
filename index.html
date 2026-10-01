@@ -509,29 +509,57 @@
                 eseguiStampaInIframe(html);
             }
 
-            // ---------- STAMPA TESTO ----------
-            function stampaTesto(clone, nomeFile) {
-                const testo = clone.textContent || '';
-                const w = window.open('', '_blank', 'width=800,height=600');
-                if (!w) { alert('Popup bloccato. Consenti i popup per questo sito.'); return; }
-                // Nome file nel titolo (il browser lo usa per il PDF)
-                w.document.open();
-                w.document.write(
-                    '<!DOCTYPE html><html lang="it"><head><meta charset="utf-8">' +
-                    '<title>' + escapeHtml(nomeFile) + '</title>' +
-                    '<style>body { font-family: "Courier New", monospace; white-space: pre-wrap; ' +
-                    '       font-size: 11pt; line-height: 1.5; padding: 20px; color: #000; }</style>' +
-                    '</head><body>' +
-                    escapeHtml(testo) +
-                    '</bo' + 'dy></ht' + 'ml>'
-                );
-                w.document.close();
-                setTimeout(function () {
-                    w.focus();
-                    w.print();
-                    setTimeout(function () { w.close(); }, 1000);
-                }, 300);
-            }
+			// ---------- STAMPA TESTO ----------
+			function stampaTesto(clone, nomeFile) {
+				// Clona di nuovo per non modificare l'originale
+				const clonePulito = clone.cloneNode(true);
+
+				// Rimuovi elementi che NON devono apparire nel testo puro
+				clonePulito.querySelectorAll('style, script, noscript, link, meta').forEach(el => el.remove());
+
+				// Rimuovi anche i commenti HTML (Node.COMMENT_NODE === 8)
+				const rimuoviCommenti = (nodo) => {
+					for (let i = nodo.childNodes.length - 1; i >= 0; i--) {
+						const figlio = nodo.childNodes[i];
+						if (figlio.nodeType === 8) {
+							nodo.removeChild(figlio);
+						} else if (figlio.nodeType === 1) {
+							rimuoviCommenti(figlio);
+						}
+					}
+				};
+				rimuoviCommenti(clonePulito);
+
+				// Ora textContent contiene solo il testo "vero"
+				let testo = clonePulito.textContent || '';
+
+				// Pulizia estetica: normalizza spazi e righe vuote multiple
+				testo = testo
+					.replace(/\r\n/g, '\n')          // uniforma i ritorni a capo
+					.replace(/[ \t]+\n/g, '\n')      // rimuove spazi a fine riga
+					.replace(/\n{3,}/g, '\n\n')      // max 1 riga vuota consecutiva
+					.trim();
+
+				const w = window.open('', '_blank', 'width=800,height=600');
+				if (!w) { alert('Popup bloccato. Consenti i popup per questo sito.'); return; }
+
+				w.document.open();
+				w.document.write(
+					'<!DOCTYPE html><html lang="it"><head><meta charset="utf-8">' +
+					'<title>' + escapeHtml(nomeFile) + '</title>' +
+					'<style>body { font-family: "Courier New", monospace; white-space: pre-wrap; ' +
+					'       font-size: 11pt; line-height: 1.5; padding: 20px; color: #000; }</style>' +
+					'</head><body>' +
+					escapeHtml(testo) +
+					'</bo' + 'dy></ht' + 'ml>'
+				);
+				w.document.close();
+				setTimeout(function () {
+					w.focus();
+					w.print();
+					setTimeout(function () { w.close(); }, 1000);
+				}, 300);
+			}
 
             // ---------- SALVA COME PDF ----------
             function salvaPdf(clone, nomeFile) {
