@@ -2,94 +2,35 @@
 DA: c:\Users\Luciano\Desktop\Soggetti Comunita\GDT
 A:  d:\Desktop\Soggetti Comunita\GDT
 ============================================================
-[CANCELLATO SU A] File non presente in DA: content\eventi-2026\index-prev.html
-[CANCELLATO SU A] File non presente in DA: content\eventi-2026\documenti\Visita Centro Storico Rimini -Amicale Sanmarinese des Alpes -Venerdì 8 maggio 2026 - Teatro Galli.pdf
 [AGGIORNATO DA => A] .git\COMMIT_EDITMSG (DA più recente)
 [AGGIORNATO DA => A] .git\FETCH_HEAD (DA più recente)
-[AGGIORNATO DA => A] .git\HEAD (DA più recente)
 [AGGIORNATO DA => A] .git\index (DA più recente)
-[AGGIORNATO A => DA] css\style.css (A più recente)
+[AGGIORNATO DA => A] content\accordo-ue.html (DA più recente)
+[AGGIORNATO DA => A] content\bacheca.html (DA più recente)
+[AGGIORNATO DA => A] content\documenti.html (DA più recente)
 [AGGIORNATO DA => A] .git\logs\HEAD (DA più recente)
 [AGGIORNATO DA => A] .git\logs\refs\heads\main (DA più recente)
 [AGGIORNATO DA => A] .git\logs\refs\remotes\origin\HEAD (DA più recente)
 [AGGIORNATO DA => A] .git\logs\refs\remotes\origin\main (DA più recente)
-[NUOVO -> A] Copiato: .git\objects\04\b0dcb1728e4a750bece76d8adef868c5dccbd3
-[NUOVO -> A] Copiato: .git\objects\04\c58f129e2c36f5680fe27d8f638f958f0ffcbd
-[NUOVO -> A] Copiato: .git\objects\06\8d8cd3c0aded5f631b2864a454f0403ad226ce
-[NUOVO -> A] Copiato: .git\objects\08\f6e3528e1a8deefffb2dd833515e4ecc322d3f
-[NUOVO -> A] Copiato: .git\objects\0a\1b64fcaa4e7718a7070064174a6fcbd10566f4
-[NUOVO -> A] Copiato: .git\objects\0b\156d0d1f167ee2443253e2cde1b02d2342d150
-[NUOVO -> A] Copiato: .git\objects\0b\21d6f98e4e6be3186f8529eb9bf5a835c07179
-[NUOVO -> A] Copiato: .git\objects\11\06c3c83c6b689f58226fc3002fae173e39295a
-[NUOVO -> A] Copiato: .git\objects\11\ec4158b1d25cfd6686b00c964da0fe75b07f23
-[NUOVO -> A] Copiato: .git\objects\15\961ac2a3ee3027589062e6101355fd536a162a
-[NUOVO -> A] Copiato: .git\objects\18\775e20e15ca0055a7820672648828a5b5c4891
-[NUOVO -> A] Copiato: .git\objects\22\2ef5d83296f285e29bedae962f9f9afd624ccc
-[NUOVO -> A] Copiato: .git\objects\22\efa47d666dc31c82b844cb1b87d396c9e2f2e8
-[NUOVO -> A] Copiato: .git\objects\2c\cb1b4273dcb91ad874b8a3d502de2664676ddd
-[NUOVO -> A] Copiato: .git\objects\3d\f033bf7795d45ad9481012744ae07ffa529e6d
-[NUOVO -> A] Copiato: .git\objects\3e\19b120091a268bcea8ae13f4fff68884990866
-[NUOVO -> A] Copiato: .git\objects\41\1ceae31eaa67eaf6d201ef8846b21f31926cc1
-[NUOVO -> A] Copiato: .git\objects\41\f4148392526bfc78ecfda39c8829f73b5c8f2c
-[NUOVO -> A] Copiato: .git\objects\44\622a8cd26944a120ef01835c6126b853342f97
-[NUOVO -> A] Copiato: .git\objects\49\dc61a2defd8ab08d616fd04b0b754ddfa3e2d3
-[NUOVO -> A] Copiato: .git\objects\4a\638462ad2384d927034c139e60057df840c99e
-[NUOVO -> A] Copiato: .git\objects\54\19ed6909e2bb7b8b827115a3583200d8320093
-[NUOVO -> A] Copiato: .git\objects\54\cd76bbe9a3f36c26f8de1c43778c11a9150803
-[NUOVO -> A] Copiato: .git\objects\5d\71d182185d3e283b442839c66b2cc54957aa50
-[NUOVO -> A] Copiato: .git\objects\5d\cc08361b9234dda2c24c9cbf42055c1cc5c976
-[NUOVO -> A] Copiato: .git\objects\5e\d54854d6e18763b9fe47959eddd5d072ff56dc
-[NUOVO -> A] Copiato: .git\objects\5f\a2fc39d9d569f16733cc3a3e143f3c258addba
-[NUOVO -> A] Copiato: .git\objects\69\35c6b26160c54d40a682bbd616502640aa809e
-[NUOVO -> A] Copiato: .git\objects\6d\23e0fb8f208eebadb92751c9e99e39ebfee10a
-[NUOVO -> A] Copiato: .git\objects\6e\afb6f681d333b1233f7f279d3568bf2f38b9a0
-[NUOVO -> A] Copiato: .git\objects\6e\b48ef5a5319da9f40871dafabb042e19deda7a
-[NUOVO -> A] Copiato: .git\objects\70\0278b2d94d1364f12eda9722af212b964e58c1
-[NUOVO -> A] Copiato: .git\objects\70\374f476c3e169932449004b5f67e6bbb752254
-[NUOVO -> A] Copiato: .git\objects\77\92bf114faaab8bbf3a9a1cc5bceaf6213ec21f
-[NUOVO -> A] Copiato: .git\objects\78\08d5ca4e936e5c68690ebbdfbe20771aece3b3
-[NUOVO -> A] Copiato: .git\objects\79\ae521cd12dac314632b5b8a3307af267a71117
-[NUOVO -> A] Copiato: .git\objects\83\1bbd39da586ae8b120334f1d1228df2c02dc55
-[NUOVO -> A] Copiato: .git\objects\85\192fc4e3df2a26f67ffe2687586e64097cc2f1
-[NUOVO -> A] Copiato: .git\objects\86\3d75758325f528adf66a8d1566f49e7201bc2f
-[NUOVO -> A] Copiato: .git\objects\88\84d74d689602d1f63e0504c3835be9af159af9
-[NUOVO -> A] Copiato: .git\objects\89\ea52d2398159b780cdaf073a5250ae057fb4a3
-[NUOVO -> A] Copiato: .git\objects\96\bd6348d1792082af8e4c72ea42bc0f126bf870
-[NUOVO -> A] Copiato: .git\objects\98\8f62279d8197b2ae5e2bd00197fc7b3824ab81
-[NUOVO -> A] Copiato: .git\objects\9c\6659906fdf7c2b3fa7b4b320b8df472579f26c
-[NUOVO -> A] Copiato: .git\objects\9d\d40feeca73e568178571c8c737f2d3c09ff508
-[NUOVO -> A] Copiato: .git\objects\a2\fd0f99b1b59fc86c9b97e482926379b6574f1f
-[NUOVO -> A] Copiato: .git\objects\a3\b2d6e70a03acb73add0ae50c12c6224826399c
-[NUOVO -> A] Copiato: .git\objects\a6\287f227969c006f1669f37102423807bf742f1
-[NUOVO -> A] Copiato: .git\objects\aa\17ea8751522d017e1cf0d563864d164d00a80c
-[NUOVO -> A] Copiato: .git\objects\aa\5ae70c14e2669ea5ed48dc099fb27dee1f5617
-[NUOVO -> A] Copiato: .git\objects\aa\aede1f8410d9d3cc3f592ab96e290abae9dccd
-[NUOVO -> A] Copiato: .git\objects\ab\36c9499019e7db96c0077eb4539ffc186065a2
-[NUOVO -> A] Copiato: .git\objects\ab\7800ac2f5053211478f950e8e5b0584b03e1a1
-[NUOVO -> A] Copiato: .git\objects\af\9d9ecbd5541031d70c524172b304cfd1cf0999
-[NUOVO -> A] Copiato: .git\objects\b1\e6f5b70bcbee664ad12acadafb999d6162f251
-[NUOVO -> A] Copiato: .git\objects\c0\1c3315cc39296828763256fc384c381fabf1f2
-[NUOVO -> A] Copiato: .git\objects\c0\90d7a6ba06e0f66d21486f8159f44b6d9a81da
-[NUOVO -> A] Copiato: .git\objects\c4\cb027b3f4642330949061358a6cf9248601544
-[NUOVO -> A] Copiato: .git\objects\c5\e1cf7657258d70e2458db783c19f6832b795b1
-[NUOVO -> A] Copiato: .git\objects\c7\f0cb2aa1994f4dd6ad9d25aac9eb24397e2a25
-[NUOVO -> A] Copiato: .git\objects\c8\121ba6f6decbf2f1c74746066b02f9fd1c67ce
-[NUOVO -> A] Copiato: .git\objects\cf\d84e013a96e755c777446558e750db4f8c4e03
-[NUOVO -> A] Copiato: .git\objects\d1\ddf8f81ecedf969ee70cefd12e6a80e3bf7c60
-[NUOVO -> A] Copiato: .git\objects\d3\f984d511086f6c06f8aa33dabc1834a8efe53d
-[NUOVO -> A] Copiato: .git\objects\da\8ab69cd48ea0c04f5c82e29b4cf0d121758139
-[NUOVO -> A] Copiato: .git\objects\dd\67911a2a91dac6f0500afc99b642bdcb701342
-[NUOVO -> A] Copiato: .git\objects\e1\fae0568a07c9d4380c8dd4cf79174bcb2a2ba4
-[NUOVO -> A] Copiato: .git\objects\e4\c42a3bab42eb405fcb225a2e1dc98a1bfcf387
-[NUOVO -> A] Copiato: .git\objects\f2\8fc90556540712c7e9eacd9582b553f7fd6614
-[NUOVO -> A] Copiato: .git\objects\f4\1d9008937d38cd7a5d82b4534de0cfc94bf39f
-[NUOVO -> A] Copiato: .git\objects\f7\e1bff34da8554439d503a2ab23f1374b667975
-[NUOVO -> A] Copiato: .git\objects\fa\87cfb16ab45f1bd911184f6e8ed9ef3d0cf01d
-[NUOVO -> A] Copiato: .git\objects\fe\4b85edb615c950e01c2a69e21781fb4c3c996d
+[NUOVO -> A] Copiato: .git\objects\16\694a2a69d8597fa35262509e97079644e936c7
+[NUOVO -> A] Copiato: .git\objects\1b\4461764f56ebefa825ef11ef98940987269c3d
+[NUOVO -> A] Copiato: .git\objects\2d\d8677683d815af5f109c8b19687efa28e78fb5
+[NUOVO -> A] Copiato: .git\objects\3f\f73cf5eb1c5be1a30abc282c54f37471c9ebd3
+[NUOVO -> A] Copiato: .git\objects\4a\f695ee7c377ba3a8301bcbef5989780491501d
+[NUOVO -> A] Copiato: .git\objects\87\e44a00ae5129b4409d56dc762e532684b818b6
+[NUOVO -> A] Copiato: .git\objects\89\21ee4e0a9cfc763f03c9df357e6cfcea748e62
+[NUOVO -> A] Copiato: .git\objects\a4\6745b3815af8eb1e14aca9d2a60b31a51ea81a
+[NUOVO -> A] Copiato: .git\objects\b0\56fe23b3a1e46ccd8073d6d9ad68516c0a0fc4
+[NUOVO -> A] Copiato: .git\objects\bc\862e06db392f5577b77c88b37d8e3bbe61e608
+[NUOVO -> A] Copiato: .git\objects\c2\b8c5fd34172f4ea9e051fcca8afe0648e735ab
+[AGGIORNATO DA => A] .git\objects\c6\56a9caccca7cea416cf1f92c30f82776310023 (DA più recente)
+[NUOVO -> A] Copiato: .git\objects\c8\f82e8ad40d023f575d9c44d5a9e92c51565740
+[AGGIORNATO DA => A] .git\objects\e2\d9ad02f769f4eca31911a54956f685d4ef846f (DA più recente)
+[AGGIORNATO DA => A] .git\objects\ea\a1b0ebaf6fcf217ac6e4fd3ac8981e5596694c (DA più recente)
+[AGGIORNATO DA => A] .git\objects\fa\c0b463243fc316977bcd8cb839648381c01db9 (DA più recente)
 [AGGIORNATO DA => A] .git\refs\heads\main (DA più recente)
 [AGGIORNATO DA => A] .git\refs\remotes\origin\HEAD (DA più recente)
 [AGGIORNATO DA => A] .git\refs\remotes\origin\main (DA più recente)
-[AGGIORNATO DA => A] content\eventi-2026\index.html (DA più recente)
-[NUOVO -> A] Copiato: content\eventi-2026\documenti\visita-rimini-2026.pdf
+[NUOVO -> A] Copiato: content\documenti\Bozza nuovo Statuto Comunità Rimini 2026.pdf
 ============================================================
 Sincronizzazione completata con successo!
