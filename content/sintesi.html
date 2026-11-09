@@ -43,15 +43,44 @@
         <td id="count-home">Caricamento...</td>
       </tr>
       <tr>
+        <td>🖋️ Sezione Contatti: </td>
+        <td id="count-contatti">Caricamento...</td>
+      </tr>
+      <tr>
+        <td>👪 Sezione Direttivo: </td>
+        <td id="count-direttivo">Caricamento...</td>
+      </tr>
+      <tr>
+        <td>🧮 Sezione Quanti Siamo: </td>
+        <td id="count-quanti-siamo">Caricamento...</td>
+      </tr>
+      <tr>
+        <td>🗄️ Sezione Documenti: </td>
+        <td id="count-documenti">Caricamento...</td>
+      </tr>
+      <tr>
+        <td>🔗 Sezione Link Utili: </td>
+        <td id="count-link-utili">Caricamento...</td>
+      </tr>
+      <tr>
+        <td>🤝🏼 Sezione Accordo UE: </td>
+        <td id="count-accordo-ue">Caricamento...</td>
+      </tr>
+      <tr>
+        <td>🏳️ Sezione Cittadinanza: </td>
+        <td id="count-cittadinanza">Caricamento...</td>
+      </tr>
+
+      <tr>
         <td>📧 Sezione Scrivici: </td>
         <td id="count-scrivici">Caricamento...</td>
       </tr>
       <tr>
-        <td>✋ Sezione Questionario Versione semplificata: </td>
+        <td>🙋‍♂️ Sezione Questionario Versione semplificata: </td>
         <td id="count-questionario">Caricamento...</td>
       </tr>
       <tr>
-        <td>✋ Sezione Questionario Versione completa di Nicolini Elisabetta: 
+        <td>🙋‍♂️ Sezione Questionario Versione completa di Nicolini Elisabetta: 
         <td id="count-questionario-2">Caricamento...</td>
       </tr>
 
@@ -60,25 +89,37 @@
 </div>
 
 <script>
-  (function() {
-    var DB_URL = "https://gente-del-titano-default-rtdb.europe-west1.firebasedatabase.app";
+(function() {
+  var DB_URL = "https://gente-del-titano-default-rtdb.europe-west1.firebasedatabase.app";
 
-    function leggiVisiteFirebase(key, elementId) {
-      fetch(DB_URL + '/visite/' + key + '.json')
-        .then(function(res) { return res.json(); })
-        .then(function(valore) {
-          var el = document.getElementById(elementId);
-          if (el) el.innerText = valore !== null ? valore : 0;
-        })
-        .catch(function() {
-          var el = document.getElementById(elementId);
-          if (el) el.innerText = "0";
-        });
-    }
+  var MAPPA = {
+    'home':            'count-home',
+    'contatti':        'count-contatti',
+    'direttivo':       'count-direttivo',
+    'quanti-siamo':    'count-quanti-siamo',
+    'documenti':       'count-documenti',
+    'link-utili':      'count-link-utili',
+    'accordo-ue':      'count-accordo-ue',
+    'cittadinanza':    'count-cittadinanza',
+    'scrivici':        'count-scrivici',
+    'questionario':    'count-questionario',
+    'questionario-2':  'count-questionario-2'
+  };
 
-    leggiVisiteFirebase('home', 'count-home');
-    leggiVisiteFirebase('scrivici', 'count-scrivici');
-	  leggiVisiteFirebase('questionario', 'count-questionario');
-    leggiVisiteFirebase('questionario-2', 'count-questionario-2');
-  })();
+  fetch(DB_URL + '/visite.json')
+    .then(function(res) { return res.json(); })
+    .then(function(dati) {
+      dati = dati || {};
+      Object.keys(MAPPA).forEach(function(key) {
+        var el = document.getElementById(MAPPA[key]);
+        if (el) el.innerText = (dati[key] != null) ? dati[key] : 0;
+      });
+    })
+    .catch(function() {
+      Object.keys(MAPPA).forEach(function(key) {
+        var el = document.getElementById(MAPPA[key]);
+        if (el) el.innerText = "0";
+      });
+    });
+})();
 </script>

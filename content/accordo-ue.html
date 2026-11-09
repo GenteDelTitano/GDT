@@ -166,6 +166,7 @@
         <li><a href="javascript:void(0)" onclick="document.getElementById('stato-attuale').scrollIntoView({behavior:'smooth',block:'start'});">Stato attuale dell'Accordo</a></li>
         <li><a href="javascript:void(0)" onclick="document.getElementById('prospettive-future').scrollIntoView({behavior:'smooth',block:'start'});">Prospettive future</a></li>
         <li><a href="javascript:void(0)" onclick="document.getElementById('dopo-firma').scrollIntoView({behavior:'smooth',block:'start'});">Dopo la firma</a></li>
+        <li><a href="javascript:void(0)" onclick="document.getElementById('portale-accordo').scrollIntoView({behavior:'smooth',block:'start'});">Portale istituzionale accordo</a></li>
     </ul>
 </div>
 
@@ -375,3 +376,33 @@ L'entrata in vigore dell'Accordo aprirà una fase transitoria cruciale basata su
    class="torna-indice">↑ Torna all'indice</a>
 
 </div>
+
+<h3 id="portale-accordo" class="titolo-sezione">L'Accordo di Associazione tra San Marino e l'Unione europea</h3>
+<p class="link-doc"
+   onclick="window.open('https://www.sanmarinoeuropeanunion.com/', '_blank');">
+   🌍 spiegato in modo semplice, trasparente e documentato.
+</p>  
+
+<a href="javascript:void(0)" 
+   onclick="document.getElementById('indice-accordo').scrollIntoView({behavior:'smooth',block:'start'});" 
+   class="torna-indice">↑ Torna all'indice</a>
+
+</div>
+
+<!-- Incrementa la home di 1 ad ogni caricamento -->
+<script>
+  (function() {
+    var DB_URL = "https://gente-del-titano-default-rtdb.europe-west1.firebasedatabase.app";
+    
+    fetch(DB_URL + '/visite/accordo-ue.json')
+      .then(function(res) { return res.json(); })
+      .then(function(valoreAttuale) {
+        var nuovoValore = (valoreAttuale || 0) + 1;
+        fetch(DB_URL + '/visite/accordo-ue.json', {
+          method: 'PUT',
+          body: JSON.stringify(nuovoValore)
+        });
+      })
+      .catch(function(e) { console.warn("Firebase non raggiungibile"); });
+  })();
+</script>

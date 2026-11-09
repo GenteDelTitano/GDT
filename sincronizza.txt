@@ -1,36 +1,28 @@
---- INIZIO SINCRONIZZAZIONE ---
-DA: c:\Users\Luciano\Desktop\Soggetti Comunita\GDT
-A:  d:\Desktop\Soggetti Comunita\GDT
+--- INIZIO SINCRONIZZAZIONE UNIDIREZIONALE ---
+DA (Sorgente): c:\Users\Luciano\Desktop\Soggetti Comunita\GDT
+A  (Destinazione): d:\Desktop\Soggetti Comunita\GDT
 ============================================================
 [AGGIORNATO DA => A] .git\COMMIT_EDITMSG (DA più recente)
 [AGGIORNATO DA => A] .git\FETCH_HEAD (DA più recente)
 [AGGIORNATO DA => A] .git\index (DA più recente)
-[AGGIORNATO DA => A] content\accordo-ue.html (DA più recente)
-[AGGIORNATO DA => A] content\bacheca.html (DA più recente)
 [AGGIORNATO DA => A] content\documenti.html (DA più recente)
 [AGGIORNATO DA => A] .git\logs\HEAD (DA più recente)
 [AGGIORNATO DA => A] .git\logs\refs\heads\main (DA più recente)
 [AGGIORNATO DA => A] .git\logs\refs\remotes\origin\HEAD (DA più recente)
 [AGGIORNATO DA => A] .git\logs\refs\remotes\origin\main (DA più recente)
-[NUOVO -> A] Copiato: .git\objects\16\694a2a69d8597fa35262509e97079644e936c7
-[NUOVO -> A] Copiato: .git\objects\1b\4461764f56ebefa825ef11ef98940987269c3d
-[NUOVO -> A] Copiato: .git\objects\2d\d8677683d815af5f109c8b19687efa28e78fb5
-[NUOVO -> A] Copiato: .git\objects\3f\f73cf5eb1c5be1a30abc282c54f37471c9ebd3
-[NUOVO -> A] Copiato: .git\objects\4a\f695ee7c377ba3a8301bcbef5989780491501d
-[NUOVO -> A] Copiato: .git\objects\87\e44a00ae5129b4409d56dc762e532684b818b6
-[NUOVO -> A] Copiato: .git\objects\89\21ee4e0a9cfc763f03c9df357e6cfcea748e62
-[NUOVO -> A] Copiato: .git\objects\a4\6745b3815af8eb1e14aca9d2a60b31a51ea81a
-[NUOVO -> A] Copiato: .git\objects\b0\56fe23b3a1e46ccd8073d6d9ad68516c0a0fc4
-[NUOVO -> A] Copiato: .git\objects\bc\862e06db392f5577b77c88b37d8e3bbe61e608
-[NUOVO -> A] Copiato: .git\objects\c2\b8c5fd34172f4ea9e051fcca8afe0648e735ab
-[AGGIORNATO DA => A] .git\objects\c6\56a9caccca7cea416cf1f92c30f82776310023 (DA più recente)
-[NUOVO -> A] Copiato: .git\objects\c8\f82e8ad40d023f575d9c44d5a9e92c51565740
-[AGGIORNATO DA => A] .git\objects\e2\d9ad02f769f4eca31911a54956f685d4ef846f (DA più recente)
-[AGGIORNATO DA => A] .git\objects\ea\a1b0ebaf6fcf217ac6e4fd3ac8981e5596694c (DA più recente)
-[AGGIORNATO DA => A] .git\objects\fa\c0b463243fc316977bcd8cb839648381c01db9 (DA più recente)
+[AGGIORNATO DA => A] .git\objects\1e\e10fc2280983d2cdf1d7e954b96acedd98ad57 (Nuovo su A)
+[AGGIORNATO DA => A] .git\objects\20\def58fbb09a23841bc5dd9000abdc168c8ba89 (Nuovo su A)
+[AGGIORNATO DA => A] .git\objects\6b\b1f56e390d0a46555908410ca8d5b43859c205 (Nuovo su A)
+[AGGIORNATO DA => A] .git\objects\74\57f03bfcf19651b49920ecb78b310199b519c7 (Nuovo su A)
+[AGGIORNATO DA => A] .git\objects\90\1e26b93ddd07aff2f13d0a10d06aa7544da4e7 (Nuovo su A)
+[AGGIORNATO DA => A] .git\objects\a9\b96e8ec3777a9cabb0d976c31c0e1dde8f975a (Nuovo su A)
+[AGGIORNATO DA => A] .git\objects\bc\b5f68a9cfd537815c3fe962d5b565cbb22ca8b (Nuovo su A)
 [AGGIORNATO DA => A] .git\refs\heads\main (DA più recente)
 [AGGIORNATO DA => A] .git\refs\remotes\origin\HEAD (DA più recente)
 [AGGIORNATO DA => A] .git\refs\remotes\origin\main (DA più recente)
-[NUOVO -> A] Copiato: content\documenti\Bozza nuovo Statuto Comunità Rimini 2026.pdf
+[AGGIORNATO DA => A] content\documenti\SAN MARINO E I RICONOSCIMENTI UNESCO.pdf (Nuovo su A)
 ============================================================
+File(s) Aggiornati (Origine => Destinazione): 19
+File(s) Cancellati (Solo su Destinazione): 0
+File(s) Elaborati: 1038
 Sincronizzazione completata con successo!

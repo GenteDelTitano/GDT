@@ -349,3 +349,21 @@
     Ultimo aggiornamento del database Soggetti iscritti: Marted&igrave; 18 Agosto 2026
   </p>
 </div>
+
+<!-- Incrementa la home di 1 ad ogni caricamento -->
+<script>
+  (function() {
+    var DB_URL = "https://gente-del-titano-default-rtdb.europe-west1.firebasedatabase.app";
+    
+    fetch(DB_URL + '/visite/quanti-siamo.json')
+      .then(function(res) { return res.json(); })
+      .then(function(valoreAttuale) {
+        var nuovoValore = (valoreAttuale || 0) + 1;
+        fetch(DB_URL + '/visite/quanti-siamo.json', {
+          method: 'PUT',
+          body: JSON.stringify(nuovoValore)
+        });
+      })
+      .catch(function(e) { console.warn("Firebase non raggiungibile"); });
+  })();
+</script>

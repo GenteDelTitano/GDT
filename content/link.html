@@ -36,6 +36,11 @@
    🌍 Eventi a San Marino - Adesso e in programma
 </p>
 
+<p class="link-doc"
+   onclick="window.open('https://www.sanmarinoeuropeanunion.com/', '_blank');">
+   🌍 Portale istituzionale accordo di Associazione tra San Marino e l'Unione europea,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>spiegato in modo semplice, trasparente e documentato.</i>
+</p>  
+
 <div class="div-evento">
    <p class="link-doc"
       onclick="window.open('https://www.altreitalie.it/pubblicazioni/rivista/numeri_arretrati/n_22/saggi/san_marino_e_lemigrazione_transoceanica.kl', '_blank');">
@@ -58,3 +63,21 @@
       🌐 YouTube - San Marino, la repubblica più antica del mondo
    </p>
 </div>
+
+<!-- Incrementa la home di 1 ad ogni caricamento -->
+<script>
+  (function() {
+    var DB_URL = "https://gente-del-titano-default-rtdb.europe-west1.firebasedatabase.app";
+    
+    fetch(DB_URL + '/visite/link-utili.json')
+      .then(function(res) { return res.json(); })
+      .then(function(valoreAttuale) {
+        var nuovoValore = (valoreAttuale || 0) + 1;
+        fetch(DB_URL + '/visite/link-utili.json', {
+          method: 'PUT',
+          body: JSON.stringify(nuovoValore)
+        });
+      })
+      .catch(function(e) { console.warn("Firebase non raggiungibile"); });
+  })();
+</script>

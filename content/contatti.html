@@ -53,5 +53,22 @@
     </p>
 
     <!-- Fine Mappa Google -->
-
 </div>
+
+<!-- Incrementa la home di 1 ad ogni caricamento -->
+<script>
+  (function() {
+    var DB_URL = "https://gente-del-titano-default-rtdb.europe-west1.firebasedatabase.app";
+    
+    fetch(DB_URL + '/visite/contatti.json')
+      .then(function(res) { return res.json(); })
+      .then(function(valoreAttuale) {
+        var nuovoValore = (valoreAttuale || 0) + 1;
+        fetch(DB_URL + '/visite/contatti.json', {
+          method: 'PUT',
+          body: JSON.stringify(nuovoValore)
+        });
+      })
+      .catch(function(e) { console.warn("Firebase non raggiungibile"); });
+  })();
+</script>

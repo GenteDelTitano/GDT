@@ -190,6 +190,7 @@
 
                 <!-- Riga 3 Membri -->
                 <tr>
+                    <td></td>
                     <td>
                         <img src="immagini/helene.jpg" class="foto-membro">
                         <span class="carica">Sindaco Revisore</span>
@@ -200,14 +201,27 @@
                         <span class="carica">Consigliere Onorario</span>
                         <span class="nome-firma">Galli Vilma</span>
                     </td>
-                    <td>
-                        <img src="immagini/simona.jpg" class="foto-membro">
-                        <span class="carica">Consigliere Onorario</span>
-                        <span class="nome-firma">Sammaritani Simona</span>
-                    </td>
                     <td></td>
                 </tr>
             </table>
         </div>
     </div> 
 </div>
+
+<!-- Incrementa la home di 1 ad ogni caricamento -->
+<script>
+  (function() {
+    var DB_URL = "https://gente-del-titano-default-rtdb.europe-west1.firebasedatabase.app";
+    
+    fetch(DB_URL + '/visite/direttivo.json')
+      .then(function(res) { return res.json(); })
+      .then(function(valoreAttuale) {
+        var nuovoValore = (valoreAttuale || 0) + 1;
+        fetch(DB_URL + '/visite/direttivo.json', {
+          method: 'PUT',
+          body: JSON.stringify(nuovoValore)
+        });
+      })
+      .catch(function(e) { console.warn("Firebase non raggiungibile"); });
+  })();
+</script>
